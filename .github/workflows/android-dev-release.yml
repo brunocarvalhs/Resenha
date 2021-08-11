@@ -2,7 +2,7 @@ name: Resenha App Android Release
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ develop ]
 
 jobs:
   version:
