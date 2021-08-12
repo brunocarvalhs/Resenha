@@ -175,57 +175,54 @@ on:
     branches: [ develop ]
 
 jobs:
-  drive:
+  drive_android:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        api-level: [21, 29]
+        target: [default]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.2'
+          channel: 'stable'
+      - name: "Run Flutter Driver tests"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: Nexus 6
+          script: "flutter drive --target=test_driver/driver.dart"
+  drive_ios:
     strategy:
       matrix:
         device:
-        - "iPhone 8 (13.1)"
-        - "iPhone 11 Pro Max (13.1)"
+          - "iPhone 8 (14.4)"
+          - "iPhone 11 Pro Max (14.4)"
       fail-fast: false
     runs-on: macOS-latest
     steps:
-    - name: "List all simulators"
-      run: "xcrun instruments -s"
-    - name: "Start Simulator"
-      run: |
-        UDID=$(
-          xcrun instruments -s |
-          awk \
-            -F ' *[][]' \
-            -v 'device=${{ matrix.device }}' \
-            '$1 == device { print $2 }'
-        )
-        xcrun simctl boot "${UDID:?No Simulator with this name found}"
-    - uses: actions/checkout@v1
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable' # or: 'dev' or 'beta'
-    - name: "Run Flutter Driver tests"
-      run: "flutter drive --target=test_driver/app.dart"
-  test:
-    name: Validate execute Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-
+      - name: "List all simulators"
+        run: "xcrun instruments -s"
+      - name: "Start Simulator"
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=${{ matrix.device }}' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
+      - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.3'
-
-      - name: Clone Repo
-        run: |
-          git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
-          echo $PWD 
-          git clone https://github.com/${{ github.repository }}.git
-      
-      - name: Execute Pub Get
-        run: flutter pub get
-      
-      - name: Execute test
-        run: flutter test
-
+          channel: 'stable'
+          Flitter version: '2.0.2'
+      - name: "Run Flutter Driver tests"
+        run: "flutter drive --target=test_driver/driver.dart"
   version:
     name: Create version number
     needs: [ test ]
