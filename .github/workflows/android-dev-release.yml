@@ -179,33 +179,28 @@ jobs:
     name: Create version number
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Fetch all history for all tags and branches
-      run: |
-        git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
-        git fetch --prune --depth=10000
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.3
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      with:
-          versionSpec: '5.x'
-    - name: Use GitVersion
-      id: gitversion
-      uses: gittools/actions/gitversion/execute@v0.9.3
-      inputs:
-        versionSpec: '5.x'
-        updateAssemblyInfo: true
-        additionalArguments: '/output BuildServer'
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-    - name: Create version.txt with nuGetVersion
-      run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
-    - name: Upload version.txt
-      uses: actions/upload-artifact@v2
-      with:
-        name: gitversion
-        path: version.txt
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch history for GitVersion
+        run: git fetch --prune --unshallow
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.3
+        with:
+          versionSpec: '5.3.4'
+
+      - name: Generate Version Info using GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.3
+        with: 
+          updateAssemblyInfo: true
+      
+      - name: Display GitVersion values
+        run: |
+          echo "Major: ${{ steps.gitversion.outputs.major }}"
+          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
+          echo "Patch: ${{ steps.gitversion.outputs.patch }}"
   build:
     name: Build APK and Create release
     needs: [ version ]
