@@ -181,14 +181,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-
-    - name: Fetch tags for GitVersion
-      run: git fetch --tags
-
-    - name: Fetch master for GitVersion
-      if: github.ref != 'refs/heads/master'
-      run: git branch --create-reflog master origin/master
-
+    
+    - name: Fetch all history for all tags and branches
+      run: |
+        git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+        git fetch --prune --depth=10000
+    
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.3
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      with:
+        versionSpec: '5.x'
+        
     - name: GitVersion
       id: gitversion  # step id used as reference for output values
       uses: roryprimrose/rungitversion@v1.0.0
