@@ -193,12 +193,12 @@ jobs:
     - name: Use GitVersion
       id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.3
+      inputs:
+        versionSpec: '5.x'
+        updateAssemblyInfo: true
+        additionalArguments: '/output BuildServer'
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      inputs:
-        useConfigFile: true
-        configFilePath: 'GitVersion.yml'
-        additionalArguments: ''
     - name: Create version.txt with nuGetVersion
       run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
     - name: Upload version.txt
