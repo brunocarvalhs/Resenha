@@ -186,7 +186,8 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-      
+          flutter-version: '2.2.3'
+
       - name: Clone Repo
         run: |
           git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
