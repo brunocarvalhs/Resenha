@@ -27,14 +27,14 @@ jobs:
           path: ${{ env.FLUTTER_HOME }}/.pub-cache
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
-        - name: Download pub dependencies
-          run: flutter pub get
-        - name: Run build_runner
-          run: flutter pub run build_runner build --delete-conflicting-outputs
-        - name: Run analyzer
-          run: flutter analyze
-        - name: Run tests
-          run: flutter test
+      - name: Download pub dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Run analyzer
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test
   build:
     name: Build APK and Create release
     runs-on: ubuntu-latest
@@ -57,28 +57,28 @@ jobs:
           path: ${{ env.FLUTTER_HOME }}/.pub-cache
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
-        - name: Download pub dependencies
+      - name: Download pub dependencies
           run: flutter pub get
-        - name: Run build_runner
-          run: flutter pub run build_runner build --delete-conflicting-outputs
-        - name: Download Android keystore
-          id: android_keystore
-          uses: timheuer/base64-to-file@v1.0.3
-          with:
-            fileName: key.jks
-            encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-        - name: Create key.properties
-          run: |
-            echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
-            echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
-            echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
-            echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
-        - name: Build Android App Bundle
-          run: flutter build appbundle
-        - name: Build Android APK
-          run: flutter build apk --release --split-per-abi
-        - name: Upload app bundle
-          uses: actions/upload-artifact@v2
-          with:
-            name: appbundle
-            path: build/app/outputs/bundle/release/app-release.aab
+      - name: Run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+      - name: Build Android App Bundle
+        run: flutter build appbundle
+      - name: Build Android APK
+        run: flutter build apk --release --split-per-abi
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: appbundle
+          path: build/app/outputs/bundle/release/app-release.aab
