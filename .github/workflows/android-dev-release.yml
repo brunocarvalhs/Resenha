@@ -177,7 +177,7 @@ on:
 jobs:
 
   test:
-    name: Create version number
+    name: Validate execute Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-java@v1
@@ -186,7 +186,7 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.17.0'
+          flutter-version: '2.x'
       
       - run: flutter pub get
       
@@ -194,6 +194,7 @@ jobs:
 
   version:
     name: Create version number
+    needs: [ test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
