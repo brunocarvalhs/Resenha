@@ -179,25 +179,23 @@ jobs:
     name: Create version number
     runs-on: ubuntu-latest
     steps:
-  
-    - name: Checkout Code
+      - name: Checkout Code
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 0                # fetch the whole repo history
-
+          
       - name: Git Version
         uses: codacy/git-version@2.2.0
 
-    - name: Create version.txt with nuGetVersion
-      run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
-    
-    - name: Upload version.txt
-      uses: actions/upload-artifact@v2
-      with:
-        name: gitversion
-        path: version.txt
-  
+      - name: Create version.txt with nuGetVersion
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+      
+      - name: Upload version.txt
+        uses: actions/upload-artifact@v2
+        with:
+          name: gitversion
+          path: version.txt
   build:
     name: Build APK and Create release
     needs: [ version ]
