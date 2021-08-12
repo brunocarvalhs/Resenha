@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/core/app_images.dart';
-import 'package:resenha/core/app_text_styles.dart';
 
 class GoogleLoginButton extends StatelessWidget {
   final VoidCallback onTap;
