@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/core/app_colors.dart';
 import 'package:resenha/core/app_routers.dart';
 import 'package:resenha/core/app_theme.dart';
 

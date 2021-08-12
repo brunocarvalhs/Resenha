@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/core/app_text_styles.dart';
-import 'package:resenha/core/app_text_styles.dart';
 
-class AppBarWidget extends PreferredSize {
+class AppBarComponent extends PreferredSize {
   final String name;
   final IconData? icon;
   final VoidCallback? onTap;
 
-  AppBarWidget({Key? key, required this.name, this.icon, this.onTap})
+  AppBarComponent({Key? key, required this.name, this.icon, this.onTap})
       : super(
           preferredSize: Size.fromHeight(152),
           child: Container(
