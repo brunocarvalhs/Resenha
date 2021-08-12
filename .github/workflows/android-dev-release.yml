@@ -2,7 +2,7 @@ name: Resenha App PlayStore Release
 
 on:
   push:
-    branches: [master]
+    branches: [develop]
 
 jobs:
   test: 
