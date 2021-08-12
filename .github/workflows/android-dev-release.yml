@@ -187,9 +187,16 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
       
-      - run: flutter pub get
+      - name: Clone Repo
+        run: |
+          git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+          git clone ${{ github.repository }}
       
-      - run: flutter test
+      - name: Execute Pub Get
+        run: flutter pub get
+      
+      - name: Execute test
+        run: flutter test
 
   version:
     name: Create version number
