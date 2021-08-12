@@ -191,6 +191,7 @@ jobs:
       - name: Clone Repo
         run: |
           git config remote.origin.url https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+          echo $PWD 
           git clone https://github.com/${{ github.repository }}.git
       
       - name: Execute Pub Get
