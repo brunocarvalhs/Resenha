@@ -189,12 +189,16 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       with:
-          versionSpec: '5.2.x'
+          versionSpec: '5.x'
     - name: Use GitVersion
       id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.3
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      inputs:
+        useConfigFile: true
+        configFilePath: 'GitVersion.yml'
+        additionalArguments: ''
     - name: Create version.txt with nuGetVersion
       run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
     - name: Upload version.txt
