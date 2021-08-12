@@ -196,6 +196,7 @@ jobs:
           profile: Nexus 6
           script: "flutter drive --target=test_driver/driver.dart"
   drive_ios:
+    needs: [ drive_android ]
     strategy:
       matrix:
         device:
@@ -225,7 +226,7 @@ jobs:
         run: "flutter drive --target=test_driver/driver.dart"
   version:
     name: Create version number
-    needs: [ test ]
+    needs: [ drive_ios ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
