@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/app/controllers/auth_controller.dart';
-import 'package:resenha/core/app_images.dart';
+import 'package:resenha/shared/auth/auth_controller.dart';
+import 'package:resenha/shared/themes/app_images.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

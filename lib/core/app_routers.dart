@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/app/models/user_model.dart';
-import 'package:resenha/core/app_colors.dart';
-import 'package:resenha/resources/screens/home_screen.dart';
-import 'package:resenha/resources/screens/login_screen.dart';
-import 'package:resenha/resources/screens/splash_screen.dart';
+import 'package:resenha/shared/models/user_model.dart';
+import 'package:resenha/shared/themes/app_colors.dart';
+import 'package:resenha/modules/home/home_screen.dart';
+import 'package:resenha/modules/login/login_screen.dart';
+import 'package:resenha/modules/splash/splash_screen.dart';
 
 class AppRouter {
-  static final String initialRouter = "/login";
+  static final String initialRouter = "/home";
 
   static final router = <String, WidgetBuilder>{
     "/splash": (BuildContext context) => base(SplashScreen()),

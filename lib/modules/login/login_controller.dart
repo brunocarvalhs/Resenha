@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:resenha/app/controllers/auth_controller.dart';
-import 'package:resenha/app/models/user_model.dart';
+import 'package:resenha/shared/auth/auth_controller.dart';
+import 'package:resenha/shared/models/user_model.dart';
 
 class LoginController {
   final authController = AuthController();
