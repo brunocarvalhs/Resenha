@@ -22,9 +22,9 @@ class AppBarHomeWidget extends PreferredSize {
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(8),
-                      // image: DecorationImage(
-                      //   image: NetworkImage(user.photoURL!),
-                      // ),
+                      image: DecorationImage(
+                        image: NetworkImage(user.photoURL!),
+                      ),
                     ),
                   ),
                 ),

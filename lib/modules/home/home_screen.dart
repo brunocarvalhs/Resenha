@@ -4,10 +4,9 @@ import 'package:resenha/modules/home/widgets/app_bar_widget.dart';
 import 'package:resenha/modules/home/widgets/floating_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  // final UserModel user;
+  final UserModel user;
 
-  // const HomeScreen({Key? key, required this.user}) : super(key: key);
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -18,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarHomeWidget(
-        user: UserModel(name: "Brenna Carvalho"),
+        user: widget.user,
       ),
       body: Center(
         child: Column(

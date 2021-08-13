@@ -26,7 +26,13 @@ class FloatingButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: AppColors.yellow,
         ),
-        child: Center(child: Icon(icon),),
+        child: Center(
+          child: Icon(
+            icon,
+            color: AppColors.purple,
+            size: 30,
+          ),
+        ),
       ),
     );
   }
