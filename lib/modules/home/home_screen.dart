@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
 import 'package:resenha/modules/home/widgets/app_bar_widget.dart';
-import 'package:resenha/modules/home/floating_button_widget.dart';
+import 'package:resenha/modules/home/widgets/floating_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   // final UserModel user;
