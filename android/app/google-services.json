@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "404767447708",
+    "project_id": "resenha-bfadb",
+    "storage_bucket": "resenha-bfadb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404767447708:android:eefd640ba35c9ade98eb59",
+        "android_client_info": {
+          "package_name": "br.brunocarvalhs.resenha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "404767447708-euef44bnsonnn0sos6srukdeipih4ckl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.brunocarvalhs.resenha",
+            "certificate_hash": "8f97d66963549ff788f1302605686b5bd2194d88"
+          }
+        },
+        {
+          "client_id": "404767447708-3rgtabl053b6rjk6d85ep032e0eld2qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFT6YTnpP9dYfBAzk53vfVkfI7h_6L-_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "404767447708-3rgtabl053b6rjk6d85ep032e0eld2qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

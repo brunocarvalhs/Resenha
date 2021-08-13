@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/app/controllers/login_controller.dart';
 import 'package:resenha/core/app_dimens.dart';
 import 'package:resenha/core/app_images.dart';
-import 'package:resenha/resources/components/facebook_button_component.dart';
-import 'package:resenha/resources/components/google_button_component.dart';
+import 'package:resenha/resources/widgets/social_login_button_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,6 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -65,9 +67,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: 14),
-                    GoogleLoginButton(onTap: () => {}),
+                    SocialLoginButtonWidget.google(
+                      label: "Entrar com Google",
+                      onTap: () => controller.googleSignIn(context),
+                    ),
                     SizedBox(height: 14),
-                    FacebookLoginButton(onTap: () => {})
+                    SocialLoginButtonWidget.facebook(
+                      label: "Entrar com Facebook",
+                      onTap: () => {},
+                    )
                   ],
                 ),
               ),

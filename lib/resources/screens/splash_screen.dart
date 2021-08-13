@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/app/controllers/auth_controller.dart';
 import 'package:resenha/core/app_images.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -6,6 +7,8 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = AuthController();
+    authController.currentUser(context);
     return Scaffold(
       body: Center(
         child: Column(
