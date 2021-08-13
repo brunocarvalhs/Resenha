@@ -6,7 +6,7 @@ import 'package:resenha/resources/screens/login_screen.dart';
 import 'package:resenha/resources/screens/splash_screen.dart';
 
 class AppRouter {
-  static final String initialRouter = "/home";
+  static final String initialRouter = "/login";
 
   static final router = <String, WidgetBuilder>{
     "/splash": (BuildContext context) => base(SplashScreen()),

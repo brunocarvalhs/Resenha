@@ -24,7 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Stack(
           children: [
             Container(
-              child: Image.asset(AppImages.backgroundLogin),
+              child: Image.asset(
+                AppImages.backgroundLogin,
+              ),
             ),
             Positioned(
               top: 40,
@@ -32,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
               right: 0,
               child: Center(
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
+                  width: size.width * 0.6,
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Image.asset(AppImages.logo),
                 ),
@@ -48,34 +50,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "fique por dentro de todas Resenhas",
-                      style: TextStyle(
-                        color: Color(0xFFDDE3F0),
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 14),
-                    Text(
-                      "Crie grupos para realizar seus roles favoritos com seus amigos",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 40, left: 20, right: 20),
+                      child: Text(
+                        "fique por dentro de todas Resenhas",
+                        style: TextStyle(
                           color: Color(0xFFDDE3F0),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400),
+                          fontSize: 40,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    SizedBox(height: 14),
-                    SocialLoginButtonWidget.google(
-                      label: "Entrar com Google",
-                      onTap: () => controller.googleSignIn(context),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 40, right: 40, top: 40),
+                      child: Text(
+                        "Crie grupos para realizar seus roles favoritos com seus amigos",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color(0xFFDDE3F0),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
-                    SizedBox(height: 14),
-                    SocialLoginButtonWidget.facebook(
-                      label: "Entrar com Facebook",
-                      onTap: () => {},
-                    )
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 40),
+                      child: SocialLoginButtonWidget.google(
+                        label: "Entrar com Google",
+                        onTap: () => controller.googleSignIn(context),
+                      ),
+                    ),
                   ],
                 ),
               ),
