@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
-import 'package:resenha/modules/home/widgets/app_bar_widget.dart';
+import 'package:resenha/modules/home/widgets/app_bar_home_widget.dart';
 import 'package:resenha/modules/home/widgets/floating_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBarHomeWidget(
         user: widget.user,
+        routerProfile: () => Navigator.pushNamed(context, "/profile", arguments: widget.user),
       ),
       body: Center(
         child: Column(
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingButtonWidget(
         icon: Icons.add,
-        onTap: () => {},
+        onTap: () => Navigator.pushNamed(context, "/event/new"),
       ),
     );
   }

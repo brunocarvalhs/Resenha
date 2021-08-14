@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/modules/event/event_new_screen.dart';
+import 'package:resenha/modules/profile/profile_screen.dart';
 import 'package:resenha/shared/models/user_model.dart';
 import 'package:resenha/shared/themes/app_colors.dart';
 
@@ -16,7 +18,13 @@ class AppRouter {
           HomeScreen(
             user: ModalRoute.of(context)!.settings.arguments as UserModel,
           ),
-        )
+        ),
+    "/event/new": (BuildContext context) => base(EventNewScreen()),
+    "/profile": (BuildContext context) => base(
+          ProfileScreen(
+            user: ModalRoute.of(context)!.settings.arguments as UserModel,
+          ),
+        ),
   };
 
   static Widget base(Widget widget) {

@@ -1,12 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
 import 'package:resenha/shared/themes/app_colors.dart';
-import 'package:resenha/shared/themes/app_text_styles.dart';
+import 'package:resenha/shared/widgets/photo_hero_widget.dart';
 
 class AppBarHomeWidget extends PreferredSize {
   final UserModel user;
+  final VoidCallback? routerProfile;
 
-  AppBarHomeWidget({Key? key, required this.user})
+  AppBarHomeWidget({Key? key, required this.user, this.routerProfile})
       : super(
           preferredSize: Size.fromHeight(152),
           child: Container(
@@ -14,19 +17,11 @@ class AppBarHomeWidget extends PreferredSize {
             color: Colors.transparent,
             child: Center(
               child: ListTile(
-                leading: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 58,
-                    width: 58,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                        image: NetworkImage(user.photoURL!),
-                      ),
-                    ),
-                  ),
+                leading: PhotoHeroWidget(
+                  onTap: routerProfile,
+                  photo: user.photoURL!,
+                  width: 58,
+                  borderRadius: 8,
                 ),
                 title: Text.rich(
                   TextSpan(
