@@ -31,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               background: PhotoHeroWidget(
                 photo: widget.user.photoURL!,
                 width: size.width,
+                height: size.height,
               ),
             ),
           ),

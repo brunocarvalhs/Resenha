@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
 import 'package:resenha/shared/themes/app_colors.dart';
+import 'package:resenha/shared/themes/app_dimensions.dart';
+import 'package:resenha/shared/themes/app_text_styles.dart';
 import 'package:resenha/shared/widgets/photo_hero_widget.dart';
 
 class AppBarHomeWidget extends PreferredSize {
@@ -17,45 +19,37 @@ class AppBarHomeWidget extends PreferredSize {
             color: Colors.transparent,
             child: Center(
               child: ListTile(
-                leading: PhotoHeroWidget(
+                leading: InkWell(
                   onTap: routerProfile,
-                  photo: user.photoURL!,
-                  width: 58,
-                  borderRadius: 8,
+                  child: PhotoHeroWidget(
+                    photo: user.photoURL!,
+                    width: AppDimensions.avatarAppBar,
+                    height: AppDimensions.avatarAppBar,
+                    borderRadius: AppDimensions.borderRadius,
+                  ),
                 ),
                 title: Text.rich(
                   TextSpan(
                     text: "Olá, ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.title,
                     children: [
                       TextSpan(
                         text: user.name.split(" ")[0],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: AppTextStyles.titleBold,
                       )
                     ],
                   ),
                 ),
                 subtitle: Text(
-                  "Mantenha suas contas em dia",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
+                  "Hoje é dia de festejar",
+                  style: AppTextStyles.subtitle
                 ),
                 trailing: IconButton(
                   onPressed: () {},
                   icon: Icon(
                     Icons.search,
-                    size: 30,
-                    color: AppColors.yellow,
+                    size: AppDimensions.sizeIcon,
+                    color: Colors.white,
                   ),
                 ),
               ),

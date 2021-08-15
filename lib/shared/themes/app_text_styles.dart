@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app_colors.dart';
+
 class AppTextStyles {
   // Onboarding
   static final heading1 = GoogleFonts.rajdhani(
@@ -35,6 +37,42 @@ class AppTextStyles {
   // Tab bar, others
   static final text4 = GoogleFonts.rajdhani(
     fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle title = GoogleFonts.rajdhani(
+    color: AppColors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle titleBold = GoogleFonts.rajdhani(
+    color: AppColors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle subtitle = GoogleFonts.rajdhani(
+    color: AppColors.grey,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle button = GoogleFonts.inter(
+    color: AppColors.black,
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle onboardTitleBold = GoogleFonts.rajdhani(
+    color: AppColors.grey,
+    fontSize: 40,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle onboardSubtitle = GoogleFonts.inter(
+    color: AppColors.grey,
+    fontSize: 15,
     fontWeight: FontWeight.w400,
   );
 }

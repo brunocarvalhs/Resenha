@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/themes/app_colors.dart';
+import 'package:resenha/shared/themes/app_dimensions.dart';
 
 class FloatingButtonWidget extends StatelessWidget {
   final IconData icon;
@@ -23,14 +24,14 @@ class FloatingButtonWidget extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(AppDimensions.borderRadius),
           color: AppColors.yellow,
         ),
         child: Center(
           child: Icon(
             icon,
             color: AppColors.purple,
-            size: 30,
+            size: AppDimensions.sizeIcon,
           ),
         ),
       ),

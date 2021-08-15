@@ -8,15 +8,18 @@ class SocialLoginButtonWidget extends StatelessWidget {
   final Color background;
   final Color borderColor;
   final VoidCallback? onTap;
-  const SocialLoginButtonWidget(
-      {Key? key,
-      required this.label,
-      required this.icon,
-      required this.fontColor,
-      required this.background,
-      required this.borderColor,
-      this.onTap})
-      : super(key: key);
+  final TextStyle? styleLabel;
+
+  const SocialLoginButtonWidget({
+    Key? key,
+    required this.label,
+    required this.icon,
+    required this.fontColor,
+    required this.background,
+    required this.borderColor,
+    this.styleLabel,
+    this.onTap,
+  }) : super(key: key);
 
   factory SocialLoginButtonWidget.facebook({
     VoidCallback? onTap,
@@ -34,6 +37,7 @@ class SocialLoginButtonWidget extends StatelessWidget {
   factory SocialLoginButtonWidget.google({
     VoidCallback? onTap,
     required String label,
+    TextStyle? styleLabel,
   }) =>
       SocialLoginButtonWidget(
         icon: AppImages.google,
@@ -42,6 +46,7 @@ class SocialLoginButtonWidget extends StatelessWidget {
         background: Color(0xFFF6F4F5),
         borderColor: Color(0xFF5A5A5A),
         onTap: onTap,
+        styleLabel: styleLabel,
       );
 
   @override
@@ -87,10 +92,7 @@ class SocialLoginButtonWidget extends StatelessWidget {
                 children: [
                   Text(
                     label,
-                    style: TextStyle(
-                        color: fontColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500),
+                    style: styleLabel,
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/modules/event/widgets/app_bar_event_widget.dart';
+import 'package:resenha/shared/themes/app_dimensions.dart';
 
 class EventNewScreen extends StatefulWidget {
   const EventNewScreen({Key? key}) : super(key: key);
@@ -14,14 +15,7 @@ class _EventNewScreenState extends State<EventNewScreen> {
     return Scaffold(
       appBar: AppBarEventWidget(
         routerBack: () => Navigator.pop(context),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.settings,
-            size: 30,
-            color: Colors.white,
-          ),
-        ),
+        icon: Icons.settings,
       ),
       body: SafeArea(child: Text("")),
     );

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/shared/themes/app_dimensions.dart';
 
 class AppBarEventWidget extends PreferredSize {
   final String? title;
   final VoidCallback? routerBack;
-  final Widget? trailing;
+  final IconData? icon;
+  final VoidCallback? onTap;
 
   AppBarEventWidget({
     Key? key,
-    this.trailing,
+    this.icon,
     this.title,
+    this.onTap,
     required this.routerBack,
   }) : super(
           preferredSize: Size.fromHeight(152),
@@ -21,11 +24,18 @@ class AppBarEventWidget extends PreferredSize {
                   onPressed: routerBack,
                   icon: Icon(
                     Icons.arrow_back,
-                    size: 30,
+                    size: AppDimensions.sizeIcon,
                     color: Colors.white,
                   ),
                 ),
-                trailing: trailing,
+                trailing: IconButton(
+                  onPressed: onTap,
+                  icon: Icon(
+                    icon,
+                    size: AppDimensions.sizeIcon,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ),
