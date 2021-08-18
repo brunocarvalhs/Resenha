@@ -7,7 +7,7 @@ class EventListController {
     EventModel(
       name: "Resenha do Thiagão",
       description: "Partiu praia com muita bebi...",
-      category: 1,
+      category: "Lual",
       day: 18,
       month: 06,
       hour: 21,
@@ -21,7 +21,7 @@ class EventListController {
     EventModel(
       name: "Yeah, Boiada",
       description: "Eae galeri!! Partiu beber, ca...",
-      category: 1,
+      category: "Barzinho",
       day: 18,
       month: 06,
       hour: 21,

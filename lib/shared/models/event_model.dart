@@ -9,7 +9,7 @@ class EventModel {
   final int? month;
   final int? hour;
   final int? minutes;
-  final int? category;
+  final String? category;
   final int? members;
 
   EventModel({
@@ -34,7 +34,7 @@ class EventModel {
     int? month,
     int? hour,
     int? minutes,
-    int? category,
+    String? category,
     int? members,
   }) {
     return EventModel(
