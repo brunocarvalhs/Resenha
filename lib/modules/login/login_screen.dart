@@ -3,7 +3,7 @@ import 'package:resenha/modules/login/login_controller.dart';
 import 'package:resenha/shared/themes/app_images.dart';
 import 'package:resenha/modules/login/widgets/social_login_button_widget.dart';
 import 'package:resenha/shared/themes/app_text_styles.dart';
-import 'package:resenha/shared/widgets/logo_hero_widget.dart';
+import 'package:resenha/shared/widgets/logo_hero/logo_hero_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

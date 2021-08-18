@@ -2,10 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
-import 'package:resenha/shared/themes/app_colors.dart';
 import 'package:resenha/shared/themes/app_dimensions.dart';
 import 'package:resenha/shared/themes/app_text_styles.dart';
-import 'package:resenha/shared/widgets/photo_hero_widget.dart';
+import 'package:resenha/shared/widgets/photo_hero/photo_hero_widget.dart';
 
 class AppBarHomeWidget extends PreferredSize {
   final UserModel user;

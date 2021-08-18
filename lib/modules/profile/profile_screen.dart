@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/models/user_model.dart';
-import 'package:resenha/shared/widgets/photo_hero_widget.dart';
+import 'package:resenha/shared/widgets/photo_hero/photo_hero_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   final UserModel user;

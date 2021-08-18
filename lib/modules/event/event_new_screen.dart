@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/modules/event/widgets/app_bar_event_widget.dart';
-import 'package:resenha/shared/themes/app_dimensions.dart';
+import 'package:resenha/modules/event/widgets/app_bar_event/app_bar_event_widget.dart';
 
 class EventNewScreen extends StatefulWidget {
   const EventNewScreen({Key? key}) : super(key: key);
@@ -17,7 +16,23 @@ class _EventNewScreenState extends State<EventNewScreen> {
         routerBack: () => Navigator.pop(context),
         icon: Icons.settings,
       ),
-      body: SafeArea(child: Text("")),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 22),
+                    child: Text("Categoria"),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

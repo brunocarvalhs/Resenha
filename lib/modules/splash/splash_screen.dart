@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/shared/auth/auth_controller.dart';
 import 'package:resenha/shared/themes/app_images.dart';
-import 'package:resenha/shared/widgets/logo_hero_widget.dart';
+import 'package:resenha/shared/widgets/logo_hero/logo_hero_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
