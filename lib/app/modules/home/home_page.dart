@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:resenha/app/shared/themes/app_colors.dart';
+
 import 'home_store.dart';
+import 'widgets/app_bar_home_widget.dart';
+import 'widgets/floating_button_widget.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -14,30 +18,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter'),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: AppColors.backgroundGradient,
       ),
-      body: ScopedBuilder<HomeStore, Exception, int>(
-        store: store,
-        onState: (_, counter) {
-          return Padding(
-            padding: EdgeInsets.all(10),
-            child: Text('$counter'),
-          );
-        },
-        onError: (context, error) => Center(
-          child: Text(
-            'Too many clicks',
-            style: TextStyle(color: Colors.red),
+      child: Scaffold(
+        appBar: AppBarHomeWidget(),
+        body: ScopedBuilder<HomeStore, Exception, int>(
+          store: store,
+          onState: (_, counter) {
+            return Padding(
+              padding: EdgeInsets.all(10),
+              child: Text('$counter'),
+            );
+          },
+          onError: (context, error) => Center(
+            child: Text(
+              'Too many clicks',
+              style: TextStyle(color: Colors.red),
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: Icon(Icons.add),
+        floatingActionButton: FloatingButtonWidget(
+          icon: Icons.add,
+          onTap: () => Modular.to.navigate('/profile'),
+        ),
       ),
     );
   }

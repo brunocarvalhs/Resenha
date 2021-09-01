@@ -9,7 +9,7 @@ class SplashScreenPage extends StatelessWidget {
     Modular.get<AuthStore>().checkLogin().then((v) {
       return Future.delayed(Duration(seconds: 3));
     }).then((value) {
-      Modular.to.navigate('/home');
+      Modular.to.navigate('/login');
     });
   }
 

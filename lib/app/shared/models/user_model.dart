@@ -21,6 +21,4 @@ class UserModel {
   String toJson() => jsonEncode(toMap());
 
   bool isNotEmpty() => this.name != null && this.photoURL != null;
-
-  static UserModel empty() => UserModel();
 }

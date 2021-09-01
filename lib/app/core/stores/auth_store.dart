@@ -1,21 +1,25 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:resenha/app/shared/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthStore extends NotifierStore<Exception, UserModel> {
-  AuthStore() : super(UserModel.empty());
+
+  AuthStore() : super(Modular.get<UserModel>());
 
   bool get isLogged => state.isNotEmpty();
+
+  UserModel get user => state;
 
   void setUser(UserModel value) => update(value);
 
   Future<bool> checkLogin() async {
-    final instance = await SharedPreferences.getInstance();
-    final biometric = await checkBiometricUser();
-    var result = instance.containsKey("user");
+    final share = await Modular.getAsync<SharedPreferences>();
+    final biometric = await authenticateWithBiometrics();
+    var result = share.containsKey("user");
     if (result && biometric) {
-      final json = instance.get("user") as String;
+      final json = share.get("user") as String;
       update(UserModel.fromJson(json));
     }
     return result;
