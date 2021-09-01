@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 class UserModel {
-  final String name;
+  final String? name;
   final String? photoURL;
 
-  UserModel({required this.name, this.photoURL});
+  UserModel({this.name, this.photoURL});
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(name: map['name'], photoURL: map['photoURL']);
@@ -19,4 +19,8 @@ class UserModel {
       };
 
   String toJson() => jsonEncode(toMap());
+
+  bool isNotEmpty() => this.name != null && this.photoURL != null;
+
+  static UserModel empty() => UserModel();
 }

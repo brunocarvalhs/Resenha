@@ -1,39 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_triple/flutter_triple.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:resenha/shared/models/user_model.dart';
+import 'package:resenha/app/shared/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthController {
-  UserModel? _user;
+class AuthStore extends NotifierStore<Exception, UserModel> {
+  AuthStore() : super(UserModel.empty());
 
-  UserModel get user => _user!;
+  bool get isLogged => state.isNotEmpty();
 
-  void setUser(BuildContext context, UserModel? user) {
-    if (user != null) {
-      saveUser(user);
-      _user = user;
-      Navigator.pushReplacementNamed(context, "/home", arguments: user);
-    } else {
-      Navigator.pushReplacementNamed(context, "/login");
-    }
-  }
+  void setUser(UserModel value) => update(value);
 
-  Future<void> saveUser(UserModel user) async {
+  Future<bool> checkLogin() async {
     final instance = await SharedPreferences.getInstance();
-    await instance.setString("user", user.toJson());
-    return;
-  }
-
-  Future<void> currentUser(BuildContext context) async {
-    final instance = await SharedPreferences.getInstance();
-    await Future.delayed(Duration(seconds: 2));
     final biometric = await checkBiometricUser();
-    if (instance.containsKey("user") && biometric) {
+    var result = instance.containsKey("user");
+    if (result && biometric) {
       final json = instance.get("user") as String;
-      setUser(context, UserModel.fromJson(json));
-      return;
+      update(UserModel.fromJson(json));
     }
-    setUser(context, null);
+    return result;
+  }
+
+  Future signOut() async {
+    final instance = await SharedPreferences.getInstance();
+    instance.remove("user");
   }
 
   static Future<bool> authenticateWithBiometrics() async {
