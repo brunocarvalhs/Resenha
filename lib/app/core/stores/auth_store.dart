@@ -1,53 +1,37 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:local_auth/local_auth.dart';
-import 'package:resenha/app/shared/models/user_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:resenha/app/modules/login/domain/entities/logged_user_information.dart';
+import 'package:resenha/app/modules/login/domain/usecases/get_logged_user.dart';
+import 'package:resenha/app/modules/login/domain/usecases/logout.dart';
 
-class AuthStore extends NotifierStore<Exception, UserModel> {
+// ignore: must_be_immutable
+class AuthStore extends NotifierStore<Exception, LoggedUserInformation> {
+  final GetLoggedUser getLoggedUser;
+  final Logout logout;
+  LoggedUserInformation user;
 
-  AuthStore() : super(Modular.get<UserModel>());
+  AuthStore(this.getLoggedUser, this.logout, this.user) : super(user);
 
-  bool get isLogged => state.isNotEmpty();
+  // ignore: unnecessary_null_comparison
+  bool get isLogged => user != null;
 
-  UserModel get user => state;
-
-  void setUser(UserModel value) => update(value);
+  void setUser(LoggedUserInformation? value) => {
+    if(value != null) update(value)
+  };
 
   Future<bool> checkLogin() async {
-    final share = await Modular.getAsync<SharedPreferences>();
-    final biometric = await authenticateWithBiometrics();
-    var result = share.containsKey("user");
-    if (result && biometric) {
-      final json = share.get("user") as String;
-      update(UserModel.fromJson(json));
-    }
-    return result;
+    var result = await getLoggedUser();
+    return result.fold((l) => false, (user) {
+      setUser(user);
+      return true;
+    });
   }
 
   Future signOut() async {
-    final instance = await SharedPreferences.getInstance();
-    instance.remove("user");
-  }
-
-  static Future<bool> authenticateWithBiometrics() async {
-    final LocalAuthentication localAuthentication = LocalAuthentication();
-    bool isBiometricSupported = await localAuthentication.isDeviceSupported();
-    bool canCheckBiometrics = await localAuthentication.canCheckBiometrics;
-
-    bool isAuthenticated = false;
-
-    if (isBiometricSupported && canCheckBiometrics) {
-      isAuthenticated = await localAuthentication.authenticate(
-        localizedReason: 'Please complete the biometrics to proceed.',
-        biometricOnly: true,
-      );
-    }
-
-    return isAuthenticated;
-  }
-
-  static Future<bool> checkBiometricUser() async {
-    return true;
+    var result = await logout();
+    result.fold((l) {
+      return true;
+    }, (r) {
+      setUser(null);
+    });
   }
 }

@@ -3,10 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/core/stores/auth_store.dart';
-import 'package:resenha/app/shared/models/user_model.dart';
 import 'package:resenha/app/shared/themes/app_dimensions.dart';
 import 'package:resenha/app/shared/themes/app_text_styles.dart';
-import 'package:resenha/app/shared/widgets/photo_hero/photo_hero_widget.dart';
 
 class AppBarHomeWidget extends PreferredSize {
   AppBarHomeWidget({Key? key})
@@ -20,7 +18,7 @@ class AppBarHomeWidget extends PreferredSize {
                 leading: InkWell(
                   onTap: () => Modular.to.navigate("/profile"),
                   child: Hero(
-                    tag: Modular.get<AuthStore>().user.photoURL!,
+                    tag: Modular.get<AuthStore>().user.photoURL,
                     child: Container(
                       width: AppDimensions.avatarAppBar,
                       height: AppDimensions.avatarAppBar,
@@ -29,7 +27,7 @@ class AppBarHomeWidget extends PreferredSize {
                         borderRadius:
                             BorderRadius.circular(AppDimensions.borderRadius),
                         image: DecorationImage(
-                          image: NetworkImage(Modular.get<AuthStore>().user.photoURL!),
+                          image: NetworkImage(Modular.get<AuthStore>().user.photoURL),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -42,7 +40,7 @@ class AppBarHomeWidget extends PreferredSize {
                     style: AppTextStyles.title,
                     children: [
                       TextSpan(
-                        text: Modular.get<AuthStore>().user.name!.split(" ")[0],
+                        text: Modular.get<AuthStore>().user.name.split(" ")[0],
                         style: AppTextStyles.titleBold,
                       )
                     ],
