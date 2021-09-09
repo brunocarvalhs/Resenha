@@ -28,10 +28,10 @@ Se você tiver o Flutter configurado localmente, na pasta raiz do projeto, insta
 
 ## Arquitetura
 Como este aplicativo funciona de dentro e como ele interage com dependências externas - escrito em detalhes em
-[ARCHITECTURE.md](ARCHITECTURE.md).
+[ARQUITETURA](ARCHITECTURE_ptbr.md).
 
 ## Contribuindo
-Veja [CONTRIBUTING](CONTRIBUTING.md) para detalhes sobre como contribuir para o projeto.
+Veja [CONTRIBUINDO](CONTRIBUTING_ptbr.md) para detalhes sobre como contribuir para o projeto.
 
 ## Dependências
 O design tem dependências específicas, onde a inclusão ou mudança deve ser discutida antes do desenvolvimento para evitar problemas de recursos futuros.
