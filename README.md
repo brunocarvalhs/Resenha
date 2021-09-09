@@ -1,7 +1,7 @@
 <p align="center"><a href="https://github.com/brunocarvalhs/Resenha" target="_blank"><img src="https://github.com/brunocarvalhs/Resenha/blob/master/assets/images/logo.png" width="250"></a></p>
 
 <p align="center">
-<a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml"><img src="https:https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml/badge.svg" alt="Demo App PlayStore Release"></a>
+<a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml"><img src="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml/badge.svg" alt="Demo App PlayStore Release"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
