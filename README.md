@@ -19,6 +19,8 @@ let's think/question ourselves before taking an action that breaks any rational 
 ## About
 Resenha's demand is for groups of people who need a tool for organizing events in private groups, with the greatest ease and patricity, based on the phrase, "If it were agreed, it wouldn't happen", with Resenha it would happen.
 
+ - [Layout Figma](https://www.figma.com/file/tUmdLBPJVtOdR9hhtAjeBx/Resenha?node-id=3%3A410)
+
 ## Setup
 If you have no idea how to install Flutter and run it locally, check this
 [_Get started_](https://flutter.dev/docs/get-started/install).
