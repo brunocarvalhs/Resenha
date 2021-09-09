@@ -33,7 +33,7 @@ How this application works from inside and how it interacts with external depend
 ## Contributing
 See [CONTRIBUTING](CONTRIBUTING.md) for details about how to contribute to the project.
 
-## dependencies
+## Dependencies
 The design has specific dependencies, where inclusion or change should be discussed before developing to avoid future feature issues.
 
 - firebase_auth: ^3.1.0
