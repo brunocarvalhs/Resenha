@@ -8,7 +8,7 @@
 [Inglês](/README.md) | Português
 
 > A partir de agora, este projeto é projetado para produzir apenas compilações para Android e iOS. Mesmo assim, dado o atual
-> * estabilidade * do Flutter SDK para desktop (Windows, Linux e macOS) e web, há uma grande probabilidade de que isso
+> *estabilidade* do Flutter SDK para desktop (Windows, Linux e macOS) e web, há uma grande probabilidade de que isso
 > o projeto eventualmente suportará compilações para todas as plataformas.
 
 Este README tem como objetivo orientar como este projeto está estruturado e deve servir como um guia para ajudar a dimensionar o projeto com
