@@ -19,6 +19,8 @@ vamos pensar / nos questionar antes de tomar uma ação que quebra qualquer deci
 ## Sobre
 A demanda da Resenha é por grupos de pessoas que precisam de uma ferramenta para organização de eventos em grupos privados, com a maior facilidade e patricidade, a partir da frase: “Se fosse combinado não aconteceria”, com a Resenha aconteceria.
 
+ - [Layout Figma](https://www.figma.com/file/tUmdLBPJVtOdR9hhtAjeBx/Resenha?node-id=3%3A410)
+
 ## Configurar
 Se você não tem ideia de como instalar o Flutter e executá-lo localmente, marque este
 [_Iniciar_](https://flutter.dev/docs/get-started/install).
