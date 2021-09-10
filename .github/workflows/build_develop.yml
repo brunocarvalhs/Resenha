@@ -79,6 +79,9 @@ jobs:
       - name: Build Android App
         run: flutter build apk --split-per-abi
 
+      - name: Build Android App
+        run: flutter build appbundle --split-per-abi
+
       - name: Build iOS App
         run: |
           flutter build ios --no-codesign
