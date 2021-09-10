@@ -28,6 +28,7 @@ jobs:
 
   version:
     name: Create version number
+    needs: [ test ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
