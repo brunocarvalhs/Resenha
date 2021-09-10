@@ -72,69 +72,59 @@ jobs:
           path: version.txt
 
   build:
-    name: Build APK and Create release
-    needs: [version]
-    runs-on: ubuntu-latest
+    name: Build Apps
+    needs: [quality]
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Export Release Timestamp
+        run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
 
-      - uses: actions/setup-java@v1
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
         with:
-          java-version: "12.x"
+          java-version: "8"
+          distribution: "adopt"
 
-      - uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1
         with:
-          flutter-version: "2.x"
+          channel: "stable"
 
-      - name: Get version.txt
-        uses: actions/download-artifact@v2
-        with:
-          name: gitversion
-
-      - name: Create new file without newline char from version.txt
-        run: tr -d '\n' < version.txt > version1.txt
-
-      - name: Read version
-        id: version
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: version1.txt
-
-      - name: Update version in YAML
-        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
-
-      - name: Create key.properties
-        run: echo ${{ secrets.KEY_PROPERTIES }} | base64 --decode > android/key.properties
-
-      - name: Update KeyStore password in gradle properties
-        run: sed -i 's/#{KEYSTORE_PASS}#/${{ secrets.KEYSTORE_PASS }}/g' android/key.properties
-
-      - name: Update KeyStore key password in gradle properties
-        run: sed -i 's/#{KEYSTORE_KEY_PASS}#/${{ secrets.KEYSTORE_KEY_PASS }}/g' android/key.properties
-
-      - name: Install dependencies
+      - name: Install pub Dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release --split-per-abi
-     
-      - name: Build AppBundle
-        run: flutter build appbundle
+      - name: Run Tests
+        run: flutter test
 
-      - name: Create a Release in GitHub
+      - name: Build Android App
+        run: flutter build apk --split-per-abi
+
+      - name: Build iOS App
+        run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+
+      - name: Build Web App
+        run: |
+          flutter build web
+          cd build/web
+          zip -r web-app.zip .
+
+      - name: Release Apps
         uses: ncipollo/release-action@v1
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
+          tag: ${{ env.APP_VERSION }}
+          name: ${{ env.APP_VERSION }}
           token: ${{ secrets.GH_TOKEN }}
-          tag: ${{ steps.version.outputs.content }}
-          commit: ${{ github.sha }}
-
-      - name: Upload app bundle
-        uses: actions/upload-artifact@v2
-        with:
-          name: appbundle
-          path: build/app/outputs/bundle/release/app-release.aab
+          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab,build/ios/iphoneos/app.ipa,build/web/web-app.zip"
 
   release:
     name: Release app to internal track
@@ -152,7 +142,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
-          packageName: com.fluttercicddemo
+          packageName: br.brunocarvalhs
           releaseFile: app-release.aab
           track: internal
           whatsNewDirectory: distribution/whatsnew
