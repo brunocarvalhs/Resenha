@@ -25,11 +25,7 @@ jobs:
 
       - name: Test validation
         run: flutter test
-<<<<<<< HEAD:.github/workflows/build_release.yml
           
-=======
-        
->>>>>>> 2a683760279943cfc555e64c7f736e5ec471e29f:.github/workflows/android-dev-release.yml
   version:
     name: Create version number
     needs: [test]
