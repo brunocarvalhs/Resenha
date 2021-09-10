@@ -25,7 +25,7 @@ jobs:
 
       - name: Test validation
         run: flutter test
-        
+          
   version:
     name: Create version number
     needs: [test]
