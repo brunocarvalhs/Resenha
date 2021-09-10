@@ -1,9 +1,21 @@
 <p align="center"><a href="https://github.com/brunocarvalhs/Resenha" target="_blank"><img src="https://github.com/brunocarvalhs/Resenha/blob/master/assets/images/logo.png" width="250"></a></p>
 
 <p align="center">
-<a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml"><img src="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml/badge.svg" alt="Demo App PlayStore Release"></a>
-<a href="https://github.com/brunocarvalhs/Resenha/issues"><img src="https://img.shields.io/github/issues/brunocarvalhs/Resenha" alt="Issues"></a>
-<a href="https://github.com/brunocarvalhs/Resenha/blob/master/LICENSE"><img src="https://img.shields.io/github/license/brunocarvalhs/Resenha" alt="License"></a>
+    <a href="https://github.com/brunocarvalhs/Resenha/blob/master/LICENSE">
+        <img src="https://img.shields.io/github/license/brunocarvalhs/Resenha" alt="License">
+    </a>
+    <a href="https://github.com/brunocarvalhs/Resenha/issues">
+        <img src="https://img.shields.io/github/issues/brunocarvalhs/Resenha" alt="Issues">
+    </a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/build_release.yml">
+        <img src="https://github.com/brunocarvalhs/Resenha/actions/workflows/build_release.yml/badge.svg" alt="Build Release">
+    </a>
+    <a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/build_develop.yml">
+        <img src="https://github.com/brunocarvalhs/Resenha/actions/workflows/build_develop.yml/badge.svg" alt="Build Develop">
+    </a>
 </p>
 
 Inglês | [Português](/README_ptbr.md)
