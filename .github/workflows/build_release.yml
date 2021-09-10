@@ -96,11 +96,10 @@ jobs:
       - name: Install pub Dependencies
         run: flutter pub get
 
-      - name: Build Android APK
-        run: flutter build apk --release --split-per-abi
-
-      - name: Build Android AppBundle
-        run: flutter build appbundle
+      - name: Build Android App
+        run: |
+          flutter build apk --release --split-per-abi
+          flutter build appbundle
 
       - name: Build iOS App
         run: |
