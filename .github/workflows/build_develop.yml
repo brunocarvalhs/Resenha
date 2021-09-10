@@ -26,9 +26,25 @@ jobs:
       - name: Test validation
         run: flutter test
 
+  quality:
+    name: Quality dart Code
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    container:
+      image:  google/dart:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Analyze Dart
+        uses: zgosalvez/github-actions-analyze-dart@v1
+
   version:
     name: Create version number
-    needs: [ test ]
+    needs: [ quality ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
