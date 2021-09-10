@@ -1,0 +1,16 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GH_TOKEN }}
+        issue-message: 'Thank you for reporting observations of our product, when we resolve we will get in touch and I hope your contribution will help millions of events, and that you will have fun with them.'
+        pr-message: 'Thank you for taking part in building this product, I hope your contribution helps millions of events, and that you have fun in them.'
