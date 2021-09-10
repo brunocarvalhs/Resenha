@@ -2,7 +2,8 @@
 
 <p align="center">
 <a href="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml"><img src="https://github.com/brunocarvalhs/Resenha/actions/workflows/android-dev-release.yml/badge.svg" alt="Demo App PlayStore Release"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://github.com/brunocarvalhs/Resenha/issues"><img src="https://img.shields.io/github/issues/brunocarvalhs/Resenha" alt="Issues"></a>
+<a href="https://github.com/brunocarvalhs/Resenha/blob/master/LICENSE"><img src="https://img.shields.io/github/license/brunocarvalhs/Resenha" alt="License"></a>
 </p>
 
 [Inglês](/README.md) | Português
