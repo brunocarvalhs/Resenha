@@ -35,26 +35,5 @@ Como este aplicativo funciona de dentro e como ele interage com dependências ex
 ## Contribuindo
 Veja [CONTRIBUINDO](CONTRIBUTING_ptbr.md) para detalhes sobre como contribuir para o projeto.
 
-## Dependências
-O design tem dependências específicas, onde a inclusão ou mudança deve ser discutida antes do desenvolvimento para evitar problemas de recursos futuros.
-
-- firebase_auth: ^3.1.0
-- google_sign_in: ^5.0.4
-- google_fonts: ^2.1.0
-- local_auth: ^1.1.6
-- flutter_modular: ^3.4.1+1
-- flutter_triple: ^1.2.4+3
-- mobx_triple: ^1.1.2+1
-- dartz: ^0.10.0
-- dio: ^4.0.0
-- equatable: ^2.0.3
-
-### dependências de desenvolvedores
-- build_runner: ^2.1.1
-- faker: ^2.0.0
-- flutter_modular_test: ^1.0.3
-- mockito: ^5.0.15
-- triple_test: ^0.0.8
-
 ## Licença
 Resenha is published under [BSD 3-Clause](LICENSE).
