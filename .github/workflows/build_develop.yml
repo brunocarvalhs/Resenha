@@ -1,10 +1,31 @@
-name: Demo App PlayStore Release
+name: Build Develop
 
 on:
   push:
     branches: [ develop ]
 
 jobs:
+  test:
+    name: Validation Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "2.x"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Test validation
+        run: flutter test
+
   version:
     name: Create version number
     runs-on: ubuntu-latest
@@ -26,6 +47,7 @@ jobs:
         with:
           name: gitversion
           path: version.txt
+
   build:
     name: Build APK and Create release
     needs: [ version ]
@@ -67,13 +89,14 @@ jobs:
       - name: Update KeyStore key password in gradle properties
         run: sed -i 's/#{KEYSTORE_KEY_PASS}#/${{ secrets.KEYSTORE_KEY_PASS }}/g' android/key.properties
             
-      - run: flutter pub get
-      
-      - run: flutter test
-      
-      - run: flutter build apk --release --split-per-abi
-      
-      - run: flutter build appbundle
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release --split-per-abi
+     
+      - name: Build AppBundle
+        run: flutter build appbundle
       
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
@@ -89,6 +112,7 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
+
   release:
     name: Release app to internal track
     needs: [ build ]
