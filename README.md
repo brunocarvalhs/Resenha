@@ -36,26 +36,5 @@ How this application works from inside and how it interacts with external depend
 ## Contributing
 See [CONTRIBUTING](CONTRIBUTING.md) for details about how to contribute to the project.
 
-## Dependencies
-The design has specific dependencies, where inclusion or change should be discussed before developing to avoid future feature issues.
-
-- firebase_auth: ^3.1.0
-- google_sign_in: ^5.0.4
-- google_fonts: ^2.1.0
-- local_auth: ^1.1.6
-- flutter_modular: ^3.4.1+1
-- flutter_triple: ^1.2.4+3
-- mobx_triple: ^1.1.2+1
-- dartz: ^0.10.0
-- dio: ^4.0.0
-- equatable: ^2.0.3
-
-### developers dependencies
-- build_runner: ^2.1.1
-- faker: ^2.0.0
-- flutter_modular_test: ^1.0.3
-- mockito: ^5.0.15
-- triple_test: ^0.0.8
-
 ## License
 Resenha is published under [BSD 3-Clause](LICENSE).
