@@ -8,8 +8,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  flutter_driver:
-    sdk: flutter
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
@@ -17,9 +15,12 @@ dependencies:
   flutter_modular: ^3.4.1+1
   mobx: ^2.0.4
   flutter_mobx: ^2.0.2
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_driver:
     sdk: flutter
   build_runner: ^2.1.1
   mockito: ^5.0.15
@@ -30,4 +31,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/animations/
     - assets/images/
