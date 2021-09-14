@@ -20,17 +20,20 @@ class LoginPageState extends State<LoginPage> {
         image: DecorationImage(
           image: AssetImage(backgroundLogin),
           fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
+          repeat: ImageRepeat.noRepeat,
         ),
       ),
       padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
       child: Scaffold(
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: Container(
-                width: 200,
+                width: 313,
+                height: 235,
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Image.asset(logo),
               ),
@@ -59,13 +62,13 @@ class LoginPageState extends State<LoginPage> {
                     fontSize: 15,
                   ),
                 ),
+                SizedBox(height: 42),
+                SocialLoginButtonWidget.google(
+                  label: "Entrar com Google",
+                  onTap: () => {},
+                  styleLabel: AppTextStyles.button,
+                ),
               ],
-            ),
-            SizedBox(height: 42),
-            SocialLoginButtonWidget.google(
-              label: "Entrar com Google",
-              onTap: () => {},
-              styleLabel: AppTextStyles.button,
             ),
           ],
         ),

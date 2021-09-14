@@ -54,37 +54,29 @@ class SocialLoginButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        width: 274,
         height: 56,
         decoration: BoxDecoration(
-            color: background,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.fromBorderSide(
-              BorderSide(
-                color: background,
-              ),
-            )),
+          color: background,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: background,
+            ),
+          ),
+        ),
         child: Row(
           children: [
             Expanded(
-                flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 20,
-                      height: 20,
-                      child: Image.asset(icon),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      height: 56,
-                      width: 1,
-                      color: borderColor,
-                    )
-                  ],
-                )),
+              flex: 1,
+              child: Center(
+                child: Container(
+                  width: 20,
+                  height: 20,
+                  child: Image.asset(icon),
+                ),
+              ),
+            ),
             Expanded(
               flex: 4,
               child: Row(
