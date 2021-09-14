@@ -8,7 +8,7 @@ class AppModule extends Module {
   final List<Bind> binds = [];
 
   @override
-  final List<ModularRoute> routes = [
+  final List<ModularRoute<dynamic>> routes = [
     ModuleRoute(Modular.initialRoute, module: SplashModule()),
     ModuleRoute("/login", module: LoginModule()),
   ];
