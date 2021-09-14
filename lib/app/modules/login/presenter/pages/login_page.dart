@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/app/modules/login/presenter/widgets/social_login_button_widget.dart';
+import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/themes/texts_styles_themes.dart';
+import 'package:resenha/app/utils/assets_utils.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -6,15 +10,65 @@ class LoginPage extends StatefulWidget {
   @override
   LoginPageState createState() => LoginPageState();
 }
+
 class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: ColorsThemes.backgroundGradient,
+        image: DecorationImage(
+          image: AssetImage(backgroundLogin),
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Column(
-        children: <Widget>[],
+      padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                width: 200,
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Image.asset(logo),
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "fique por \ndentro de todas\nResenhas",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xffdce2ef),
+                    fontSize: 40,
+                    fontFamily: "Rajdhani",
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  "Crie grupos para realizar seus roles\nfavoritos com seus amigos",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xffdce2ef),
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 42),
+            SocialLoginButtonWidget.google(
+              label: "Entrar com Google",
+              onTap: () => {},
+              styleLabel: AppTextStyles.button,
+            ),
+          ],
+        ),
       ),
     );
   }
