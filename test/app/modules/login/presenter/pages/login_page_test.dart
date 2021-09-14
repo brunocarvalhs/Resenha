@@ -1,4 +1,4 @@
-import 'package:resenha/app/modules/login/presenter/pages/login_page.dart';
+import 'package:resenha/app/modules/login/presenter/pages/login/login_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular_test/flutter_modular_test.dart';
 

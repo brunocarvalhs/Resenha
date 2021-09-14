@@ -5,6 +5,9 @@ import 'modules/splash/splash_module.dart';
 
 class AppModule extends Module {
   @override
+  List<Module> get imports => [LoginModule()];
+
+  @override
   final List<Bind> binds = [];
 
   @override

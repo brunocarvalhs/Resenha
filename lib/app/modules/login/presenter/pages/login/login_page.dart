@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resenha/app/modules/login/presenter/pages/login/login_controller.dart';
 import 'package:resenha/app/modules/login/presenter/widgets/social_login_button_widget.dart';
 import 'package:resenha/app/themes/colors_themes.dart';
 import 'package:resenha/app/themes/texts_styles_themes.dart';
@@ -11,7 +13,7 @@ class LoginPage extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,7 +67,7 @@ class LoginPageState extends State<LoginPage> {
                 SizedBox(height: 42),
                 SocialLoginButtonWidget.google(
                   label: "Entrar com Google",
-                  onTap: () => {},
+                  onTap: () => controller.enterGoogle(),
                   styleLabel: AppTextStyles.button,
                 ),
               ],

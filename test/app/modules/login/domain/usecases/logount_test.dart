@@ -1,18 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:resenha/app/modules/login/domain/errors/errors.dart';
+import 'package:resenha/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:resenha/app/modules/login/domain/usecases/logount.dart';
-import 'package:resenha/app/modules/login/infra/repositories/login_repository.dart';
 
 import 'logount_test.mocks.dart';
 
 @GenerateMocks([
-  LoginRepositoryImpl
+  LoginRepository
 ], customMocks: [
-  MockSpec<LoginRepositoryImpl>(
+  MockSpec<LoginRepository>(
     as: #LoginRepositoryMock,
+    returnNullOnMissingStub: true,
+  ),
+  MockSpec<GoogleSignIn>(
+    as: #GoogleSignInMock,
     returnNullOnMissingStub: true,
   )
 ])

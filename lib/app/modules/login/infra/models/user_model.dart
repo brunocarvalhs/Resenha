@@ -3,13 +3,13 @@ import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart'
 
 class UserModel extends LoggedUser implements LoggedUserInfo {
   UserModel({
-    required String name,
+    String? name,
     required String email,
-    required String phoneNumber,
+    String? photoUrl,
   }) : super(
           name: name,
           email: email,
-          phoneNumber: phoneNumber,
+          photoUrl: photoUrl,
         );
 
   LoggedUser toLoggedUser() => this;

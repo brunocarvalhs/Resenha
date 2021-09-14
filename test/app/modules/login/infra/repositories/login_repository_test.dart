@@ -5,16 +5,16 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart';
 import 'package:resenha/app/modules/login/domain/errors/errors.dart';
-import 'package:resenha/app/modules/login/external/datasource/login_data_source.dart';
+import 'package:resenha/app/modules/login/infra/datasource/login_data_source.dart';
 import 'package:resenha/app/modules/login/infra/models/user_model.dart';
 import 'package:resenha/app/modules/login/infra/repositories/login_repository.dart';
 
 import 'login_repository_test.mocks.dart';
 
 @GenerateMocks([
-  LoginDataSourceImpl
+  LoginDataSource,
 ], customMocks: [
-  MockSpec<LoginDataSourceImpl>(
+  MockSpec<LoginDataSource>(
     as: #LoginDataSourceMock,
     returnNullOnMissingStub: true,
   )
@@ -25,7 +25,7 @@ void main() {
   final userReturn = UserModel(
     name: faker.person.name(),
     email: faker.internet.email(),
-    phoneNumber: faker.phoneNumber.toString(),
+    photoUrl: faker.image.image(),
   );
   final repository = LoginRepositoryImpl(datasource);
 

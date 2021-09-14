@@ -29,4 +29,14 @@ class LoginRepositoryImpl extends LoginRepository {
       return Left(ErrorLogout(message: "Error ao tentar fazer logout"));
     }
   }
+
+  @override
+  Future<Either<Failure, LoggedUserInfo>> login() async {
+    try {
+      var user = await dataSource.login();
+      return Right(user);
+    } catch (e) {
+      return Left(ErrorLogin(message: "Error login with Email"));
+    }
+  }
 }

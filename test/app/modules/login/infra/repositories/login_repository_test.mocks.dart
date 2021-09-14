@@ -28,6 +28,11 @@ class MockLoginDataSource extends _i1.Mock implements _i3.LoginDataSource {
   }
 
   @override
+  _i4.Future<_i2.UserModel> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
+          as _i4.Future<_i2.UserModel>);
+  @override
   _i4.Future<_i2.UserModel> currentUser() =>
       (super.noSuchMethod(Invocation.method(#currentUser, []),
               returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
@@ -45,6 +50,11 @@ class MockLoginDataSource extends _i1.Mock implements _i3.LoginDataSource {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class LoginDataSourceMock extends _i1.Mock implements _i3.LoginDataSource {
+  @override
+  _i4.Future<_i2.UserModel> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue: Future<_i2.UserModel>.value(_FakeUserModel_0()))
+          as _i4.Future<_i2.UserModel>);
   @override
   _i4.Future<_i2.UserModel> currentUser() =>
       (super.noSuchMethod(Invocation.method(#currentUser, []),

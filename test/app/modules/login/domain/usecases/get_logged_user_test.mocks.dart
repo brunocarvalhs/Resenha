@@ -9,8 +9,6 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart'
     as _i7;
 import 'package:resenha/app/modules/login/domain/errors/errors.dart' as _i6;
-import 'package:resenha/app/modules/login/domain/repositories/login_repository.dart'
-    as _i8;
 import 'package:resenha/app/modules/login/infra/datasource/login_data_source.dart'
     as _i2;
 import 'package:resenha/app/modules/login/infra/repositories/login_repository.dart'
@@ -55,13 +53,24 @@ class MockLoginRepositoryImpl extends _i1.Mock
                   _FakeEither_1<_i6.Failure, _i3.Unit>()))
           as _i5.Future<_i3.Either<_i6.Failure, _i3.Unit>>);
   @override
+  _i5.Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue:
+                  Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>>.value(
+                      _FakeEither_1<_i6.Failure, _i7.LoggedUserInfo>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>>);
+  @override
   String toString() => super.toString();
 }
 
-/// A class which mocks [LoginRepository].
+/// A class which mocks [LoginRepositoryImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class LoginRepositoryMock extends _i1.Mock implements _i8.LoginRepository {
+class LoginRepositoryMock extends _i1.Mock implements _i4.LoginRepositoryImpl {
+  @override
+  _i2.LoginDataSource get dataSource =>
+      (super.noSuchMethod(Invocation.getter(#dataSource),
+          returnValue: _FakeLoginDataSource_0()) as _i2.LoginDataSource);
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>> loggedUser() =>
       (super.noSuchMethod(Invocation.method(#loggedUser, []),
@@ -75,6 +84,13 @@ class LoginRepositoryMock extends _i1.Mock implements _i8.LoginRepository {
               returnValue: Future<_i3.Either<_i6.Failure, _i3.Unit>>.value(
                   _FakeEither_1<_i6.Failure, _i3.Unit>()))
           as _i5.Future<_i3.Either<_i6.Failure, _i3.Unit>>);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue:
+                  Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>>.value(
+                      _FakeEither_1<_i6.Failure, _i7.LoggedUserInfo>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.LoggedUserInfo>>);
   @override
   String toString() => super.toString();
 }

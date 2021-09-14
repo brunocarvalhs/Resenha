@@ -1,5 +1,5 @@
 abstract class LoggedUserInfo {
-  String get name;
+  String? get name;
   String get email;
-  String get phoneNumber;
+  String? get photoUrl;
 }

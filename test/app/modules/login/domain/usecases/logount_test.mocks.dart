@@ -5,6 +5,9 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:google_sign_in/google_sign_in.dart' as _i7;
+import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart'
+    as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart'
     as _i6;
@@ -31,6 +34,13 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
   }
 
   @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue:
+                  Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>>.value(
+                      _FakeEither_0<_i5.Failure, _i6.LoggedUserInfo>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>>);
+  @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>> loggedUser() =>
       (super.noSuchMethod(Invocation.method(#loggedUser, []),
               returnValue:
@@ -52,6 +62,13 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
 /// See the documentation for Mockito's code generation for more information.
 class LoginRepositoryMock extends _i1.Mock implements _i3.LoginRepository {
   @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>> login() =>
+      (super.noSuchMethod(Invocation.method(#login, []),
+              returnValue:
+                  Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>>.value(
+                      _FakeEither_0<_i5.Failure, _i6.LoggedUserInfo>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>>);
+  @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.LoggedUserInfo>> loggedUser() =>
       (super.noSuchMethod(Invocation.method(#loggedUser, []),
               returnValue:
@@ -64,6 +81,60 @@ class LoginRepositoryMock extends _i1.Mock implements _i3.LoginRepository {
               returnValue: Future<_i2.Either<_i5.Failure, _i2.Unit>>.value(
                   _FakeEither_0<_i5.Failure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i2.Unit>>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [GoogleSignIn].
+///
+/// See the documentation for Mockito's code generation for more information.
+class GoogleSignInMock extends _i1.Mock implements _i7.GoogleSignIn {
+  @override
+  _i8.SignInOption get signInOption =>
+      (super.noSuchMethod(Invocation.getter(#signInOption),
+          returnValue: _i8.SignInOption.standard) as _i8.SignInOption);
+  @override
+  List<String> get scopes =>
+      (super.noSuchMethod(Invocation.getter(#scopes), returnValue: <String>[])
+          as List<String>);
+  @override
+  _i4.Stream<_i7.GoogleSignInAccount?> get onCurrentUserChanged =>
+      (super.noSuchMethod(Invocation.getter(#onCurrentUserChanged),
+              returnValue: Stream<_i7.GoogleSignInAccount?>.empty())
+          as _i4.Stream<_i7.GoogleSignInAccount?>);
+  @override
+  _i4.Future<_i7.GoogleSignInAccount?> signInSilently(
+          {bool? suppressErrors = true, bool? reAuthenticate = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#signInSilently, [], {
+                #suppressErrors: suppressErrors,
+                #reAuthenticate: reAuthenticate
+              }),
+              returnValue: Future<_i7.GoogleSignInAccount?>.value())
+          as _i4.Future<_i7.GoogleSignInAccount?>);
+  @override
+  _i4.Future<bool> isSignedIn() =>
+      (super.noSuchMethod(Invocation.method(#isSignedIn, []),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<_i7.GoogleSignInAccount?> signIn() =>
+      (super.noSuchMethod(Invocation.method(#signIn, []),
+              returnValue: Future<_i7.GoogleSignInAccount?>.value())
+          as _i4.Future<_i7.GoogleSignInAccount?>);
+  @override
+  _i4.Future<_i7.GoogleSignInAccount?> signOut() =>
+      (super.noSuchMethod(Invocation.method(#signOut, []),
+              returnValue: Future<_i7.GoogleSignInAccount?>.value())
+          as _i4.Future<_i7.GoogleSignInAccount?>);
+  @override
+  _i4.Future<_i7.GoogleSignInAccount?> disconnect() =>
+      (super.noSuchMethod(Invocation.method(#disconnect, []),
+              returnValue: Future<_i7.GoogleSignInAccount?>.value())
+          as _i4.Future<_i7.GoogleSignInAccount?>);
+  @override
+  _i4.Future<bool> requestScopes(List<String>? scopes) =>
+      (super.noSuchMethod(Invocation.method(#requestScopes, [scopes]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   String toString() => super.toString();
 }
