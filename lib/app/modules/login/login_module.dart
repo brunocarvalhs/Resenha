@@ -1,14 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'presenter/stores/auth_store.dart';
 import 'domain/usecases/get_logged_user.dart';
 import 'domain/usecases/login_with_google.dart';
 import 'domain/usecases/logount.dart';
-import 'presenter/pages/login/login_controller.dart';
-import 'presenter/pages/login/login_page.dart';
 import 'external/datasource/login_data_source.dart';
 import 'infra/repositories/login_repository.dart';
+import 'presenter/stores/auth_store.dart';
+import 'presenter/pages/login/login_controller.dart';
+import 'presenter/pages/login/login_page.dart';
 
 class LoginModule extends Module {
   @override
