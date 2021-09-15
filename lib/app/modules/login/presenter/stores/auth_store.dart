@@ -29,7 +29,7 @@ abstract class _AuthStoreBase with Store {
     });
   }
 
-  Future signOut() async {
+  Future<dynamic> signOut() async {
     var result = await logout();
     result.fold((l) {}, (r) {
       setUser(null);

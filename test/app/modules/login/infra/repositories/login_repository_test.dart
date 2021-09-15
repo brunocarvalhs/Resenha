@@ -29,7 +29,7 @@ void main() {
   );
   final repository = LoginRepositoryImpl(datasource);
 
-  group("loggedUser", () {
+  group("feat(login) - loggedUser", () {
     test('should get Current User Logged', () async {
       when(datasource.currentUser()).thenAnswer((_) async => userReturn);
       var result = await repository.loggedUser();
@@ -41,7 +41,7 @@ void main() {
       expect(result.leftMap((l) => l is ErrorGetLoggedUser), Left(true));
     });
   });
-  group("logout", () {
+  group("feat(login) - logout", () {
     test('should get logout', () async {
       when(datasource.logout()).thenAnswer((_) async {});
       var result = await repository.logout();

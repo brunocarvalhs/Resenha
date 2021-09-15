@@ -24,12 +24,12 @@ import 'logount_test.mocks.dart';
 void main() {
   final repository = MockLoginRepository();
   final usecase = LogoutImpl(repository);
-  test('should verify if exist User Logged', () async {
+  test('feat(login) - should verify if exist User Logged', () async {
     when(repository.logout()).thenAnswer((_) async => Right(unit));
     var result = (await usecase()).fold((l) => null, (r) => r);
     expect(result, unit);
   });
-  test('should return null if user not logged', () async {
+  test('feat(login) - should return null if user not logged', () async {
     when(repository.logout()).thenAnswer((_) async => Left(ErrorLogout(message: '')));
 
     var result = (await usecase()).fold(id, id);

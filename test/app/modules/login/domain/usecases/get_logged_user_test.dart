@@ -22,12 +22,12 @@ void main() {
   final repository = MockLoginRepositoryImpl();
   final usecase = GetLoggedUserImpl(repository);
 
-  test('should verify if exist User Logged', () async {
+  test('feat(login) - should verify if exist User Logged', () async {
     when(repository.loggedUser()).thenAnswer((_) async => Right(UserModel(name: "", email: "", photoUrl: "")));
     var result = await usecase();
     expect(result.fold((l) => null, (r) => r), isA<LoggedUserInfo>());
   });
-  test('should return null if user not logged', () async {
+  test('feat(login) - should return null if user not logged', () async {
     when(repository.loggedUser()).thenAnswer((_) async => Left(ErrorGetLoggedUser(message: '')));
 
     var result = await usecase();
