@@ -1,0 +1,8 @@
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.mocks.dart"
+  language:
+    strict-raw-types: true
+  strong-mode:
+    implicit-casts: false
