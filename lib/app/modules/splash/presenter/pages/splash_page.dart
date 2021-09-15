@@ -17,7 +17,6 @@ class SplashPageState extends State<SplashPage> {
     }).then((value) {
       Modular.to.pushNamedAndRemoveUntil("/", (_) => false);
     });
-    Future.delayed(Duration(seconds: 3)).then((value) => Modular.to.pushReplacementNamed("/login"));
   }
 
   @override

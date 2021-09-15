@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resenha/app/modules/home/home_module.dart';
 
 import 'modules/login/login_module.dart';
 import 'modules/splash/splash_module.dart';
@@ -14,5 +15,6 @@ class AppModule extends Module {
   final List<ModularRoute<dynamic>> routes = [
     ModuleRoute(Modular.initialRoute, module: SplashModule()),
     ModuleRoute("/login", module: LoginModule()),
+    ModuleRoute("/home", module: HomeModule()),
   ];
 }
