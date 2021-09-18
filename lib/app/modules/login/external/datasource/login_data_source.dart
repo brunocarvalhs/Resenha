@@ -13,6 +13,7 @@ class LoginDataSourceImpl implements LoginDataSource {
   Future<UserModel> currentUser() async {
     var user = await auth.currentUser;
     if (user == null) throw ErrorGetLoggedUser();
+
     return UserModel(
       name: user.displayName,
       photoUrl: user.photoUrl,

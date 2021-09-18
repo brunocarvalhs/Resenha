@@ -20,6 +20,8 @@ dependencies:
   dartz: ^0.10.0
   equatable: ^2.0.3
   google_sign_in: ^5.1.0
+  firebase_analytics: ^8.3.2
+  firebase_core: ^1.6.0
 
 dev_dependencies:
   flutter_test:

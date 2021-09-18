@@ -13,9 +13,10 @@ class SplashPage extends StatefulWidget {
 class SplashPageState extends State<SplashPage> {
   SplashPageState() {
     Modular.get<AuthStore>().checkLogin().then((v) {
-      return Future.delayed(Duration(seconds: 1));
+      if (v) Modular.to.popAndPushNamed("/home");
+      return Future.delayed(Duration(seconds: 3));
     }).then((value) {
-      Modular.to.pushNamedAndRemoveUntil("/", (_) => false);
+      Modular.to.popAndPushNamed("/login");
     });
   }
 

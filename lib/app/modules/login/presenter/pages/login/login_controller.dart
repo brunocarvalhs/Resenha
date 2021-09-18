@@ -17,11 +17,10 @@ abstract class _LoginControllerBase with Store {
 
   enterGoogle() async {
     await Future.delayed(Duration(seconds: 1));
-    print("object");
     var result = await loginWithGoogleUsecase();
     result.fold((failure) {}, (user) {
       authStore.setUser(user);
-      Modular.to.popAndPushNamed("/");
+      Modular.to.popAndPushNamed("/home");
     });
   }
 }
