@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/home/presenter/widgets/app_bar_home_widget.dart';
 import 'package:resenha/app/modules/home/presenter/widgets/floating_button_widget.dart';
 import 'package:resenha/app/themes/colors_themes.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingButtonWidget(
           icon: Icons.add,
-          onTap: () => {},
+          onTap: () => Modular.to.navigate("/event/register"),
         ),
       ),
     );

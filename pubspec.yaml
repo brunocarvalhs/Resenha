@@ -23,6 +23,7 @@ dependencies:
   firebase_core: ^1.6.0
   flutter_modular: any
   shared_preferences: any
+  lottie: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -38,3 +39,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/animations/
