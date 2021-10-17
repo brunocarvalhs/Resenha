@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'register_controller.dart';
+part of 'list_controller.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $RegisterController = BindInject(
-  (i) => RegisterController(),
+final $ListController = BindInject(
+  (i) => ListController(i<AuthStore>()),
   isSingleton: true,
   isLazy: true,
 );
@@ -18,8 +18,16 @@ final $RegisterController = BindInject(
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$RegisterController on _RegisterControllerBase, Store {
-  final _$eventsAtom = Atom(name: '_RegisterControllerBase.events');
+mixin _$ListController on _ListControllerBase, Store {
+  Computed<bool>? _$isEventsComputed;
+
+  @override
+  bool get isEvents =>
+      (_$isEventsComputed ??= Computed<bool>(() => super.isEvents,
+              name: '_ListControllerBase.isEvents'))
+          .value;
+
+  final _$eventsAtom = Atom(name: '_ListControllerBase.events');
 
   @override
   ObservableList<EventModel> get events {
@@ -34,35 +42,25 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     });
   }
 
-  final _$_RegisterControllerBaseActionController =
-      ActionController(name: '_RegisterControllerBase');
+  final _$_ListControllerBaseActionController =
+      ActionController(name: '_ListControllerBase');
 
   @override
-  void addItem(EventModel data) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.addItem');
+  void add(EventModel value) {
+    final _$actionInfo = _$_ListControllerBaseActionController.startAction(
+        name: '_ListControllerBase.add');
     try {
-      return super.addItem(data);
+      return super.add(value);
     } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void removeItem(EventModel data) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.removeItem');
-    try {
-      return super.removeItem(data);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+      _$_ListControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String toString() {
     return '''
-events: ${events}
+events: ${events},
+isEvents: ${isEvents}
     ''';
   }
 }

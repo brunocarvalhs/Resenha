@@ -5,5 +5,4 @@ abstract class LoggedEventInfo {
   String? get category;
   DateTime? get data;
   String? get image;
-  List<Object>? get users;
 }

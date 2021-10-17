@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resenha/app/modules/home/presenter/widgets/app_bar_home_widget.dart';
-import 'package:resenha/app/modules/home/presenter/widgets/floating_button_widget.dart';
+import 'package:resenha/app/modules/events/presenter/widgets/floating_button_widget.dart';
 import 'package:resenha/app/themes/colors_themes.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ReadPage extends StatefulWidget {
+  const ReadPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _ReadPageState createState() => _ReadPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ReadPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +18,6 @@ class _HomePageState extends State<HomePage> {
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(
-        appBar: AppBarHomeWidget(),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -31,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingButtonWidget(
           icon: Icons.add,
-          onTap: () => Modular.to.navigate("/event/register"),
+          onTap: () => Modular.to.pushNamed("/event/register"),
         ),
       ),
     );

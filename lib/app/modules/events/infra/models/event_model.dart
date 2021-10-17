@@ -1,5 +1,3 @@
-import 'package:resenha/app/modules/login/domain/entities/logged_user.dart';
-
 import '../../domain/entities/logged_event.dart';
 import '../../domain/entities/logged_event_info.dart';
 
@@ -10,7 +8,6 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
   final String category;
   final DateTime data;
   final String image;
-  final List<LoggedUser> users;
 
   EventModel(
     this.id,
@@ -19,7 +16,6 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     this.category,
     this.data,
     this.image,
-    this.users,
   ) : super(
           id: id,
           title: title,
@@ -27,6 +23,5 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
           category: category,
           data: data,
           image: image,
-          users: users,
         );
 }
