@@ -21,7 +21,7 @@ dependencies:
   google_sign_in: ^5.1.0
   firebase_analytics: ^8.3.2
   firebase_core: ^1.6.0
-  flutter_modular: any
+  flutter_modular: ^4.1.2
   shared_preferences: any
   lottie: ^1.2.1
 
@@ -33,7 +33,7 @@ dev_dependencies:
   build_runner: ^2.1.1
   mockito: ^5.0.15
   faker: ^2.0.0
-  flutter_modular_test: ^1.0.4
+  modular_test: ^1.0.1+1
 
 flutter:
   uses-material-design: true

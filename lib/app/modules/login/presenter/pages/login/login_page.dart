@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/login/presenter/pages/login/login_controller.dart';
-import 'package:resenha/app/modules/login/presenter/widgets/social_login_button_widget.dart';
+import 'package:resenha/app/modules/login/presenter/widgets/social_login_button/social_login_button_widget.dart';
 import 'package:resenha/app/themes/colors_themes.dart';
 import 'package:resenha/app/themes/texts_styles_themes.dart';
 import 'package:resenha/app/utils/assets_utils.dart';
 
 class LoginPage extends StatefulWidget {
-  final String title;
-  const LoginPage({Key? key, this.title = 'LoginPage'}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
   @override
   LoginPageState createState() => LoginPageState();
 }

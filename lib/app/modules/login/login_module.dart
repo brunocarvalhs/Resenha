@@ -24,7 +24,7 @@ class LoginModule extends Module {
   ];
 
   @override
-  final List<ModularRoute<dynamic>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => LoginPage()),
   ];
 }

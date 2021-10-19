@@ -26,19 +26,85 @@ mixin _$ListController on _ListControllerBase, Store {
       (_$isEventsComputed ??= Computed<bool>(() => super.isEvents,
               name: '_ListControllerBase.isEvents'))
           .value;
-
-  final _$eventsAtom = Atom(name: '_ListControllerBase.events');
+  Computed<bool>? _$isSearchComputed;
 
   @override
-  ObservableList<EventModel> get events {
-    _$eventsAtom.reportRead();
-    return super.events;
+  bool get isSearch =>
+      (_$isSearchComputed ??= Computed<bool>(() => super.isSearch,
+              name: '_ListControllerBase.isSearch'))
+          .value;
+  Computed<int>? _$countEventsComputed;
+
+  @override
+  int get countEvents =>
+      (_$countEventsComputed ??= Computed<int>(() => super.countEvents,
+              name: '_ListControllerBase.countEvents'))
+          .value;
+  Computed<int>? _$countEventsPromotionsComputed;
+
+  @override
+  int get countEventsPromotions => (_$countEventsPromotionsComputed ??=
+          Computed<int>(() => super.countEventsPromotions,
+              name: '_ListControllerBase.countEventsPromotions'))
+      .value;
+  Computed<List<EventModel>>? _$getEventsComputed;
+
+  @override
+  List<EventModel> get getEvents =>
+      (_$getEventsComputed ??= Computed<List<EventModel>>(() => super.getEvents,
+              name: '_ListControllerBase.getEvents'))
+          .value;
+  Computed<List<EventModel>>? _$getEventsPromotionsComputed;
+
+  @override
+  List<EventModel> get getEventsPromotions => (_$getEventsPromotionsComputed ??=
+          Computed<List<EventModel>>(() => super.getEventsPromotions,
+              name: '_ListControllerBase.getEventsPromotions'))
+      .value;
+
+  final _$_eventsAtom = Atom(name: '_ListControllerBase._events');
+
+  @override
+  ObservableList<EventModel> get _events {
+    _$_eventsAtom.reportRead();
+    return super._events;
   }
 
   @override
-  set events(ObservableList<EventModel> value) {
-    _$eventsAtom.reportWrite(value, super.events, () {
-      super.events = value;
+  set _events(ObservableList<EventModel> value) {
+    _$_eventsAtom.reportWrite(value, super._events, () {
+      super._events = value;
+    });
+  }
+
+  final _$_eventsPromotionsAtom =
+      Atom(name: '_ListControllerBase._eventsPromotions');
+
+  @override
+  ObservableList<EventModel> get _eventsPromotions {
+    _$_eventsPromotionsAtom.reportRead();
+    return super._eventsPromotions;
+  }
+
+  @override
+  set _eventsPromotions(ObservableList<EventModel> value) {
+    _$_eventsPromotionsAtom.reportWrite(value, super._eventsPromotions, () {
+      super._eventsPromotions = value;
+    });
+  }
+
+  final _$_isSearchAtom = Atom(name: '_ListControllerBase._isSearch');
+
+  @override
+  bool get _isSearch {
+    _$_isSearchAtom.reportRead();
+    return super._isSearch;
+  }
+
+  @override
+  set _isSearch(bool value) {
+    _$_isSearchAtom.reportWrite(value, super._isSearch, () {
+      super._isSearch = value;
     });
   }
 
@@ -57,10 +123,36 @@ mixin _$ListController on _ListControllerBase, Store {
   }
 
   @override
+  void setIsSearch() {
+    final _$actionInfo = _$_ListControllerBaseActionController.startAction(
+        name: '_ListControllerBase.setIsSearch');
+    try {
+      return super.setIsSearch();
+    } finally {
+      _$_ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void searchEvent(String search) {
+    final _$actionInfo = _$_ListControllerBaseActionController.startAction(
+        name: '_ListControllerBase.searchEvent');
+    try {
+      return super.searchEvent(search);
+    } finally {
+      _$_ListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-events: ${events},
-isEvents: ${isEvents}
+isEvents: ${isEvents},
+isSearch: ${isSearch},
+countEvents: ${countEvents},
+countEventsPromotions: ${countEventsPromotions},
+getEvents: ${getEvents},
+getEventsPromotions: ${getEventsPromotions}
     ''';
   }
 }

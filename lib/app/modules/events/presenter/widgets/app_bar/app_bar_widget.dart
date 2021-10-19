@@ -3,17 +3,20 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/login/presenter/stores/auth_store.dart';
 import 'package:resenha/app/themes/texts_styles_themes.dart';
 
-class AppBarHomeWidget extends PreferredSize {
-  AppBarHomeWidget({Key? key})
+class AppBarWidget extends PreferredSize {
+  final Function? onTapSearch;
+
+  AppBarWidget({Key? key, this.onTapSearch})
       : super(
-          preferredSize: Size.fromHeight(152),
+          preferredSize: Size.fromHeight(120),
           child: Container(
-            height: 152,
+            height: 120,
+            margin: const EdgeInsets.only(top: 30),
             color: Colors.transparent,
             child: Center(
               child: ListTile(
                 leading: InkWell(
-                  onTap: () => {},
+                  onTap: () => Modular.to.pushNamed("/profile"),
                   child: Hero(
                     transitionOnUserGestures: true,
                     tag: Modular.get<AuthStore>().user!.photoUrl.toString(),
@@ -48,7 +51,7 @@ class AppBarHomeWidget extends PreferredSize {
                   style: AppTextStyles.subtitle,
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () => onTapSearch,
                   icon: Icon(
                     Icons.search,
                     size: 26,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
 
 class EventTodoWidget extends StatelessWidget {
   final EventModel event;
@@ -17,21 +16,25 @@ class EventTodoWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         margin: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              margin: const EdgeInsets.only(right: 20),
-              width: 78,
-              height: 78,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: NetworkImage(event.image),
-                  fit: BoxFit.cover,
+            Hero(
+              tag: event.id,
+              child: Container(
+                margin: const EdgeInsets.only(right: 20),
+                width: 78,
+                height: 78,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: NetworkImage(event.image),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resenha/app/modules/splash/presenter/pages/splash_controller.dart';
 import 'package:resenha/app/themes/colors_themes.dart';
 import 'package:resenha/app/utils/assets_utils.dart';
-import 'package:resenha/app/modules/login/presenter/stores/auth_store.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -10,14 +10,9 @@ class SplashPage extends StatefulWidget {
   SplashPageState createState() => SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage> {
+class SplashPageState extends ModularState<SplashPage, SplashController> {
   SplashPageState() {
-    Modular.get<AuthStore>().checkLogin().then((v) {
-      if (v) Modular.to.popAndPushNamed("/home");
-      return Future.delayed(Duration(seconds: 3));
-    }).then((value) {
-      Modular.to.popAndPushNamed("/login");
-    });
+    controller.validationUserAuth();
   }
 
   @override

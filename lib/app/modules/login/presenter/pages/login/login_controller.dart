@@ -20,7 +20,7 @@ abstract class _LoginControllerBase with Store {
     var result = await loginWithGoogleUsecase();
     result.fold((failure) {}, (user) {
       authStore.setUser(user);
-      Modular.to.popAndPushNamed("/home");
+      Modular.to.pushReplacementNamed("/events");
     });
   }
 }
