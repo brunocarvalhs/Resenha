@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
 
 import '../../../presenter/widgets/event_todo/event_todo_widget.dart';
 import '../../../presenter/pages/search/search_controller.dart';

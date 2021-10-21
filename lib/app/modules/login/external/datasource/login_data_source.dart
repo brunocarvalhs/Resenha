@@ -1,39 +1,50 @@
+import 'dart:convert';
+
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/errors/errors.dart';
 import '../../infra/models/user_model.dart';
 import '../../infra/datasource/login_data_source.dart';
 
 class LoginDataSourceImpl implements LoginDataSource {
-  final GoogleSignIn auth;
+  final GoogleSignIn googleSignIn;
+  final SharedPreferences secureStorage;
 
-  LoginDataSourceImpl(this.auth);
+  LoginDataSourceImpl(this.googleSignIn, this.secureStorage);
 
   @override
   Future<UserModel> currentUser() async {
-    var user = await auth.currentUser;
-    if (user == null) throw ErrorGetLoggedUser();
+    var auth = await googleSignIn.currentUser;
+    if (auth != null)
+      return UserModel(
+        name: auth.displayName,
+        photoUrl: auth.photoUrl,
+        email: auth.email,
+      );
 
-    return UserModel(
-      name: user.displayName,
-      photoUrl: user.photoUrl,
-      email: user.email,
-    );
+    var storage = await secureStorage.get("auth");
+    if (storage != null) return UserModel.fromJson(storage.toString());
+
+    throw ErrorGetLoggedUser();
   }
 
   @override
   Future<void> logout() async {
-    return await auth.signOut().then((value) => null);
+    await secureStorage.remove("auth");
+    return await googleSignIn.signOut().then((value) => null);
   }
 
   @override
   Future<UserModel> login() async {
-    var user = await auth.signIn();
-    if (user == null) throw ErrorLogin();
-    return UserModel(
-      name: user.displayName,
-      email: user.email,
-      photoUrl: user.photoUrl,
+    var auth = await googleSignIn.signIn();
+    if (auth == null) throw ErrorLogin();
+    var user = UserModel(
+      name: auth.displayName,
+      email: auth.email,
+      photoUrl: auth.photoUrl,
     );
+    await secureStorage.setString("auth", user.toJson());
+    return user;
   }
 }

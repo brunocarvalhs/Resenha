@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/splash/presenter/pages/splash_controller.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
-import 'package:resenha/app/utils/assets_utils.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
+import 'package:resenha/app/shared/utils/assets_utils.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

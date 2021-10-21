@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resenha/app/themes/themes.dart';
+import 'package:resenha/app/shared/themes/themes.dart';
 
 class AppWidget extends StatelessWidget {
   @override

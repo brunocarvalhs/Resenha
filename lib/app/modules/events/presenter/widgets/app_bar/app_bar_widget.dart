@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/login/presenter/stores/auth_store.dart';
-import 'package:resenha/app/themes/texts_styles_themes.dart';
+import 'package:resenha/app/shared/themes/texts_styles_themes.dart';
 
 class AppBarWidget extends PreferredSize {
   final Function? onTapSearch;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
 
 class FloatingButtonWidget extends StatelessWidget {
   final IconData icon;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resenha/app/utils/assets_utils.dart';
+import 'package:resenha/app/shared/utils/assets_utils.dart';
 
 class SocialLoginButtonWidget extends StatelessWidget {
   final String icon;

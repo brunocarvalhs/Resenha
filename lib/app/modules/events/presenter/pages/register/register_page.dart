@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/floatind_button/floating_button_widget.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

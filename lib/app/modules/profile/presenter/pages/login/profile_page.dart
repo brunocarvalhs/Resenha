@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/login/presenter/stores/auth_store.dart';
 import 'package:resenha/app/modules/profile/presenter/pages/login/profile_controller.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
 
 class ProfilePage extends StatefulWidget {
   final String title;

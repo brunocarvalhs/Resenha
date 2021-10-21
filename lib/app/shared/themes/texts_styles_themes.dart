@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:resenha/app/themes/colors_themes.dart';
+import 'package:resenha/app/shared/themes/colors_themes.dart';
 
 class AppTextStyles {
   // Onboarding
@@ -128,79 +128,79 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: ColorsThemes.heading,
   );
-  
+
   static final buttonGray = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.grey,
   );
-  
+
   static final buttonBackground = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.background,
   );
-  
+
   static final buttonBoldPrimary = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: ColorsThemes.primary,
   );
-  
+
   static final buttonBoldHeading = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: ColorsThemes.heading,
   );
-  
+
   static final buttonBoldGray = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: ColorsThemes.grey,
   );
-  
+
   static final buttonBoldBackground = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: ColorsThemes.background,
   );
-  
+
   static final input = GoogleFonts.inter(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.input,
   );
-  
+
   static final captionBackground = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.background,
   );
-  
+
   static final captionShape = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.shape,
   );
-  
+
   static final captionBody = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: ColorsThemes.body,
   );
-  
+
   static final captionBoldBackground = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
     color: ColorsThemes.background,
   );
-  
+
   static final captionBoldShape = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
     color: ColorsThemes.shape,
   );
-  
+
   static final captionBoldBody = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w600,
