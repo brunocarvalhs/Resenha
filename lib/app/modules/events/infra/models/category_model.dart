@@ -12,6 +12,16 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
           name: name,
         );
 
+  CategoryModel copyWith({
+    String? id,
+    String? name,
+  }) {
+    return CategoryModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,

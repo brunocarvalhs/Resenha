@@ -20,6 +20,24 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
           image: image,
         );
 
+  EventModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    String? category,
+    DateTime? data,
+    String? image,
+  }) {
+    return EventModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      data: data ?? this.data,
+      image: image ?? this.image,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
