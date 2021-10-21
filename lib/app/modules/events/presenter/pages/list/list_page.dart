@@ -42,18 +42,21 @@ class _ListPageState extends ModularState<ListPage, ListController> {
               ),
             ),
             Observer(
-              builder: (_) => SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Container(
-                    height: 200,
-                    child: PageView.builder(
-                      controller: controller.pageController,
-                      itemCount: store.countEventsPromotions,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: BannerEventWidget(
-                          event: store.getEventsPromotions[index],
+              builder: (_) => Visibility(
+                visible: controller.isPromotions,
+                child: SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      height: 200,
+                      child: PageView.builder(
+                        controller: controller.pageController,
+                        itemCount: store.countPromotions,
+                        itemBuilder: (BuildContext context, int index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: BannerEventWidget(
+                            event: store.getPromotions[index],
+                          ),
                         ),
                       ),
                     ),
@@ -81,7 +84,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                       ),
                     ),
                     Text(
-                      "Total ${store.countEventsPromotions}",
+                      "Total ${store.countPromotions}",
                       style: TextStyle(
                         color: Color(0xffabb0cc),
                         fontSize: 13,

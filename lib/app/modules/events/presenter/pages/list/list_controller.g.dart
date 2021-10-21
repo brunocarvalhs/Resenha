@@ -19,19 +19,26 @@ final $ListController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ListController on _ListControllerBase, Store {
-  Computed<int>? _$countEventsPromotionsComputed;
+  Computed<int>? _$countPromotionsComputed;
 
   @override
-  int get countEventsPromotions => (_$countEventsPromotionsComputed ??=
-          Computed<int>(() => super.countEventsPromotions,
-              name: '_ListControllerBase.countEventsPromotions'))
-      .value;
-  Computed<List<EventModel>>? _$getEventsPromotionsComputed;
+  int get countPromotions =>
+      (_$countPromotionsComputed ??= Computed<int>(() => super.countPromotions,
+              name: '_ListControllerBase.countPromotions'))
+          .value;
+  Computed<bool>? _$isPromotionsComputed;
 
   @override
-  List<EventModel> get getEventsPromotions => (_$getEventsPromotionsComputed ??=
-          Computed<List<EventModel>>(() => super.getEventsPromotions,
-              name: '_ListControllerBase.getEventsPromotions'))
+  bool get isPromotions =>
+      (_$isPromotionsComputed ??= Computed<bool>(() => super.isPromotions,
+              name: '_ListControllerBase.isPromotions'))
+          .value;
+  Computed<List<EventModel>>? _$getPromotionsComputed;
+
+  @override
+  List<EventModel> get getPromotions => (_$getPromotionsComputed ??=
+          Computed<List<EventModel>>(() => super.getPromotions,
+              name: '_ListControllerBase.getPromotions'))
       .value;
 
   final _$_promotionsAtom = Atom(name: '_ListControllerBase._promotions');
@@ -52,8 +59,9 @@ mixin _$ListController on _ListControllerBase, Store {
   @override
   String toString() {
     return '''
-countEventsPromotions: ${countEventsPromotions},
-getEventsPromotions: ${getEventsPromotions}
+countPromotions: ${countPromotions},
+isPromotions: ${isPromotions},
+getPromotions: ${getPromotions}
     ''';
   }
 }

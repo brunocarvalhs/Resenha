@@ -31,10 +31,13 @@ abstract class _ListControllerBase with Store {
   ObservableList<EventModel> _promotions = ObservableList<EventModel>.of([]);
 
   @computed
-  int get countEventsPromotions => _promotions.length;
+  int get countPromotions => _promotions.length;
 
   @computed
-  List<EventModel> get getEventsPromotions => _promotions.toList();
+  bool get isPromotions => _promotions.length > 0;
+
+  @computed
+  List<EventModel> get getPromotions => _promotions.toList();
 
   void automaticScrollPromotions() {
     Timer.periodic(Duration(seconds: 5), (Timer timer) {

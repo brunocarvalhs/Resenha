@@ -72,6 +72,61 @@ mixin _$EventsStore on _EventsStoreBase, Store {
   }
 
   @override
+  void setTitle(EventModel base, String? title) {
+    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
+        name: '_EventsStoreBase.setTitle');
+    try {
+      return super.setTitle(base, title);
+    } finally {
+      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDescription(EventModel base, String? description) {
+    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
+        name: '_EventsStoreBase.setDescription');
+    try {
+      return super.setDescription(base, description);
+    } finally {
+      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCategory(EventModel base, String? category) {
+    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
+        name: '_EventsStoreBase.setCategory');
+    try {
+      return super.setCategory(base, category);
+    } finally {
+      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDate(EventModel base, DateTime? date) {
+    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
+        name: '_EventsStoreBase.setDate');
+    try {
+      return super.setDate(base, date);
+    } finally {
+      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setImage(EventModel base, String? image) {
+    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
+        name: '_EventsStoreBase.setImage');
+    try {
+      return super.setImage(base, image);
+    } finally {
+      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isEvents: ${isEvents},
