@@ -5,7 +5,7 @@ class LoggedEvent extends Equatable {
   final String title;
   final String description;
   final String category;
-  final DateTime data;
+  final DateTime date;
   final String image;
 
   LoggedEvent({
@@ -13,10 +13,10 @@ class LoggedEvent extends Equatable {
     required this.title,
     required this.description,
     required this.category,
-    required this.data,
+    required this.date,
     required this.image,
   });
 
   @override
-  List<Object?> get props => [id, title, description, category, data, image];
+  List<Object?> get props => [id, title, description, category, date, image];
 }

@@ -87,7 +87,7 @@ class EventTodoWidget extends StatelessWidget {
                           children: [
                             Icon(Icons.event),
                             Text(
-                              "${event.data.day}/${event.data.month} às ${event.data.hour}:${event.data.minute}",
+                              "${event.date.day}/${event.date.month} às ${event.date.hour}:${event.date.minute}",
                               style: TextStyle(
                                 color: Color(0xffdce2ef),
                                 fontSize: 13,

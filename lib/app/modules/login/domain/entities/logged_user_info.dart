@@ -6,4 +6,10 @@ abstract class LoggedUserInfo {
 
   Map<String, dynamic> toMap();
   String toJson();
+  LoggedUserInfo copyWith({
+    String? id,
+    String? email,
+    String? name,
+    String? photoUrl,
+  });
 }

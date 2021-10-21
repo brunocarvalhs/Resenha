@@ -9,14 +9,14 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     required String title,
     required String description,
     required String category,
-    required DateTime data,
+    required DateTime date,
     required String image,
   }) : super(
           id: id,
           title: title,
           description: description,
           category: category,
-          data: data,
+          date: date,
           image: image,
         );
 
@@ -25,7 +25,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     String? title,
     String? description,
     String? category,
-    DateTime? data,
+    DateTime? date,
     String? image,
   }) {
     return EventModel(
@@ -33,7 +33,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
       title: title ?? this.title,
       description: description ?? this.description,
       category: category ?? this.category,
-      data: data ?? this.data,
+      date: date ?? this.date,
       image: image ?? this.image,
     );
   }
@@ -44,7 +44,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
       'title': title,
       'description': description,
       'category': category,
-      'data': data.millisecondsSinceEpoch,
+      'date': date.millisecondsSinceEpoch,
       'image': image,
     };
   }
@@ -55,7 +55,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
       title: map['title'] as String,
       description: map['description'] as String,
       category: map['category'] as String,
-      data: DateTime.fromMillisecondsSinceEpoch(map['data'] as int),
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
       image: map['image'] as String,
     );
   }
