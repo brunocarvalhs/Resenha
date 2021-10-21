@@ -1,8 +1,6 @@
-abstract class LoggedUserInfo {
+abstract class LoggedCategoryInfo {
   String? get id;
   String? get name;
-  String get email;
-  String? get photoUrl;
 
   Map<String, dynamic> toMap();
   String toJson();

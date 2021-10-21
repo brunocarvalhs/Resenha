@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
 
 class BannerEventWidget extends StatelessWidget {
   final EventModel event;
-  final VoidCallback onTap;
 
   const BannerEventWidget({
     Key? key,
-    required this.onTap,
     required this.event,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => Modular.to.pushNamed("/events/read/${event.id}"),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey,
