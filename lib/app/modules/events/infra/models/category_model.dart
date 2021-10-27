@@ -4,7 +4,7 @@ import '../../domain/entities/logged_category.dart';
 import '../../domain/entities/logged_category_info.dart';
 
 class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
-  CategoryModel({
+  const CategoryModel({
     required String id,
     required String name,
   }) : super(
@@ -12,6 +12,7 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
           name: name,
         );
 
+  @override
   CategoryModel copyWith({
     String? id,
     String? name,
@@ -22,6 +23,7 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -36,6 +38,7 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
     );
   }
 
+  @override
   String toJson() => json.encode(toMap());
 
   factory CategoryModel.fromJson(String source) => CategoryModel.fromMap(json.decode(source) as Map<String, dynamic>);

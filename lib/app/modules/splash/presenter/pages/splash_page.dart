@@ -18,7 +18,7 @@ class SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(
@@ -26,7 +26,7 @@ class SplashPageState extends ModularState<SplashPage, SplashController> {
           child: Container(
             width: MediaQuery.of(context).size.width * 0.7,
             padding: const EdgeInsets.only(bottom: 20),
-            child: Image.asset(logo, key: Key("logo")),
+            child: Image.asset(logo, key: const Key("logo")),
           ),
         ),
       ),

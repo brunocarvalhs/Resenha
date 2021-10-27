@@ -9,7 +9,8 @@ class SearchBarWidget extends PreferredSize {
     required this.controller,
     required this.onChanged,
   }) : super(
-          preferredSize: Size.fromHeight(120),
+          key: key,
+          preferredSize: const Size.fromHeight(120),
           child: Container(
             height: 120,
             margin: const EdgeInsets.only(top: 30),
@@ -17,10 +18,11 @@ class SearchBarWidget extends PreferredSize {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                leading: Icon(Icons.search),
+                leading: const SizedBox(),
+                trailing: const Icon(Icons.search),
                 title: TextField(
                   controller: controller,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Search',
                     border: InputBorder.none,
                   ),

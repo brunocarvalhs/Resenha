@@ -23,7 +23,7 @@ void main() {
   final usecase = GetLoggedUserImpl(repository);
 
   test('feat(login) - should verify if exist User Logged', () async {
-    when(repository.loggedUser()).thenAnswer((_) async => Right(UserModel(name: "", email: "", photoUrl: "")));
+    when(repository.loggedUser()).thenAnswer((_) async => const Right(UserModel(name: "", email: "", photoUrl: "")));
     var result = await usecase();
     expect(result.fold((l) => null, (r) => r), isA<LoggedUserInfo>());
   });

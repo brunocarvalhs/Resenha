@@ -15,20 +15,28 @@ abstract class _SearchControllerBase with Store {
 
   _SearchControllerBase(this.events);
 
-  TextEditingController textEditingController = new TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
 
   @observable
   bool _isSearch = true;
 
   @observable
-  String search = "";
+  String? search = "";
+
+  @computed
+  String? get getSearch => search;
 
   @computed
   bool get isSearch => _isSearch;
 
   @computed
-  List<EventModel> get getEvents =>
-      events.getEvents.where((event) => event.title.toLowerCase().contains(search.toLowerCase())).toList();
+  List<EventModel> get getEvents {
+    if (search != null) {
+      return events.getEvents.where((event) => event.title.toLowerCase().contains(search!.toLowerCase())).toList();
+    } else {
+      return events.getEvents.toList();
+    }
+  }
 
   @action
   void searchEvent(String text) => search = text;

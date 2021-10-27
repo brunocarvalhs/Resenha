@@ -24,7 +24,7 @@ class LoginRepositoryImpl extends LoginRepository {
   Future<Either<Failure, Unit>> logout() async {
     try {
       await dataSource.logout();
-      return Right(unit);
+      return const Right(unit);
     } catch (e) {
       return Left(ErrorLogout(message: "Error ao tentar fazer logout"));
     }

@@ -12,7 +12,7 @@ abstract class _SplashControllerBase with Store {
   _SplashControllerBase();
 
   validationUserAuth() {
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       Modular.get<AuthStore>().checkLogin().then((v) async {
         Modular.to.pushReplacementNamed(v ? "/events" : "/login");
       });

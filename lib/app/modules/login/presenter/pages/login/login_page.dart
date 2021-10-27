@@ -16,7 +16,7 @@ class LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
         image: DecorationImage(
           image: AssetImage(backgroundLogin),
@@ -44,7 +44,7 @@ class LoginPageState extends ModularState<LoginPage, LoginController> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "fique por \ndentro de todas\nResenhas",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -54,8 +54,8 @@ class LoginPageState extends ModularState<LoginPage, LoginController> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 16),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   "Crie grupos para realizar seus roles\nfavoritos com seus amigos",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -63,7 +63,7 @@ class LoginPageState extends ModularState<LoginPage, LoginController> {
                     fontSize: 15,
                   ),
                 ),
-                SizedBox(height: 42),
+                const SizedBox(height: 42),
                 SocialLoginButtonWidget.google(
                   label: "Entrar com Google",
                   onTap: () => controller.enterGoogle(),

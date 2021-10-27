@@ -24,7 +24,7 @@ class BannerEventWidget extends StatelessWidget {
             alignment: Alignment.topCenter,
             repeat: ImageRepeat.noRepeat,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -33,8 +33,8 @@ class BannerEventWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${event.title}",
-                style: TextStyle(
+                event.title,
+                style: const TextStyle(
                   color: Color(0xffdce2ef),
                   fontSize: 18,
                   fontFamily: "Rajdhani",
@@ -45,10 +45,10 @@ class BannerEventWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.event),
+                  const Icon(Icons.event),
                   Text(
                     "${event.date.day}/${event.date.month} às ${event.date.hour}:${event.date.minute}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xffdce2ef),
                       fontSize: 13,
                       fontFamily: "Inter",

@@ -8,7 +8,7 @@ class LoggedEvent extends Equatable {
   final DateTime date;
   final String image;
 
-  LoggedEvent({
+  const LoggedEvent({
     required this.id,
     required this.title,
     required this.description,

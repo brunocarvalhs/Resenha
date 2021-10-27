@@ -46,7 +46,7 @@ class EventTodoWidget extends StatelessWidget {
                     children: [
                       Text(
                         event.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xffdce2ef),
                           fontSize: 18,
                           fontFamily: "Rajdhani",
@@ -56,65 +56,61 @@ class EventTodoWidget extends StatelessWidget {
                       Text(
                         event.category,
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xffabb0cc),
                           fontSize: 13,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     children: [
                       Text(
                         event.description,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xffabb0cc),
                           fontSize: 13,
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.event),
-                            Text(
-                              "${event.date.day}/${event.date.month} às ${event.date.hour}:${event.date.minute}",
-                              style: TextStyle(
-                                color: Color(0xffdce2ef),
-                                fontSize: 13,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                              ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.event),
+                          Text(
+                            "${event.date.day}/${event.date.month} às ${event.date.hour}:${event.date.minute}",
+                            style: const TextStyle(
+                              color: Color(0xffdce2ef),
+                              fontSize: 13,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.people),
-                            Text(
-                              "10",
-                              style: TextStyle(
-                                color: Color(0xffdce2ef),
-                                fontSize: 13,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                              ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.people),
+                          Text(
+                            "10",
+                            style: TextStyle(
+                              color: Color(0xffdce2ef),
+                              fontSize: 13,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

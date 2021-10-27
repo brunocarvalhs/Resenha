@@ -14,7 +14,7 @@ class _ReadPageState extends State<ReadPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(

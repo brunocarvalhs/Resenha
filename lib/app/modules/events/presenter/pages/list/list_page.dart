@@ -26,7 +26,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(
@@ -42,12 +42,12 @@ class _ListPageState extends ModularState<ListPage, ListController> {
               ),
             ),
             Observer(
-              builder: (_) => Visibility(
-                visible: controller.isPromotions,
-                child: SliverToBoxAdapter(
+              builder: (_) => SliverToBoxAdapter(
+                child: Visibility(
+                  visible: controller.isPromotions,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: Container(
+                    child: SizedBox(
                       height: 200,
                       child: PageView.builder(
                         controller: controller.pageController,
@@ -74,7 +74,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Festas agendadas",
                       style: TextStyle(
                         color: Color(0xffdce2ef),
@@ -85,7 +85,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                     ),
                     Text(
                       "Total ${store.countPromotions}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xffabb0cc),
                         fontSize: 13,
                       ),

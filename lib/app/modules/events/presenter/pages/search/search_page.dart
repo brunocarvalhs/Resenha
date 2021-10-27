@@ -18,7 +18,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(

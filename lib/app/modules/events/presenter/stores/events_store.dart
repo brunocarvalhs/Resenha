@@ -12,7 +12,7 @@ abstract class _EventsStoreBase with Store {
   ObservableList<EventModel> _events = ObservableList<EventModel>.of([]);
 
   @computed
-  bool get isEvents => _events.length > 0;
+  bool get isEvents => _events.isNotEmpty;
 
   @computed
   int get countEvents => _events.length;

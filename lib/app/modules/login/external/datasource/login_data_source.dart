@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,15 +13,16 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<UserModel> currentUser() async {
-    var auth = await googleSignIn.currentUser;
-    if (auth != null)
+    var auth = googleSignIn.currentUser;
+    if (auth != null) {
       return UserModel(
         name: auth.displayName,
         photoUrl: auth.photoUrl,
         email: auth.email,
       );
+    }
 
-    var storage = await secureStorage.get("auth");
+    var storage = secureStorage.get("auth");
     if (storage != null) return UserModel.fromJson(storage.toString());
 
     throw ErrorGetLoggedUser();

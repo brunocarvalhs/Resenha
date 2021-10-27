@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:resenha/app/modules/events/presenter/pages/search/search_controller.dart';
 
 import 'presenter/pages/list/list_controller.dart';
 import 'presenter/pages/read/read_controller.dart';
@@ -16,13 +17,14 @@ class EventsModule extends Module {
     Bind.lazySingleton((i) => ListController(i.get(), i.get())),
     Bind.lazySingleton((i) => ReadController()),
     Bind.lazySingleton((i) => RegisterController()),
+    Bind.lazySingleton((i) => SearchController(i.get()))
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => ListPage()),
-    ChildRoute("/read/:id", child: (_, args) => ReadPage()),
-    ChildRoute("/register", child: (_, args) => RegisterPage()),
-    ChildRoute("/search", child: (_, args) => SearchPage()),
+    ChildRoute(Modular.initialRoute, child: (_, args) => const ListPage()),
+    ChildRoute("/read/:id", child: (_, args) => const ReadPage()),
+    ChildRoute("/register", child: (_, args) => const RegisterPage()),
+    ChildRoute("/search", child: (_, args) => const SearchPage()),
   ];
 }

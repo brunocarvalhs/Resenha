@@ -4,7 +4,7 @@ import '../../domain/entities/logged_event.dart';
 import '../../domain/entities/logged_event_info.dart';
 
 class EventModel extends LoggedEvent implements LoggedEventInfo {
-  EventModel({
+  const EventModel({
     required String id,
     required String title,
     required String description,
@@ -20,6 +20,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
           image: image,
         );
 
+  @override
   EventModel copyWith({
     String? id,
     String? title,
@@ -38,6 +39,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -60,6 +62,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     );
   }
 
+  @override
   String toJson() => json.encode(toMap());
 
   factory EventModel.fromJson(String source) => EventModel.fromMap(json.decode(source) as Map<String, dynamic>);

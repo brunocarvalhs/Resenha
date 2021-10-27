@@ -4,11 +4,12 @@ import 'package:resenha/app/modules/login/presenter/stores/auth_store.dart';
 import 'package:resenha/app/shared/themes/texts_styles_themes.dart';
 
 class AppBarWidget extends PreferredSize {
-  final Function? onTapSearch;
+  final VoidCallback? onTapSearch;
 
   AppBarWidget({Key? key, this.onTapSearch})
       : super(
-          preferredSize: Size.fromHeight(120),
+          key: key,
+          preferredSize: const Size.fromHeight(120),
           child: Container(
             height: 120,
             margin: const EdgeInsets.only(top: 30),
@@ -51,8 +52,8 @@ class AppBarWidget extends PreferredSize {
                   style: AppTextStyles.subtitle,
                 ),
                 trailing: IconButton(
-                  onPressed: () => onTapSearch,
-                  icon: Icon(
+                  onPressed: onTapSearch,
+                  icon: const Icon(
                     Icons.search,
                     size: 26,
                     color: Colors.white,

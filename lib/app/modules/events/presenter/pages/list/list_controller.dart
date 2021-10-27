@@ -25,7 +25,7 @@ abstract class _ListControllerBase with Store {
     keepPage: true,
   );
 
-  TextEditingController textEditingController = new TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
 
   @observable
   ObservableList<EventModel> _promotions = ObservableList<EventModel>.of([]);
@@ -34,13 +34,13 @@ abstract class _ListControllerBase with Store {
   int get countPromotions => _promotions.length;
 
   @computed
-  bool get isPromotions => _promotions.length > 0;
+  bool get isPromotions => _promotions.isNotEmpty;
 
   @computed
   List<EventModel> get getPromotions => _promotions.toList();
 
   void automaticScrollPromotions() {
-    Timer.periodic(Duration(seconds: 5), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       if (_currentPage < _promotions.length) {
         _currentPage++;
       } else {
@@ -49,7 +49,7 @@ abstract class _ListControllerBase with Store {
 
       pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 350),
+        duration: const Duration(milliseconds: 350),
         curve: Curves.easeIn,
       );
     });

@@ -4,7 +4,7 @@ class LoggedCategory extends Equatable {
   final String id;
   final String name;
 
-  LoggedCategory({
+  const LoggedCategory({
     required this.id,
     required this.name,
   });

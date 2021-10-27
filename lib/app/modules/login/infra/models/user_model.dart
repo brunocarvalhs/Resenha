@@ -4,7 +4,7 @@ import 'package:resenha/app/modules/login/domain/entities/logged_user.dart';
 import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart';
 
 class UserModel extends LoggedUser implements LoggedUserInfo {
-  UserModel({
+  const UserModel({
     String? name,
     required String email,
     String? photoUrl,
@@ -14,6 +14,7 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
           photoUrl: photoUrl,
         );
 
+  @override
   UserModel copyWith({
     String? email,
     String? name,
@@ -26,6 +27,7 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'email': email,
@@ -42,6 +44,7 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
     );
   }
 
+  @override
   String toJson() => json.encode(toMap());
 
   factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);

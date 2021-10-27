@@ -28,9 +28,9 @@ class SocialLoginButtonWidget extends StatelessWidget {
       SocialLoginButtonWidget(
         icon: facebook,
         label: label,
-        fontColor: Color(0xFFDDE3F0),
-        background: Color(0xFF3452A7),
-        borderColor: Color(0xFFE3E3E3),
+        fontColor: const Color(0xFFDDE3F0),
+        background: const Color(0xFF3452A7),
+        borderColor: const Color(0xFFE3E3E3),
         onTap: onTap,
       );
 
@@ -42,9 +42,9 @@ class SocialLoginButtonWidget extends StatelessWidget {
       SocialLoginButtonWidget(
         icon: google,
         label: label,
-        fontColor: Color(0xFF5A5A5A),
-        background: Color(0xFFF6F4F5),
-        borderColor: Color(0xFF5A5A5A),
+        fontColor: const Color(0xFF5A5A5A),
+        background: const Color(0xFFF6F4F5),
+        borderColor: const Color(0xFF5A5A5A),
         onTap: onTap,
         styleLabel: styleLabel,
       );
@@ -70,7 +70,7 @@ class SocialLoginButtonWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width: 20,
                   height: 20,
                   child: Image.asset(icon),

@@ -25,7 +25,7 @@ void main() {
   final repository = MockLoginRepository();
   final usecase = LogoutImpl(repository);
   test('feat(login) - should verify if exist User Logged', () async {
-    when(repository.logout()).thenAnswer((_) async => Right(unit));
+    when(repository.logout()).thenAnswer((_) async => const Right(unit));
     var result = (await usecase()).fold((l) => null, (r) => r);
     expect(result, unit);
   });

@@ -19,6 +19,13 @@ final $SearchController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SearchController on _SearchControllerBase, Store {
+  Computed<String?>? _$getSearchComputed;
+
+  @override
+  String? get getSearch =>
+      (_$getSearchComputed ??= Computed<String?>(() => super.getSearch,
+              name: '_SearchControllerBase.getSearch'))
+          .value;
   Computed<bool>? _$isSearchComputed;
 
   @override
@@ -52,13 +59,13 @@ mixin _$SearchController on _SearchControllerBase, Store {
   final _$searchAtom = Atom(name: '_SearchControllerBase.search');
 
   @override
-  String get search {
+  String? get search {
     _$searchAtom.reportRead();
     return super.search;
   }
 
   @override
-  set search(String value) {
+  set search(String? value) {
     _$searchAtom.reportWrite(value, super.search, () {
       super.search = value;
     });
@@ -82,6 +89,7 @@ mixin _$SearchController on _SearchControllerBase, Store {
   String toString() {
     return '''
 search: ${search},
+getSearch: ${getSearch},
 isSearch: ${isSearch},
 getEvents: ${getEvents}
     ''';
