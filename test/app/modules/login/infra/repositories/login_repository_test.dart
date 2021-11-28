@@ -23,6 +23,7 @@ void main() {
   final faker = Faker();
   final datasource = MockLoginDataSource();
   final userReturn = UserModel(
+    id: faker.randomGenerator.toString(),
     name: faker.person.name(),
     email: faker.internet.email(),
     photoUrl: faker.image.image(),
@@ -38,7 +39,7 @@ void main() {
     test('should Throw when user not logged', () async {
       when(datasource.currentUser()).thenThrow(ErrorGetLoggedUser(message: ''));
       var result = await repository.loggedUser();
-      expect(result.leftMap((l) => l is ErrorGetLoggedUser), Left(true));
+      expect(result.leftMap((l) => l is ErrorGetLoggedUser), const Left(true));
     });
   });
   group("feat(login) - logout", () {
@@ -50,7 +51,7 @@ void main() {
     test('should Throw when user try logout', () async {
       when(datasource.logout()).thenThrow(ErrorGetLoggedUser(message: ''));
       var result = await repository.logout();
-      expect(result.leftMap((l) => l is ErrorLogout), Left(true));
+      expect(result.leftMap((l) => l is ErrorLogout), const Left(true));
     });
   });
 }

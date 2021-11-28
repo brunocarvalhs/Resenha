@@ -16,12 +16,11 @@ abstract class _LoginControllerBase with Store {
   _LoginControllerBase(this.loginWithGoogleUsecase, this.authStore);
 
   enterGoogle() async {
-    await Future.delayed(Duration(seconds: 1));
-    print("object");
+    await Future.delayed(const Duration(seconds: 1));
     var result = await loginWithGoogleUsecase();
     result.fold((failure) {}, (user) {
       authStore.setUser(user);
-      Modular.to.popAndPushNamed("/");
+      Modular.to.pushReplacementNamed("/events");
     });
   }
 }

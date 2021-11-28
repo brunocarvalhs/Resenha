@@ -15,6 +15,27 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   bool get isLogged => (_$isLoggedComputed ??=
           Computed<bool>(() => super.isLogged, name: '_AuthStoreBase.isLogged'))
       .value;
+  Computed<String?>? _$getNameComputed;
+
+  @override
+  String? get getName =>
+      (_$getNameComputed ??= Computed<String?>(() => super.getName,
+              name: '_AuthStoreBase.getName'))
+          .value;
+  Computed<String?>? _$getEmailComputed;
+
+  @override
+  String? get getEmail =>
+      (_$getEmailComputed ??= Computed<String?>(() => super.getEmail,
+              name: '_AuthStoreBase.getEmail'))
+          .value;
+  Computed<String?>? _$getPhotoComputed;
+
+  @override
+  String? get getPhoto =>
+      (_$getPhotoComputed ??= Computed<String?>(() => super.getPhoto,
+              name: '_AuthStoreBase.getPhoto'))
+          .value;
 
   final _$userAtom = Atom(name: '_AuthStoreBase.user');
 
@@ -46,10 +67,46 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   }
 
   @override
+  void setName(String name) {
+    final _$actionInfo = _$_AuthStoreBaseActionController.startAction(
+        name: '_AuthStoreBase.setName');
+    try {
+      return super.setName(name);
+    } finally {
+      _$_AuthStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEmail(String email) {
+    final _$actionInfo = _$_AuthStoreBaseActionController.startAction(
+        name: '_AuthStoreBase.setEmail');
+    try {
+      return super.setEmail(email);
+    } finally {
+      _$_AuthStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPhoto(String photo) {
+    final _$actionInfo = _$_AuthStoreBaseActionController.startAction(
+        name: '_AuthStoreBase.setPhoto');
+    try {
+      return super.setPhoto(photo);
+    } finally {
+      _$_AuthStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 user: ${user},
-isLogged: ${isLogged}
+isLogged: ${isLogged},
+getName: ${getName},
+getEmail: ${getEmail},
+getPhoto: ${getPhoto}
     ''';
   }
 }

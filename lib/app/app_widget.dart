@@ -1,8 +1,11 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:resenha/app/themes/themes.dart';
+import 'package:resenha/app/shared/themes/themes.dart';
 
 class AppWidget extends StatelessWidget {
+  const AppWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,6 +13,8 @@ class AppWidget extends StatelessWidget {
       theme: Themes.light(),
       darkTheme: Themes.dark(),
       themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
+      navigatorObservers: [Modular.get<FirebaseAnalyticsObserver>()],
     ).modular();
   }
 }
