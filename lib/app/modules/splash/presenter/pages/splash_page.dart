@@ -11,10 +11,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends ModularState<SplashPage, SplashController> {
-  SplashPageState() {
-    controller.validationUserAuth();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

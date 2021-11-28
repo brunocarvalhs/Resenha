@@ -41,6 +41,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) => EventTodoWidget(
                     event: store.getEvents[index],
+                    onTap: (id) => controller.redirectRead(id),
                   ),
                   childCount: store.events.countEvents,
                 ),

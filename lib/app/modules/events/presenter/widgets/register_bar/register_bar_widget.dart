@@ -9,7 +9,7 @@ class GenericBarWidget extends PreferredSize {
           key: key,
           preferredSize: const Size.fromHeight(120),
           child: Container(
-            height: 120,
+            height: 60,
             margin: const EdgeInsets.only(top: 30),
             color: Colors.transparent,
             child: Padding(
@@ -17,7 +17,7 @@ class GenericBarWidget extends PreferredSize {
               child: ListTile(
                 leading: const SizedBox(),
                 title: title,
-                trailing: trailing,
+                trailing: trailing ?? const SizedBox(),
               ),
             ),
           ),

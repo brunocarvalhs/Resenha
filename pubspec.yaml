@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  local_auth: ^1.1.6
+  firebase_auth: ^3.2.0
+  firebase_analytics: ^8.3.2
+  firebase_core: ^1.6.0
+  cloud_firestore: ^3.1.0
   mobx: ^2.0.4
   flutter_mobx: ^2.0.2
   google_fonts: ^2.1.0
@@ -19,11 +22,11 @@ dependencies:
   dartz: ^0.10.0
   equatable: ^2.0.3
   google_sign_in: ^5.1.0
-  firebase_analytics: ^8.3.2
-  firebase_core: ^1.6.0
   flutter_modular: ^4.1.2
-  shared_preferences: any
-  lottie: ^1.2.1
+  shared_preferences: ^2.0.8
+  uuid: ^3.0.5
+  contacts_service: ^0.6.3
+  google_maps_flutter: ^2.1.1
 
 dev_dependencies:
   flutter_test:

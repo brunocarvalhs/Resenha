@@ -24,25 +24,8 @@ abstract class _EventsStoreBase with Store {
   void add(EventModel value) => _events.add(value);
 
   @action
-  void searchEvent(String search) => _events.forEach((event) {});
-
-  @action
-  void setTitle(EventModel base, String? title) =>
-      _events[_events.indexWhere((element) => element.id == base.id)].copyWith(title: title);
-
-  @action
-  void setDescription(EventModel base, String? description) =>
-      _events[_events.indexWhere((element) => element.id == base.id)].copyWith(description: description);
-
-  @action
-  void setCategory(EventModel base, String? category) =>
-      _events[_events.indexWhere((element) => element.id == base.id)].copyWith(category: category);
-
-  @action
-  void setDate(EventModel base, DateTime? date) =>
-      _events[_events.indexWhere((element) => element.id == base.id)].copyWith(date: date);
-
-  @action
-  void setImage(EventModel base, String? image) =>
-      _events[_events.indexWhere((element) => element.id == base.id)].copyWith(image: image);
+  void addAll(Iterable<EventModel> events) {
+    _events.clear();
+    _events.addAll(events);
+  }
 }

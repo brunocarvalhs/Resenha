@@ -9,9 +9,11 @@ part "splash_controller.g.dart";
 class SplashController = _SplashControllerBase with _$SplashController;
 
 abstract class _SplashControllerBase with Store {
-  _SplashControllerBase();
+  _SplashControllerBase() {
+    validationUserAuth();
+  }
 
-  validationUserAuth() {
+  void validationUserAuth() {
     Timer(const Duration(seconds: 5), () {
       Modular.get<AuthStore>().checkLogin().then((v) async {
         Modular.to.pushReplacementNamed(v ? "/events" : "/login");

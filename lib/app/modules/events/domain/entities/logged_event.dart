@@ -7,6 +7,7 @@ class LoggedEvent extends Equatable {
   final String category;
   final DateTime date;
   final String image;
+  final bool private;
 
   const LoggedEvent({
     required this.id,
@@ -15,6 +16,7 @@ class LoggedEvent extends Equatable {
     required this.category,
     required this.date,
     required this.image,
+    required this.private,
   });
 
   @override

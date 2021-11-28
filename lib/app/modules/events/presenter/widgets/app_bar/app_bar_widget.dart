@@ -16,21 +16,18 @@ class AppBarWidget extends PreferredSize {
             color: Colors.transparent,
             child: Center(
               child: ListTile(
-                leading: InkWell(
-                  onTap: () => Modular.to.pushNamed("/profile"),
-                  child: Hero(
-                    transitionOnUserGestures: true,
-                    tag: Modular.get<AuthStore>().user!.photoUrl.toString(),
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: NetworkImage(Modular.get<AuthStore>().user!.photoUrl.toString()),
-                          fit: BoxFit.cover,
-                        ),
+                leading: Hero(
+                  transitionOnUserGestures: true,
+                  tag: Modular.get<AuthStore>().user!.photoUrl.toString(),
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(Modular.get<AuthStore>().user!.photoUrl.toString()),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

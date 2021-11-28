@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,18 +7,20 @@ import '../../infra/models/user_model.dart';
 import '../../infra/datasource/login_data_source.dart';
 
 class LoginDataSourceImpl implements LoginDataSource {
+  final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
   final SharedPreferences secureStorage;
 
-  LoginDataSourceImpl(this.googleSignIn, this.secureStorage);
+  LoginDataSourceImpl(this.googleSignIn, this.secureStorage, this.firebaseAuth);
 
   @override
   Future<UserModel> currentUser() async {
-    var auth = googleSignIn.currentUser;
+    var auth = firebaseAuth.currentUser;
     if (auth != null) {
       return UserModel(
+        id: auth.uid,
         name: auth.displayName,
-        photoUrl: auth.photoUrl,
+        photoUrl: auth.photoURL,
         email: auth.email,
       );
     }
@@ -36,12 +39,22 @@ class LoginDataSourceImpl implements LoginDataSource {
 
   @override
   Future<UserModel> login() async {
-    var auth = await googleSignIn.signIn();
-    if (auth == null) throw ErrorLogin();
+    var googleUser = await googleSignIn.signIn();
+    if (googleUser == null) throw ErrorLogin();
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final auth = await firebaseAuth.signInWithCredential(credential);
+
     var user = UserModel(
-      name: auth.displayName,
-      email: auth.email,
-      photoUrl: auth.photoUrl,
+      id: auth.user!.uid,
+      name: auth.user?.displayName,
+      email: auth.user?.email,
+      photoUrl: auth.user?.photoURL,
     );
     await secureStorage.setString("auth", user.toJson());
     return user;

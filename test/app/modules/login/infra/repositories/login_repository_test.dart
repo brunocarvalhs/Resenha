@@ -23,6 +23,7 @@ void main() {
   final faker = Faker();
   final datasource = MockLoginDataSource();
   final userReturn = UserModel(
+    id: faker.randomGenerator.toString(),
     name: faker.person.name(),
     email: faker.internet.email(),
     photoUrl: faker.image.image(),

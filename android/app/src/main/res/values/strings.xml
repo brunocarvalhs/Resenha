@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resenha</string>
+    <string name="facebook_app_id">250931786851076</string>
+    <string name="fb_login_protocol_scheme">fb250931786851076</string>
+    <string name="google_maps_api_key">AIzaSyDFT6YTnpP9dYfBAzk53vfVkfI7h_6L-_s</string>
+</resources>

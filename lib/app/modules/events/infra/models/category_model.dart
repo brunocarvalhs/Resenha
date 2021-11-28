@@ -7,19 +7,19 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
   const CategoryModel({
     required String id,
     required String name,
-  }) : super(
-          id: id,
-          name: name,
-        );
+    required String image,
+  }) : super(id: id, name: name, image: image);
 
   @override
   CategoryModel copyWith({
     String? id,
     String? name,
+    String? image,
   }) {
     return CategoryModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      image: image ?? this.image,
     );
   }
 
@@ -35,6 +35,7 @@ class CategoryModel extends LoggedCategory implements LoggedCategoryInfo {
     return CategoryModel(
       id: map['id'] as String,
       name: map['name'] as String,
+      image: map['image'] as String,
     );
   }
 

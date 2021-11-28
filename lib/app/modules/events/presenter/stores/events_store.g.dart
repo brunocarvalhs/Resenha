@@ -61,66 +61,11 @@ mixin _$EventsStore on _EventsStoreBase, Store {
   }
 
   @override
-  void searchEvent(String search) {
+  void addAll(Iterable<EventModel> events) {
     final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.searchEvent');
+        name: '_EventsStoreBase.addAll');
     try {
-      return super.searchEvent(search);
-    } finally {
-      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setTitle(EventModel base, String? title) {
-    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.setTitle');
-    try {
-      return super.setTitle(base, title);
-    } finally {
-      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setDescription(EventModel base, String? description) {
-    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.setDescription');
-    try {
-      return super.setDescription(base, description);
-    } finally {
-      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setCategory(EventModel base, String? category) {
-    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.setCategory');
-    try {
-      return super.setCategory(base, category);
-    } finally {
-      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setDate(EventModel base, DateTime? date) {
-    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.setDate');
-    try {
-      return super.setDate(base, date);
-    } finally {
-      _$_EventsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setImage(EventModel base, String? image) {
-    final _$actionInfo = _$_EventsStoreBaseActionController.startAction(
-        name: '_EventsStoreBase.setImage');
-    try {
-      return super.setImage(base, image);
+      return super.addAll(events);
     } finally {
       _$_EventsStoreBaseActionController.endAction(_$actionInfo);
     }

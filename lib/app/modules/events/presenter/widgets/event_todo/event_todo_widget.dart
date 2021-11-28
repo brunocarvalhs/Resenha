@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
 
 class EventTodoWidget extends StatelessWidget {
   final EventModel event;
+  final Function(String) onTap;
 
   const EventTodoWidget({
     Key? key,
     required this.event,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Modular.to.pushNamed("/events/read/${event.id}"),
+      onTap: () => onTap(event.id),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         margin: const EdgeInsets.symmetric(vertical: 16),

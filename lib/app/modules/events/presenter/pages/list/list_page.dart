@@ -18,44 +18,43 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends ModularState<ListPage, ListController> {
   @override
-  void initState() {
-    super.initState();
-    controller.automaticScrollPromotions();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         gradient: ColorsThemes.backgroundGradient,
       ),
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              elevation: 0,
-              floating: true,
-              expandedHeight: 100,
-              backgroundColor: ColorsThemes.purple,
-              flexibleSpace: AppBarWidget(
-                onTapSearch: () => controller.redirectSearch(),
+        body: RefreshIndicator(
+          onRefresh: () => controller.request(),
+          notificationPredicate: (scrollNotification) => controller.scrollController(scrollNotification),
+          backgroundColor: Colors.transparent,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                elevation: 0,
+                floating: true,
+                expandedHeight: 100,
+                backgroundColor: ColorsThemes.purple,
+                flexibleSpace: AppBarWidget(
+                  onTapSearch: () => controller.redirectSearch(),
+                ),
               ),
-            ),
-            Observer(
-              builder: (_) => SliverToBoxAdapter(
-                child: Visibility(
-                  visible: controller.isPromotions,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: SizedBox(
-                      height: 200,
-                      child: PageView.builder(
-                        controller: controller.pageController,
-                        itemCount: store.countPromotions,
-                        itemBuilder: (BuildContext context, int index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: BannerEventWidget(
-                            event: store.getPromotions[index],
+              Observer(
+                builder: (_) => SliverToBoxAdapter(
+                  child: Visibility(
+                    visible: controller.isPromotions,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: SizedBox(
+                        height: 200,
+                        child: PageView.builder(
+                          controller: controller.pageController,
+                          itemCount: store.countPromotions,
+                          itemBuilder: (BuildContext context, int index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: BannerEventWidget(
+                              event: store.getPromotions[index],
+                            ),
                           ),
                         ),
                       ),
@@ -63,48 +62,49 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                   ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 10,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Festas agendadas",
-                      style: TextStyle(
-                        color: Color(0xffdce2ef),
-                        fontSize: 18,
-                        fontFamily: "Rajdhani",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      "Total ${store.countPromotions}",
-                      style: const TextStyle(
-                        color: Color(0xffabb0cc),
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Observer(
-              builder: (_) => SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => EventTodoWidget(
-                    event: store.events.getEvents[index],
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                    horizontal: 10,
                   ),
-                  childCount: store.events.countEvents,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Festas agendadas",
+                        style: TextStyle(
+                          color: Color(0xffdce2ef),
+                          fontSize: 18,
+                          fontFamily: "Rajdhani",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        "Total ${store.countPromotions}",
+                        style: const TextStyle(
+                          color: Color(0xffabb0cc),
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              Observer(
+                builder: (_) => SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) => EventTodoWidget(
+                      event: store.events.getEvents[index],
+                      onTap: (id) => controller.redirectRead(id),
+                    ),
+                    childCount: store.events.countEvents,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingButtonWidget(
           icon: Icons.add,

@@ -7,7 +7,7 @@ part of 'list_controller.dart';
 // **************************************************************************
 
 final $ListController = BindInject(
-  (i) => ListController(i<AuthStore>(), i<EventsStore>()),
+  (i) => ListController(i<AuthStore>(), i<EventsStore>(), i<GetEvents>()),
   isSingleton: true,
   isLazy: true,
 );
@@ -44,13 +44,13 @@ mixin _$ListController on _ListControllerBase, Store {
   final _$_promotionsAtom = Atom(name: '_ListControllerBase._promotions');
 
   @override
-  ObservableList<EventModel> get _promotions {
+  List<EventModel> get _promotions {
     _$_promotionsAtom.reportRead();
     return super._promotions;
   }
 
   @override
-  set _promotions(ObservableList<EventModel> value) {
+  set _promotions(List<EventModel> value) {
     _$_promotionsAtom.reportWrite(value, super._promotions, () {
       super._promotions = value;
     });

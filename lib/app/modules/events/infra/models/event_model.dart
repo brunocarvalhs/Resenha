@@ -11,6 +11,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
     required String category,
     required DateTime date,
     required String image,
+    required bool private,
   }) : super(
           id: id,
           title: title,
@@ -18,24 +19,20 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
           category: category,
           date: date,
           image: image,
+          private: private,
         );
 
   @override
-  EventModel copyWith({
-    String? id,
-    String? title,
-    String? description,
-    String? category,
-    DateTime? date,
-    String? image,
-  }) {
+  EventModel copyWith(
+      {String? title, String? description, String? category, DateTime? date, String? image, bool? private}) {
     return EventModel(
-      id: id ?? this.id,
+      id: id,
       title: title ?? this.title,
       description: description ?? this.description,
       category: category ?? this.category,
       date: date ?? this.date,
       image: image ?? this.image,
+      private: private ?? this.private,
     );
   }
 
@@ -48,6 +45,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
       'category': category,
       'date': date.millisecondsSinceEpoch,
       'image': image,
+      'private': private
     };
   }
 
@@ -59,6 +57,7 @@ class EventModel extends LoggedEvent implements LoggedEventInfo {
       category: map['category'] as String,
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
       image: map['image'] as String,
+      private: map['private'] as bool,
     );
   }
 

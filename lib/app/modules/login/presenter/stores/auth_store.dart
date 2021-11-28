@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
-import 'package:resenha/app/modules/login/domain/entities/logged_user_info.dart';
-import 'package:resenha/app/modules/login/domain/usecases/get_logged_user.dart';
-import 'package:resenha/app/modules/login/domain/usecases/logount.dart';
+import '../../domain/entities/logged_user_info.dart';
+import '../../domain/usecases/get_logged_user.dart';
+import '../../domain/usecases/logount.dart';
 
 part 'auth_store.g.dart';
 
@@ -47,7 +47,7 @@ abstract class _AuthStoreBase with Store {
     });
   }
 
-  Future<dynamic> signOut() async {
+  Future<void> signOut() async {
     var result = await logout();
     result.fold((l) {}, (r) {
       setUser(null);

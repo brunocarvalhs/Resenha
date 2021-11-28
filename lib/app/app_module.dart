@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/app_guard.dart';
@@ -7,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'modules/splash/splash_module.dart';
 import 'modules/login/login_module.dart';
 import 'modules/events/events_module.dart';
-import 'modules/profile/profile_module.dart';
 
 class AppModule extends Module {
   @override
@@ -15,12 +16,13 @@ class AppModule extends Module {
         SplashModule(),
         LoginModule(),
         EventsModule(),
-        ProfileModule(),
       ];
 
   @override
   final List<Bind> binds = [
-    Bind.instance(Firebase.initializeApp()),
+    Bind.instance<FirebaseApp>(Firebase.app()),
+    Bind.instance<FirebaseAnalytics>(FirebaseAnalytics()),
+    Bind.lazySingleton<FirebaseAnalyticsObserver>((i) => FirebaseAnalyticsObserver(analytics: i.get())),
     AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
   ];
 
@@ -29,6 +31,5 @@ class AppModule extends Module {
     ModuleRoute(Modular.initialRoute, module: SplashModule(), guards: [AppGuard(Modular.initialRoute)]),
     ModuleRoute("/login", module: LoginModule()),
     ModuleRoute("/events", module: EventsModule(), guards: [AuthGuard()]),
-    ModuleRoute("/profile", module: ProfileModule(), guards: [AuthGuard()]),
   ];
 }

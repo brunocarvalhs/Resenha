@@ -40,4 +40,6 @@ abstract class _SearchControllerBase with Store {
 
   @action
   void searchEvent(String text) => search = text;
+
+  void redirectRead(String id) => Modular.to.pushNamed("/events/read/$id");
 }
