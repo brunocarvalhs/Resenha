@@ -27,6 +27,8 @@ dependencies:
   uuid: ^3.0.5
   contacts_service: ^0.6.3
   google_maps_flutter: ^2.1.1
+  location: ^4.2.0
+  permission_handler: ^8.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'package:resenha/app/modules/events/domain/usecases/list_contacts.dart';
 import 'package:resenha/app/modules/events/external/contacts_datasource.dart';
-import 'package:resenha/app/modules/events/infra/datasource/contacts_data_source.dart';
 import 'package:resenha/app/modules/events/infra/repositories/contacts_repository.dart';
 import 'package:resenha/app/modules/events/presenter/pages/create/members/members_controller.dart';
 
@@ -36,6 +35,7 @@ class EventsModule extends Module {
     Bind.instance<FirebaseFirestore>(FirebaseFirestore.instance, export: true),
     Bind.instance<Uuid>(const Uuid(), export: true),
     Bind.instance<ContactsService>(ContactsService()),
+    Bind.instance<Location>(Location()),
     Bind.lazySingleton((i) => CategoriesStore(), export: true),
     Bind.lazySingleton((i) => EventsStore(), export: true),
     Bind.lazySingleton((i) => FirebaseStoreDatasource(i.get<FirebaseFirestore>())),
@@ -50,7 +50,7 @@ class EventsModule extends Module {
     Bind.lazySingleton((i) => RegisterEventImpl(i.get<EventsRepositoryImpl>())),
     Bind.lazySingleton((i) => RegisterController(i.get(), i.get(), i.get(), i.get())),
     // * MeetingPoint
-    Bind.lazySingleton((i) => MeetingPointController(i.get())),
+    Bind.lazySingleton((i) => MeetingPointController(i.get(), i.get())),
     // * Members
     Bind.lazySingleton((i) => ContactServiceDatasource(i.get())),
     Bind.lazySingleton((i) => ContactsRepositoryImpl(i.get<ContactServiceDatasource>())),

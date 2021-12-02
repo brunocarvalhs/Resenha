@@ -43,59 +43,61 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () => showModalBottomSheet<void>(
-                    context: context,
-                    builder: (BuildContext context) => Container(
-                      height: 200,
-                      color: const Color(0xFF4C0B8D),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Observer(
-                          builder: (context) => Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16),
-                              Container(
-                                width: 39.52,
-                                height: 4.96,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  color: const Color(0xff495bcc),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.settings),
+                    onPressed: () => showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) => Container(
+                        height: 200,
+                        color: const Color(0xFF4C0B8D),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Observer(
+                            builder: (context) => Column(
+                              children: <Widget>[
+                                const SizedBox(height: 16),
+                                Container(
+                                  width: 39.52,
+                                  height: 4.96,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2),
+                                    color: const Color(0xff495bcc),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 16),
-                              ListTile(
-                                title: const Text(
-                                  'Permirir convidados adicionar outros convidados',
+                                const SizedBox(height: 16),
+                                ListTile(
+                                  title: const Text(
+                                    'Permirir convidados adicionar outros convidados',
+                                  ),
+                                  leading: Switch(
+                                    value: controller.isPrivate,
+                                    activeColor: const Color(0xFF6200EE),
+                                    onChanged: (bool value) => setState(() {
+                                      controller.setInviteEvent(value);
+                                    }),
+                                  ),
                                 ),
-                                leading: Switch(
-                                  value: controller.isPrivate,
-                                  activeColor: const Color(0xFF6200EE),
-                                  onChanged: (bool value) => setState(() {
-                                    controller.setInviteEvent(value);
-                                  }),
+                                ListTile(
+                                  title: const Text(
+                                    'Evento privado',
+                                  ),
+                                  leading: Switch(
+                                    value: controller.isInvite,
+                                    activeColor: const Color(0xFF6200EE),
+                                    onChanged: (bool value) => setState(() {
+                                      controller.setPrivateEvent(value);
+                                    }),
+                                  ),
                                 ),
-                              ),
-                              ListTile(
-                                title: const Text(
-                                  'Evento privado',
-                                ),
-                                leading: Switch(
-                                  value: controller.isInvite,
-                                  activeColor: const Color(0xFF6200EE),
-                                  onChanged: (bool value) => setState(() {
-                                    controller.setPrivateEvent(value);
-                                  }),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             // SliverToBoxAdapter(

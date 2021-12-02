@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 
 class GenericBarWidget extends PreferredSize {
-  final Widget? trailing;
+  final List<Widget>? actions;
   final Widget? title;
+  final Widget? flexibleSpace;
 
-  GenericBarWidget({Key? key, this.trailing, this.title})
-      : super(
+  GenericBarWidget({
+    Key? key,
+    this.flexibleSpace,
+    this.actions,
+    this.title,
+  }) : super(
           key: key,
           preferredSize: const Size.fromHeight(120),
-          child: Container(
-            height: 60,
-            margin: const EdgeInsets.only(top: 30),
-            color: Colors.transparent,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: const SizedBox(),
-                title: title,
-                trailing: trailing ?? const SizedBox(),
-              ),
-            ),
+          child: AppBar(
+            leading: const SizedBox(),
+            title: title,
+            actions: actions,
+            flexibleSpace: flexibleSpace,
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
           ),
         );
 }

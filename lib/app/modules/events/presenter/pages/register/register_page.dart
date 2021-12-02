@@ -39,10 +39,12 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {},
-                ),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.settings),
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ),
             const SliverToBoxAdapter(

@@ -139,5 +139,5 @@ abstract class _RegisterControllerBase with Store {
     setTime(current ?? TimeOfDay.fromDateTime(DateTime.now()));
   }
 
-  void redirectMeetingPoint() => Modular.to.pushReplacementNamed("/events/register/maps");
+  void redirectMeetingPoint() => Modular.to.pushNamed("/events/register/maps");
 }
