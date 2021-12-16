@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:resenha/app/modules/events/domain/usecases/register_event.dart';
+import 'package:resenha/app/modules/events/domain/usecases/register_image.dart';
 import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
 import 'package:resenha/app/shared/utils/assets_utils.dart';
@@ -16,8 +17,9 @@ class RegisterEventStore = _RegisterEventStoreBase with _$RegisterEventStore;
 abstract class _RegisterEventStoreBase with Store {
   final Uuid uuid;
   final RegistersEvent registersEvent;
+  final RegisterImage registerImage;
 
-  _RegisterEventStoreBase(this.registersEvent, this.uuid);
+  _RegisterEventStoreBase(this.registersEvent, this.uuid, this.registerImage);
 
   @observable
   File? _image;
@@ -29,7 +31,7 @@ abstract class _RegisterEventStoreBase with Store {
   File? get getImage => _image;
 
   @computed
-  String get getImagePath => _image?.path ?? backgroundLogin;
+  bool get isImage => _image != null;
 
   @observable
   CategoryModel? _category;
@@ -112,28 +114,31 @@ abstract class _RegisterEventStoreBase with Store {
   double get getLongitude => _longitude;
 
   Future<void> register() async {
-    var event = EventModel(
-      id: uuid.v4(),
-      title: getName,
-      description: getDiscrible,
-      category: getCategory?.name ?? "",
-      date: getDate,
-      image:
-          "https://faro.edu.br/wp-content/uploads/2018/09/229307-x-dicas-para-economizar-durante-a-faculdade-para-a-festa-de-formatura.jpg",
-      private: false,
-      invite: false,
-      members: const [],
-      latitude: getLatitude,
-      longitude: getLongitude,
-    );
-    var result = await registersEvent(event);
-    result.fold((failure) {}, (list) {
-      clear();
-      Modular.to.navigate("/events/");
+    final result = await registerImage(getImage!);
+    return result.fold((l) => "", (uri) async {
+      var event = EventModel(
+        id: uuid.v4(),
+        title: getName,
+        description: getDiscrible,
+        category: getCategory?.name ?? "",
+        date: getDate,
+        image: uri,
+        private: false,
+        invite: false,
+        members: const [],
+        latitude: getLatitude,
+        longitude: getLongitude,
+      );
+      var result = await registersEvent(event);
+      result.fold((failure) {}, (list) {
+        clear();
+        Modular.to.navigate("/events/");
+      });
     });
   }
 
   void clear() {
+    setImage(null);
     setName(null);
     setDiscrible(null);
     setCategory(null);

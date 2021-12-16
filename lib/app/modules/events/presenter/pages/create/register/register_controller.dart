@@ -72,6 +72,8 @@ abstract class _RegisterControllerBase with Store {
 
   Future<void> showAlbum() async {
     final result = await selectImage();
-    result.fold((failure) {}, (image) {});
+    result.fold((failure) {}, (image) {
+      registerEventStore.setImage(image);
+    });
   }
 }

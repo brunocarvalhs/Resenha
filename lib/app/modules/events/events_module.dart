@@ -2,10 +2,15 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
+import 'package:resenha/app/modules/events/domain/repositories/storage_repository.dart';
+import 'package:resenha/app/modules/events/domain/usecases/register_image.dart';
+import 'package:resenha/app/modules/events/external/firebase_storege_datasource.dart';
 import 'package:resenha/app/modules/events/infra/datasource/contacts_datasource.dart';
 import 'package:resenha/app/modules/events/infra/datasource/database_datasource.dart';
 import 'package:resenha/app/modules/events/infra/datasource/galery_photo_datasource.dart';
 import 'package:resenha/app/modules/events/infra/datasource/place_maps_datasource.dart';
+import 'package:resenha/app/modules/events/infra/datasource/storage_datasource.dart';
+import 'package:resenha/app/modules/events/infra/repositories/events_repository.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:resenha/app/modules/events/domain/repositories/albums_repository.dart';
@@ -36,7 +41,7 @@ import 'domain/usecases/get_events.dart';
 import 'domain/usecases/read_event.dart';
 import 'domain/usecases/register_event.dart';
 import 'external/firebase_store_datasource.dart';
-import 'infra/repositories/events_repository.dart';
+import 'infra/repositories/storage_repository.dart';
 import 'presenter/pages/create/meeting_point/meeting_point_page.dart';
 import 'presenter/pages/create/members/members_page.dart';
 import 'presenter/pages/create/register/register_controller.dart';
@@ -56,18 +61,20 @@ class EventsModule extends Module {
     Bind.instance<ImagePicker>(ImagePicker()),
     // Stores -----------------------------------------------------------------------------------
     Bind.lazySingleton((i) => EventsStore(), export: true),
-    Bind.lazySingleton((i) => RegisterEventStore(i.get(), i.get())),
+    Bind.lazySingleton((i) => RegisterEventStore(i.get(), i.get(), i.get())),
     // Datasource -------------------------------------------------------------------------------
     Bind.lazySingleton<DatabaseDataSource>((i) => FirebaseStoreDatasource(i.get())),
     Bind.lazySingleton<GaleryPhotoDatasource>((i) => GaleryPhotoDatasourceImpl(i.get())),
     Bind.lazySingleton<PlaceMapsDatasource>((i) => PlaceMapsDatasourceImpl(i.get())),
     Bind.lazySingleton<ContactsDataSource>((i) => ContactServiceDatasource(i.get())),
+    Bind.lazySingleton<StorageDatasource>((i) => FirebaseStorageDatasource(i.get())),
     // Repositories -----------------------------------------------------------------------------
     Bind.lazySingleton<EventsRepository>((i) => EventsRepositoryImpl(i.get(), i.get())),
     Bind.lazySingleton<CategoriesRepository>((i) => CategoriesRepositoryImpl(i.get())),
     Bind.lazySingleton<PlaceMapsRepository>((i) => PlaceMapsRepositoryImpl(i.get())),
     Bind.lazySingleton<ContactsRepository>((i) => ContactsRepositoryImpl(i.get())),
     Bind.lazySingleton<AlbumsRepository>((i) => AlbumsRepositoryImpl(i.get())),
+    Bind.lazySingleton<StorageRepository>((i) => StorageRepositoryImpl(i.get(), i.get())),
     // Use Case ---------------------------------------------------------------------------------
     Bind.lazySingleton<ReadEvent>((i) => ReadEventImpl(i.get())),
     Bind.lazySingleton((i) => DeleteEventImpl(i.get())),
@@ -77,6 +84,7 @@ class EventsModule extends Module {
     Bind.lazySingleton<ListCategories>((i) => ListCategoriesImpl(i.get())),
     Bind.lazySingleton<FindPlace>((i) => FindPlaceImpl(i.get())),
     Bind.lazySingleton((i) => ListContactsImpl(i.get())),
+    Bind.lazySingleton((i) => RegisterImageImpl(i.get())),
     // Controllers -------------------------------------------------------------------------------
     Bind.lazySingleton((i) => ListController(i.get(), i.get(), i.get())),
     Bind.lazySingleton((i) => ReadController(i.get(), i.get())),

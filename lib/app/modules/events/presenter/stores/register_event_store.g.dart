@@ -16,13 +16,12 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
       (_$getImageComputed ??= Computed<File?>(() => super.getImage,
               name: '_RegisterEventStoreBase.getImage'))
           .value;
-  Computed<String>? _$getImagePathComputed;
+  Computed<bool>? _$isImageComputed;
 
   @override
-  String get getImagePath =>
-      (_$getImagePathComputed ??= Computed<String>(() => super.getImagePath,
-              name: '_RegisterEventStoreBase.getImagePath'))
-          .value;
+  bool get isImage => (_$isImageComputed ??= Computed<bool>(() => super.isImage,
+          name: '_RegisterEventStoreBase.isImage'))
+      .value;
   Computed<CategoryModel?>? _$getCategoryComputed;
 
   @override
@@ -336,7 +335,7 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
   String toString() {
     return '''
 getImage: ${getImage},
-getImagePath: ${getImagePath},
+isImage: ${isImage},
 getCategory: ${getCategory},
 getName: ${getName},
 getDiscrible: ${getDiscrible},

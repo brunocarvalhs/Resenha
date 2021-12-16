@@ -43,6 +43,7 @@ dependencies:
   contacts_service: ^0.6.3
   # Image
   image_picker: ^0.8.4+4
+  firebase_storage: ^10.2.4
 
 dev_dependencies:
   flutter_test:

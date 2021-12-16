@@ -43,31 +43,35 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 ),
               ),
               flexibleSpace: FlexibleSpaceBar(
-                background: Builder(builder: (context) {
-                  return Hero(
-                    tag: controller.registerEventStore.getImagePath,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        image: DecorationImage(
-                          image: AssetImage(controller.registerEventStore.getImagePath),
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
-                          repeat: ImageRepeat.noRepeat,
+                background: Observer(builder: (context) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      image: controller.registerEventStore.isImage
+                          ? DecorationImage(
+                              image: FileImage(controller.registerEventStore.getImage!),
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                              repeat: ImageRepeat.noRepeat,
+                            )
+                          : const DecorationImage(
+                              image: NetworkImage("controller.registerEventStore.getImage!"),
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                              repeat: ImageRepeat.noRepeat,
+                            ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.photo_library_rounded),
+                          onPressed: () => controller.showAlbum(),
+                          color: Colors.white,
+                          iconSize: 30,
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.photo_library_rounded),
-                            onPressed: () => controller.showAlbum(),
-                            color: Colors.white,
-                            iconSize: 30,
-                          ),
-                        ],
-                      ),
+                      ],
                     ),
                   );
                 }),
