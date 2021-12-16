@@ -1,5 +1,5 @@
 import 'package:contacts_service/contacts_service.dart';
-import 'package:resenha/app/modules/events/infra/datasource/contacts_data_source.dart';
+import 'package:resenha/app/modules/events/infra/datasource/contacts_datasource.dart';
 
 class ContactServiceDatasource implements ContactsDataSource {
   final ContactsService contactsService;
@@ -26,13 +26,13 @@ class ContactServiceDatasource implements ContactsDataSource {
     bool androidLocalizedLabels = true,
   }) async {
     return await ContactsService.getContacts(
-      query: query,
-      withThumbnails: withThumbnails,
-      photoHighResolution: photoHighResolution,
-      orderByGivenName: orderByGivenName,
-      iOSLocalizedLabels: iOSLocalizedLabels,
-      androidLocalizedLabels: androidLocalizedLabels,
-    );
+        // query: query,
+        // withThumbnails: withThumbnails,
+        // photoHighResolution: photoHighResolution,
+        // orderByGivenName: orderByGivenName,
+        // iOSLocalizedLabels: iOSLocalizedLabels,
+        // androidLocalizedLabels: androidLocalizedLabels,
+        );
   }
 
   @override

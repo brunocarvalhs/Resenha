@@ -81,13 +81,15 @@ class _ListPageState extends ModularState<ListPage, ListController> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      Text(
-                        "Total ${store.countPromotions}",
-                        style: const TextStyle(
-                          color: Color(0xffabb0cc),
-                          fontSize: 13,
-                        ),
-                      ),
+                      Observer(builder: (context) {
+                        return Text(
+                          "Total ${store.events.countEvents}",
+                          style: const TextStyle(
+                            color: Color(0xffabb0cc),
+                            fontSize: 13,
+                          ),
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -107,6 +109,7 @@ class _ListPageState extends ModularState<ListPage, ListController> {
           ),
         ),
         floatingActionButton: FloatingButtonWidget(
+          text: "Adicionar evento",
           icon: Icons.add,
           onTap: () => controller.redirectRegister(),
         ),

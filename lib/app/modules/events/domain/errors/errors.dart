@@ -31,3 +31,9 @@ class ErrorRemove extends Failure {
   final String? message;
   ErrorRemove({this.message});
 }
+
+class ErrorPlaceMaps extends Failure {
+  @override
+  final String? message;
+  ErrorPlaceMaps({this.message});
+}

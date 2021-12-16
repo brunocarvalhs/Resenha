@@ -7,8 +7,7 @@ part of 'register_controller.dart';
 // **************************************************************************
 
 final $RegisterController = BindInject(
-  (i) => RegisterController(
-      i<CategoriesStore>(), i<EventsStore>(), i<RegistersEvent>(), i<Uuid>()),
+  (i) => RegisterController(i<ListCategories>(), i<RegisterEventStore>()),
   isSingleton: true,
   isLazy: true,
 );
@@ -20,33 +19,19 @@ final $RegisterController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterControllerBase, Store {
-  Computed<CategoryModel?>? _$getCategoryComputed;
+  Computed<List<CategoryModel>>? _$listComputed;
 
   @override
-  CategoryModel? get getCategory => (_$getCategoryComputed ??=
-          Computed<CategoryModel?>(() => super.getCategory,
-              name: '_RegisterControllerBase.getCategory'))
-      .value;
-  Computed<String>? _$getNameComputed;
-
-  @override
-  String get getName =>
-      (_$getNameComputed ??= Computed<String>(() => super.getName,
-              name: '_RegisterControllerBase.getName'))
+  List<CategoryModel> get list =>
+      (_$listComputed ??= Computed<List<CategoryModel>>(() => super.list,
+              name: '_RegisterControllerBase.list'))
           .value;
-  Computed<String>? _$getDiscribleComputed;
+  Computed<int>? _$countCategoriesComputed;
 
   @override
-  String get getDiscrible =>
-      (_$getDiscribleComputed ??= Computed<String>(() => super.getDiscrible,
-              name: '_RegisterControllerBase.getDiscrible'))
-          .value;
-  Computed<int>? _$countCategoryComputed;
-
-  @override
-  int get countCategory =>
-      (_$countCategoryComputed ??= Computed<int>(() => super.countCategory,
-              name: '_RegisterControllerBase.countCategory'))
+  int get countCategories =>
+      (_$countCategoriesComputed ??= Computed<int>(() => super.countCategories,
+              name: '_RegisterControllerBase.countCategories'))
           .value;
   Computed<String>? _$getDayComputed;
 
@@ -61,13 +46,6 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   String get getMonth =>
       (_$getMonthComputed ??= Computed<String>(() => super.getMonth,
               name: '_RegisterControllerBase.getMonth'))
-          .value;
-  Computed<DateTime>? _$getDateComputed;
-
-  @override
-  DateTime get getDate =>
-      (_$getDateComputed ??= Computed<DateTime>(() => super.getDate,
-              name: '_RegisterControllerBase.getDate'))
           .value;
   Computed<String>? _$getHourComputed;
 
@@ -84,225 +62,28 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
               name: '_RegisterControllerBase.getMinute'))
           .value;
 
-  final _$_categoryAtom = Atom(name: '_RegisterControllerBase._category');
+  final _$_categoriesAtom = Atom(name: '_RegisterControllerBase._categories');
 
   @override
-  CategoryModel? get _category {
-    _$_categoryAtom.reportRead();
-    return super._category;
+  ObservableList<CategoryModel> get _categories {
+    _$_categoriesAtom.reportRead();
+    return super._categories;
   }
 
   @override
-  set _category(CategoryModel? value) {
-    _$_categoryAtom.reportWrite(value, super._category, () {
-      super._category = value;
+  set _categories(ObservableList<CategoryModel> value) {
+    _$_categoriesAtom.reportWrite(value, super._categories, () {
+      super._categories = value;
     });
-  }
-
-  final _$_nameAtom = Atom(name: '_RegisterControllerBase._name');
-
-  @override
-  String? get _name {
-    _$_nameAtom.reportRead();
-    return super._name;
-  }
-
-  @override
-  set _name(String? value) {
-    _$_nameAtom.reportWrite(value, super._name, () {
-      super._name = value;
-    });
-  }
-
-  final _$_discribleAtom = Atom(name: '_RegisterControllerBase._discrible');
-
-  @override
-  String? get _discrible {
-    _$_discribleAtom.reportRead();
-    return super._discrible;
-  }
-
-  @override
-  set _discrible(String? value) {
-    _$_discribleAtom.reportWrite(value, super._discrible, () {
-      super._discrible = value;
-    });
-  }
-
-  final _$_dateAtom = Atom(name: '_RegisterControllerBase._date');
-
-  @override
-  DateTime get _date {
-    _$_dateAtom.reportRead();
-    return super._date;
-  }
-
-  @override
-  set _date(DateTime value) {
-    _$_dateAtom.reportWrite(value, super._date, () {
-      super._date = value;
-    });
-  }
-
-  final _$_timeAtom = Atom(name: '_RegisterControllerBase._time');
-
-  @override
-  TimeOfDay get _time {
-    _$_timeAtom.reportRead();
-    return super._time;
-  }
-
-  @override
-  set _time(TimeOfDay value) {
-    _$_timeAtom.reportWrite(value, super._time, () {
-      super._time = value;
-    });
-  }
-
-  final _$isPrivateAtom = Atom(name: '_RegisterControllerBase.isPrivate');
-
-  @override
-  bool get isPrivate {
-    _$isPrivateAtom.reportRead();
-    return super.isPrivate;
-  }
-
-  @override
-  set isPrivate(bool value) {
-    _$isPrivateAtom.reportWrite(value, super.isPrivate, () {
-      super.isPrivate = value;
-    });
-  }
-
-  final _$isInviteAtom = Atom(name: '_RegisterControllerBase.isInvite');
-
-  @override
-  bool get isInvite {
-    _$isInviteAtom.reportRead();
-    return super.isInvite;
-  }
-
-  @override
-  set isInvite(bool value) {
-    _$isInviteAtom.reportWrite(value, super.isInvite, () {
-      super.isInvite = value;
-    });
-  }
-
-  final _$_RegisterControllerBaseActionController =
-      ActionController(name: '_RegisterControllerBase');
-
-  @override
-  void setCategory(int index) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setCategory');
-    try {
-      return super.setCategory(index);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setName(String? value) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setName');
-    try {
-      return super.setName(value);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setDiscrible(String? value) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setDiscrible');
-    try {
-      return super.setDiscrible(value);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  CategoryModel getCategoryIndex(int index) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.getCategoryIndex');
-    try {
-      return super.getCategoryIndex(index);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  bool isSelected(int index) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.isSelected');
-    try {
-      return super.isSelected(index);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setDate(DateTime? date) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setDate');
-    try {
-      return super.setDate(date);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setTime(TimeOfDay? time) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setTime');
-    try {
-      return super.setTime(time);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setPrivateEvent(bool value) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setPrivateEvent');
-    try {
-      return super.setPrivateEvent(value);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setInviteEvent(bool value) {
-    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
-        name: '_RegisterControllerBase.setInviteEvent');
-    try {
-      return super.setInviteEvent(value);
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-isPrivate: ${isPrivate},
-isInvite: ${isInvite},
-getCategory: ${getCategory},
-getName: ${getName},
-getDiscrible: ${getDiscrible},
-countCategory: ${countCategory},
+list: ${list},
+countCategories: ${countCategories},
 getDay: ${getDay},
 getMonth: ${getMonth},
-getDate: ${getDate},
 getHour: ${getHour},
 getMinute: ${getMinute}
     ''';

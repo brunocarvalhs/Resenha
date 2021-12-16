@@ -5,12 +5,14 @@ class LoggedUser extends Equatable {
   final String? email;
   final String? name;
   final String? photoUrl;
+  final String? phone;
 
   const LoggedUser({
     required this.id,
     this.name,
     this.email,
     this.photoUrl,
+    this.phone,
   });
 
   @override

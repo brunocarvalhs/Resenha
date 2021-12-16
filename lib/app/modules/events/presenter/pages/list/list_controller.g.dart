@@ -44,13 +44,13 @@ mixin _$ListController on _ListControllerBase, Store {
   final _$_promotionsAtom = Atom(name: '_ListControllerBase._promotions');
 
   @override
-  List<EventModel> get _promotions {
+  ObservableList<EventModel> get _promotions {
     _$_promotionsAtom.reportRead();
     return super._promotions;
   }
 
   @override
-  set _promotions(List<EventModel> value) {
+  set _promotions(ObservableList<EventModel> value) {
     _$_promotionsAtom.reportWrite(value, super._promotions, () {
       super._promotions = value;
     });

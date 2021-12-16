@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   final bool selected;
   final VoidCallback? onTap;
-  final String? title;
-  final String? image;
+  final CategoryModel categoryModel;
 
   const CategoryCard({
     Key? key,
-    this.title,
-    this.image,
+    required this.categoryModel,
     this.onTap,
     this.selected = false,
   }) : super(key: key);
@@ -57,11 +56,11 @@ class CategoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.network(
-                      "$image",
+                      categoryModel.image,
                       height: 50.0,
                       fit: BoxFit.cover,
                     ),
-                    Text("$title"),
+                    Text(categoryModel.name),
                   ],
                 ),
               ),

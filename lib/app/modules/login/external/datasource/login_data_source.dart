@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,8 +11,9 @@ class LoginDataSourceImpl implements LoginDataSource {
   final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
   final SharedPreferences secureStorage;
+  final FirebaseFirestore firebaseFirestore;
 
-  LoginDataSourceImpl(this.googleSignIn, this.secureStorage, this.firebaseAuth);
+  LoginDataSourceImpl(this.googleSignIn, this.secureStorage, this.firebaseAuth, this.firebaseFirestore);
 
   @override
   Future<UserModel> currentUser() async {
@@ -22,6 +24,7 @@ class LoginDataSourceImpl implements LoginDataSource {
         name: auth.displayName,
         photoUrl: auth.photoURL,
         email: auth.email,
+        phone: auth.phoneNumber,
       );
     }
 
@@ -55,8 +58,13 @@ class LoginDataSourceImpl implements LoginDataSource {
       name: auth.user?.displayName,
       email: auth.user?.email,
       photoUrl: auth.user?.photoURL,
+      phone: auth.user?.phoneNumber,
     );
+
     await secureStorage.setString("auth", user.toJson());
+
+    await firebaseFirestore.collection("users").doc(user.id).set(user.toMap());
+
     return user;
   }
 }

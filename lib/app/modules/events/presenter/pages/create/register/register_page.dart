@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/events/presenter/pages/create/register/register_controller.dart';
+import 'package:resenha/app/modules/events/presenter/widgets/category_card/category_card.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/date_text_field/date_text_field.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/floatind_button/floating_button_widget.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/register_bar/register_bar_widget.dart';
@@ -53,45 +54,43 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                         color: const Color(0xFF4C0B8D),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Observer(
-                            builder: (context) => Column(
-                              children: <Widget>[
-                                const SizedBox(height: 16),
-                                Container(
-                                  width: 39.52,
-                                  height: 4.96,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: const Color(0xff495bcc),
-                                  ),
+                          child: Column(
+                            children: <Widget>[
+                              const SizedBox(height: 16),
+                              Container(
+                                width: 39.52,
+                                height: 4.96,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(2),
+                                  color: const Color(0xff495bcc),
                                 ),
-                                const SizedBox(height: 16),
-                                ListTile(
-                                  title: const Text(
-                                    'Permirir convidados adicionar outros convidados',
-                                  ),
-                                  leading: Switch(
-                                    value: controller.isPrivate,
+                              ),
+                              const SizedBox(height: 16),
+                              ListTile(
+                                title: const Text(
+                                  'Permirir convidados adicionar outros convidados',
+                                ),
+                                leading: Observer(builder: (context) {
+                                  return Switch(
+                                    value: controller.registerEventStore.isInvite,
                                     activeColor: const Color(0xFF6200EE),
-                                    onChanged: (bool value) => setState(() {
-                                      controller.setInviteEvent(value);
-                                    }),
-                                  ),
+                                    onChanged: (bool value) => controller.registerEventStore.setInviteEvent(value),
+                                  );
+                                }),
+                              ),
+                              ListTile(
+                                title: const Text(
+                                  'Evento privado',
                                 ),
-                                ListTile(
-                                  title: const Text(
-                                    'Evento privado',
-                                  ),
-                                  leading: Switch(
-                                    value: controller.isInvite,
+                                leading: Observer(builder: (context) {
+                                  return Switch(
+                                    value: controller.registerEventStore.isPrivate,
                                     activeColor: const Color(0xFF6200EE),
-                                    onChanged: (bool value) => setState(() {
-                                      controller.setPrivateEvent(value);
-                                    }),
-                                  ),
-                                ),
-                              ],
-                            ),
+                                    onChanged: (bool value) => controller.registerEventStore.setPrivateEvent(value),
+                                  );
+                                }),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -100,50 +99,47 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 ],
               ),
             ),
-            // SliverToBoxAdapter(
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       const Padding(
-            //         padding: EdgeInsets.symmetric(horizontal: 10),
-            //         child: Text(
-            //           "Categoria",
-            //           style: TextStyle(
-            //             color: Color(0xffdce2ef),
-            //             fontSize: 18,
-            //             fontFamily: "Rajdhani",
-            //             fontWeight: FontWeight.w700,
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 200,
-            //         child: Observer(
-            //           builder: (_) => ListView.builder(
-            //             scrollDirection: Axis.horizontal,
-            //             itemCount: controller.countCategory,
-            //             itemBuilder: (BuildContext context, int index) => Padding(
-            //               padding: const EdgeInsets.all(8.0),
-            //               child: CategoryCard(
-            //                 title: controller.getCategoryIndex(index).name,
-            //                 image: controller.getCategoryIndex(index).image,
-            //                 onTap: () => controller.setCategory(index),
-            //                 selected: controller.isSelected(index),
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            SliverToBoxAdapter(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "Categoria",
+                      style: TextStyle(
+                        color: Color(0xffdce2ef),
+                        fontSize: 18,
+                        fontFamily: "Rajdhani",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 200,
+                    child: Observer(
+                      builder: (_) => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.countCategories,
+                        itemBuilder: (BuildContext context, int index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CategoryCard(
+                            categoryModel: controller.list[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 40, left: 10, right: 10),
                 child: TextFieldDefault(
                   hint: "Nome",
-                  onChanged: (value) => controller.setName(value),
+                  controller: controller.nameController,
                 ),
               ),
             ),
@@ -176,15 +172,21 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 padding: const EdgeInsets.only(bottom: 40, left: 10, right: 10),
                 child: TextAreaDefault(
                   hint: "Descrição",
-                  onChanged: (value) => controller.setDiscrible(value),
+                  controller: controller.discribeController,
                 ),
               ),
             ),
           ],
         ),
+        // floatingActionButton: FloatingButtonWidget(
+        //   text: "Continuar",
+        //   icon: Icons.arrow_right,
+        //   onTap: () => controller.redirectMeetingPoint(),
+        // ),
         floatingActionButton: FloatingButtonWidget(
-          icon: Icons.arrow_right,
-          onTap: () => controller.redirectMeetingPoint(),
+          text: "Registrar",
+          icon: Icons.save,
+          onTap: () => controller.save(),
         ),
       ),
     );

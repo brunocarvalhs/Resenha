@@ -11,24 +11,36 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  # Modular
+  flutter_modular: ^4.2.0
+  asuka: ^2.0.0
+  # State Manager
+  mobx: ^2.0.5
+  flutter_mobx: ^2.0.2
+  # Firebase
   firebase_auth: ^3.2.0
   firebase_analytics: ^8.3.2
   firebase_core: ^1.6.0
   cloud_firestore: ^3.1.0
-  mobx: ^2.0.4
-  flutter_mobx: ^2.0.2
+  firebase_messaging: ^11.2.2
+  # Google
   google_fonts: ^2.1.0
+  google_maps_flutter: ^2.1.1
+  google_sign_in: ^5.1.0
+  google_place: ^0.4.3
+  # HTTP
   dio: ^4.0.0
+  # Generate
   dartz: ^0.10.0
   equatable: ^2.0.3
-  google_sign_in: ^5.1.0
-  flutter_modular: ^4.1.2
-  shared_preferences: ^2.0.8
   uuid: ^3.0.5
-  contacts_service: ^0.6.3
-  google_maps_flutter: ^2.1.1
+  # Storage
+  shared_preferences: ^2.0.8
+  # GPS
   location: ^4.2.0
+  # Android
   permission_handler: ^8.3.0
+  contacts_service: ^0.6.3
 
 dev_dependencies:
   flutter_test:
@@ -40,9 +52,11 @@ dev_dependencies:
   mockito: ^5.0.15
   faker: ^2.0.0
   modular_test: ^1.0.1+1
+  dotenv: ^3.0.0
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
     - assets/animations/
+    - assets/icons/

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:resenha/app/modules/events/domain/usecases/register_event.dart';
+import 'package:resenha/app/modules/events/domain/usecases/list_categories.dart';
 import 'package:resenha/app/modules/events/infra/models/category_model.dart';
-import 'package:resenha/app/modules/events/infra/models/event_model.dart';
-import 'package:resenha/app/modules/events/presenter/stores/categories_store.dart';
-import 'package:resenha/app/modules/events/presenter/stores/events_store.dart';
-import 'package:uuid/uuid.dart';
+import 'package:resenha/app/modules/events/presenter/stores/register_event_store.dart';
 
 part 'register_controller.g.dart';
 
@@ -14,112 +11,36 @@ part 'register_controller.g.dart';
 class RegisterController = _RegisterControllerBase with _$RegisterController;
 
 abstract class _RegisterControllerBase with Store {
-  final Uuid uuid;
-  final CategoriesStore categoriesStore;
-  final EventsStore eventsStore;
-  final RegistersEvent registersEvent;
+  final RegisterEventStore registerEventStore;
+  final ListCategories listCategories;
 
-  _RegisterControllerBase(this.categoriesStore, this.eventsStore, this.registersEvent, this.uuid);
-
-  Future<void> register() async {
-    var user = EventModel(
-      id: uuid.v4(),
-      title: getName,
-      description: getDiscrible,
-      category: "",
-      date: getDate,
-      image: "",
-      private: isPrivate,
-    );
-    var result = await registersEvent(user);
-    result.fold((failure) {}, (list) {
-      Modular.to.pushReplacementNamed("/events/");
-    });
+  _RegisterControllerBase(this.listCategories, this.registerEventStore) {
+    loadCategories();
   }
 
-  @observable
-  CategoryModel? _category;
-
-  @action
-  void setCategory(int index) => _category = categoriesStore.listCategories[index];
-
-  @computed
-  CategoryModel? get getCategory => _category;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController discribeController = TextEditingController();
 
   @observable
-  String? _name;
-
-  @action
-  void setName(String? value) => _name = value;
+  ObservableList<CategoryModel> _categories = ObservableList.of([]);
 
   @computed
-  String get getName => _name ?? "";
-
-  @observable
-  String? _discrible;
-
-  @action
-  void setDiscrible(String? value) => _discrible = value;
+  List<CategoryModel> get list => _categories.toList();
 
   @computed
-  String get getDiscrible => _discrible ?? "";
-
-  @action
-  CategoryModel getCategoryIndex(int index) => categoriesStore.listCategories[index];
-
-  @action
-  bool isSelected(int index) => categoriesStore.listCategories[index].id == getCategory?.id;
+  int get countCategories => _categories.length;
 
   @computed
-  int get countCategory => categoriesStore.listCategories.length;
-
-  @observable
-  DateTime _date = DateTime.now();
-
-  @action
-  void setDate(DateTime? date) => _date = date ?? DateTime.now();
+  String get getDay => registerEventStore.getDate.day.toString();
 
   @computed
-  String get getDay => _date.day.toString();
+  String get getMonth => registerEventStore.getDate.month.toString();
 
   @computed
-  String get getMonth => _date.month.toString();
+  String get getHour => registerEventStore.getDate.hour.toString();
 
   @computed
-  DateTime get getDate => DateTime(
-        _date.year,
-        _date.month,
-        _date.day,
-        _time.hour,
-        _time.minute,
-        _date.second,
-        _date.millisecond,
-        _date.microsecond,
-      );
-
-  @observable
-  TimeOfDay _time = TimeOfDay.now();
-
-  @action
-  void setTime(TimeOfDay? time) => _time = time ?? TimeOfDay.now();
-
-  @computed
-  String get getHour => _time.hour.toString();
-
-  @computed
-  String get getMinute => _time.minute.toString();
-
-  @observable
-  bool isPrivate = false;
-
-  @observable
-  bool isInvite = true;
-
-  @action
-  void setPrivateEvent(bool value) => isPrivate = value;
-
-  @action
-  void setInviteEvent(bool value) => isInvite = value;
+  String get getMinute => registerEventStore.getDate.minute.toString();
 
   Future<void> defineDate(BuildContext context) async {
     final current = await showDatePicker(
@@ -128,7 +49,7 @@ abstract class _RegisterControllerBase with Store {
       initialDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 3),
     );
-    setDate(current);
+    registerEventStore.setDate(current);
   }
 
   Future<void> defineTime(BuildContext context) async {
@@ -136,8 +57,21 @@ abstract class _RegisterControllerBase with Store {
       context: context,
       initialTime: TimeOfDay.fromDateTime(DateTime.now()),
     );
-    setTime(current ?? TimeOfDay.fromDateTime(DateTime.now()));
+    registerEventStore.setTime(current ?? TimeOfDay.fromDateTime(DateTime.now()));
   }
 
   void redirectMeetingPoint() => Modular.to.pushNamed("/events/register/maps");
+
+  void save() {
+    registerEventStore.setName(nameController.text);
+    registerEventStore.setDiscrible(discribeController.text);
+    registerEventStore.register();
+  }
+
+  Future<void> loadCategories() async {
+    var result = await listCategories();
+    result.fold((failure) {}, (list) {
+      _categories.addAll(list as Iterable<CategoryModel>);
+    });
+  }
 }

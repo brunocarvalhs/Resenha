@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GenericBarWidget extends PreferredSize {
+class GenericBarWidget extends StatelessWidget {
   final List<Widget>? actions;
   final Widget? title;
   final Widget? flexibleSpace;
@@ -10,17 +10,18 @@ class GenericBarWidget extends PreferredSize {
     this.flexibleSpace,
     this.actions,
     this.title,
-  }) : super(
-          key: key,
-          preferredSize: const Size.fromHeight(120),
-          child: AppBar(
-            leading: const SizedBox(),
-            title: title,
-            actions: actions,
-            flexibleSpace: flexibleSpace,
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-          ),
-        );
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: const SizedBox(),
+      title: title,
+      actions: actions,
+      flexibleSpace: flexibleSpace,
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+    );
+  }
 }

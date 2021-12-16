@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "404767447708-euef44bnsonnn0sos6srukdeipih4ckl.apps.googleusercontent.com",
+          "client_id": "404767447708-od9qmmfev9vtok428o3csg7p8omi00g3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.brunocarvalhs.resenha",
-            "certificate_hash": "8f97d66963549ff788f1302605686b5bd2194d88"
+            "certificate_hash": "6b9f6e18dc97eb1c2b42da3033f4462b72742f1b"
           }
         },
         {

@@ -20,6 +20,7 @@ class _MapsPageState extends ModularState<MapsPage, MapsController> {
       ),
       child: Scaffold(
         floatingActionButton: FloatingButtonWidget(
+          text: "",
           icon: Icons.add,
           onTap: () {},
         ),

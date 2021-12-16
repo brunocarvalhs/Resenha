@@ -1,7 +1,7 @@
 import 'package:contacts_service/contacts_service.dart';
 
 abstract class ContactsDataSource {
-  Future<List<dynamic>> get({
+  Future<List<Contact>> get({
     String? query,
     bool withThumbnails = true,
     bool photoHighResolution = true,

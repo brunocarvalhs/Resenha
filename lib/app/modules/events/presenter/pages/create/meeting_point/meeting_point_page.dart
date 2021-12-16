@@ -30,7 +30,6 @@ class _MeetingPointPageState extends ModularState<MeetingPointPage, MeetingPoint
             Observer(
               builder: (context) => GoogleMap(
                 onMapCreated: controller.onMapCreated,
-                myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 zoomControlsEnabled: false,
                 initialCameraPosition: CameraPosition(
@@ -61,25 +60,9 @@ class _MeetingPointPageState extends ModularState<MeetingPointPage, MeetingPoint
                           floating: true,
                           expandedHeight: 80,
                           backgroundColor: ColorsThemes.purple,
-                          flexibleSpace: GenericBarWidget(
-                            title: const Text(
-                              "Ponto de encontro",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xffdce2ef),
-                                fontSize: 20,
-                                fontFamily: "Rajdhani",
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Observer(
-                          builder: (_) => SliverToBoxAdapter(
-                            child: SearchBarWidget(
-                              controller: controller.pointController,
-                              onChanged: (search) => controller.searchPoint(search),
-                            ),
+                          flexibleSpace: SearchBarWidget(
+                            controller: controller.pointController,
+                            onChanged: (search) => controller.searchPoint(search),
                           ),
                         ),
                         SliverList(
@@ -105,6 +88,7 @@ class _MeetingPointPageState extends ModularState<MeetingPointPage, MeetingPoint
           ],
         ),
         floatingActionButton: FloatingButtonWidget(
+          text: "Continuar",
           icon: Icons.arrow_right,
           onTap: () => controller.redirecMembers(),
         ),

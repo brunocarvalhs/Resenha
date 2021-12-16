@@ -31,7 +31,7 @@ abstract class _ListControllerBase with Store {
   TextEditingController textEditingController = TextEditingController();
 
   @observable
-  List<EventModel> _promotions = ObservableList<EventModel>.of([]);
+  ObservableList<EventModel> _promotions = ObservableList<EventModel>.of([]);
 
   @computed
   int get countPromotions => _promotions.length;

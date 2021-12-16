@@ -7,7 +7,8 @@ part of 'meeting_point_controller.dart';
 // **************************************************************************
 
 final $MeetingPointController = BindInject(
-  (i) => MeetingPointController(i<RegisterController>(), i<Location>()),
+  (i) => MeetingPointController(
+      i<RegisterEventStore>(), i<Location>(), i<FindPlace>()),
   isSingleton: true,
   isLazy: true,
 );
@@ -45,13 +46,13 @@ mixin _$MeetingPointController on _MeetingPointControllerBase, Store {
   final _$pointsAtom = Atom(name: '_MeetingPointControllerBase.points');
 
   @override
-  Map<MarkerId, Marker> get points {
+  ObservableMap<MarkerId, Marker> get points {
     _$pointsAtom.reportRead();
     return super.points;
   }
 
   @override
-  set points(Map<MarkerId, Marker> value) {
+  set points(ObservableMap<MarkerId, Marker> value) {
     _$pointsAtom.reportWrite(value, super.points, () {
       super.points = value;
     });

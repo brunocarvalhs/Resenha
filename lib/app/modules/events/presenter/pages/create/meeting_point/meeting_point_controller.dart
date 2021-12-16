@@ -5,7 +5,8 @@ import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:mobx/mobx.dart';
-import '../register/register_controller.dart';
+import 'package:resenha/app/modules/events/domain/usecases/find_place.dart';
+import 'package:resenha/app/modules/events/presenter/stores/register_event_store.dart';
 
 part 'meeting_point_controller.g.dart';
 
@@ -13,12 +14,13 @@ part 'meeting_point_controller.g.dart';
 class MeetingPointController = _MeetingPointControllerBase with _$MeetingPointController;
 
 abstract class _MeetingPointControllerBase with Store {
-  final RegisterController registerController;
+  final RegisterEventStore registerEventStore;
   final Location location;
+  final FindPlace findPlace;
 
   late GoogleMapController mapController;
 
-  _MeetingPointControllerBase(this.registerController, this.location) {
+  _MeetingPointControllerBase(this.registerEventStore, this.location, this.findPlace) {
     _determinePosition();
   }
 
@@ -31,7 +33,7 @@ abstract class _MeetingPointControllerBase with Store {
   void setPosition(LatLng value) => position = value;
 
   @observable
-  Map<MarkerId, Marker> points = <MarkerId, Marker>{};
+  ObservableMap<MarkerId, Marker> points = ObservableMap.of({});
 
   @action
   void setPoint(MarkerId key, Marker value) => points[key] = value;
@@ -43,17 +45,22 @@ abstract class _MeetingPointControllerBase with Store {
   String? get getSearch => search;
 
   void add(LatLng point) {
+    registerEventStore.setPoint(
+      point.latitude,
+      point.longitude,
+    );
     const key = MarkerId("test");
     final Marker marker = Marker(
       markerId: key,
       position: point,
       infoWindow: const InfoWindow(title: "markerIdVal", snippet: '*'),
     );
-
     setPoint(key, marker);
   }
 
-  void onMapCreated(GoogleMapController controller) => mapController = controller;
+  void onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   void redirecMembers() => Modular.to.pushNamed("/events/register/members");
 
@@ -81,6 +88,9 @@ abstract class _MeetingPointControllerBase with Store {
     }
 
     var _locationData = await location.getLocation();
-    setPosition(LatLng(_locationData.latitude!, _locationData.longitude!));
+
+    final position = LatLng(_locationData.latitude!, _locationData.longitude!);
+    mapController.getScreenCoordinate(position);
+    setPosition(position);
   }
 }

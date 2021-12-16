@@ -23,7 +23,7 @@ class LoginModule extends Module {
     Bind.lazySingleton((i) => LoginWithGoogleImpl(i.get<LoginRepositoryImpl>())),
     Bind.lazySingleton((i) => GetLoggedUserImpl(i.get<LoginRepositoryImpl>()), export: true),
     Bind.lazySingleton((i) => LoginRepositoryImpl(i.get<LoginDataSourceImpl>()), export: true),
-    Bind.lazySingleton((i) => LoginDataSourceImpl(i.get(), i.get(), i.get()), export: true),
+    Bind.lazySingleton((i) => LoginDataSourceImpl(i.get(), i.get(), i.get(), i.get()), export: true),
     // Login
     Bind.lazySingleton((i) => LoginController(i.get<LoginWithGoogleImpl>(), i.get<AuthStore>())),
   ];

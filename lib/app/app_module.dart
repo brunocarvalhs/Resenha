@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/app_guard.dart';
 import 'package:resenha/app/shared/guards/auth_guard.dart';
@@ -22,6 +24,8 @@ class AppModule extends Module {
   final List<Bind> binds = [
     Bind.instance<FirebaseApp>(Firebase.app()),
     Bind.instance<FirebaseAnalytics>(FirebaseAnalytics()),
+    Bind.instance<FirebaseMessaging>(FirebaseMessaging.instance),
+    Bind.instance<FirebaseFirestore>(FirebaseFirestore.instance),
     Bind.lazySingleton<FirebaseAnalyticsObserver>((i) => FirebaseAnalyticsObserver(analytics: i.get())),
     AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
   ];

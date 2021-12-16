@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:resenha/app/modules/events/infra/datasource/database_data_source.dart';
+import 'package:resenha/app/modules/events/infra/datasource/database_datasource.dart';
 
 class FirebaseStoreDatasource implements DatabaseDataSource {
   final FirebaseFirestore firebaseFirestore;

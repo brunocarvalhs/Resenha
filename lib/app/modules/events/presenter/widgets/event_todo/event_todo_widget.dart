@@ -100,11 +100,11 @@ class EventTodoWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.people),
+                        children: [
+                          const Icon(Icons.people),
                           Text(
-                            "10",
-                            style: TextStyle(
+                            "${event.members.length}",
+                            style: const TextStyle(
                               color: Color(0xffdce2ef),
                               fontSize: 13,
                               fontFamily: "Inter",

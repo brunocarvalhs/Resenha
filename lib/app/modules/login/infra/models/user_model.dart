@@ -9,11 +9,13 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
     String? name,
     String? email,
     String? photoUrl,
+    String? phone,
   }) : super(
           id: id,
           name: name,
           email: email,
           photoUrl: photoUrl,
+          phone: phone,
         );
 
   @override
@@ -21,12 +23,14 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
     String? email,
     String? name,
     String? photoUrl,
+    String? phone,
   }) {
     return UserModel(
       id: id,
       email: email ?? this.email,
       name: name ?? this.name,
       photoUrl: photoUrl ?? this.photoUrl,
+      phone: phone ?? this.phone,
     );
   }
 
@@ -37,6 +41,7 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
       'email': email,
       'name': name,
       'photoUrl': photoUrl,
+      'phone': phone,
     };
   }
 
@@ -46,6 +51,7 @@ class UserModel extends LoggedUser implements LoggedUserInfo {
       email: map['email'] as String,
       name: map['name'] as String,
       photoUrl: map['photoUrl'] as String,
+      phone: map['phone'] as String,
     );
   }
 
