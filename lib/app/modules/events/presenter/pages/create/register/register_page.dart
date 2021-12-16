@@ -118,16 +118,18 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                   ),
                   SizedBox(
                     height: 200,
-                    child: Observer(
-                      builder: (_) => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.countCategories,
-                        itemBuilder: (BuildContext context, int index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CategoryCard(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.countCategories,
+                      itemBuilder: (BuildContext context, int index) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Observer(builder: (context) {
+                          return CategoryCard(
                             categoryModel: controller.list[index],
-                          ),
-                        ),
+                            onTap: (value) => controller.registerEventStore.setCategory(value),
+                            selected: controller.registerEventStore.getCategory,
+                          );
+                        }),
                       ),
                     ),
                   ),

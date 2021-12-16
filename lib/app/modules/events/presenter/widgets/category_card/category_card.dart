@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
-  final bool selected;
-  final VoidCallback? onTap;
+  final CategoryModel? selected;
+  final void Function(CategoryModel) onTap;
   final CategoryModel categoryModel;
 
   const CategoryCard({
     Key? key,
     required this.categoryModel,
-    this.onTap,
-    this.selected = false,
+    required this.onTap,
+    this.selected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap(categoryModel),
       child: SizedBox(
         width: 100,
         height: 100,
@@ -30,24 +30,7 @@ class CategoryCard extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: selected ? Colors.yellow : Colors.transparent),
-                boxShadow: const [
-                  // BoxShadow(
-                  //   color: Color(0x33000000),
-                  //   blurRadius: 3,
-                  //   offset: Offset(0, 1),
-                  // ),
-                  // BoxShadow(
-                  //   color: Color(0x1e000000),
-                  //   blurRadius: 1,
-                  //   offset: Offset(0, 2),
-                  // ),
-                  // BoxShadow(
-                  //   color: Color(0x23000000),
-                  //   blurRadius: 1,
-                  //   offset: Offset(0, 1),
-                  // ),
-                ],
+                border: Border.all(color: selected == categoryModel ? Colors.yellow : Colors.transparent),
                 color: const Color(0xff4c0b8e),
               ),
               child: Padding(

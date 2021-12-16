@@ -9,6 +9,13 @@ part of 'register_event_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
+  Computed<CategoryModel?>? _$getCategoryComputed;
+
+  @override
+  CategoryModel? get getCategory => (_$getCategoryComputed ??=
+          Computed<CategoryModel?>(() => super.getCategory,
+              name: '_RegisterEventStoreBase.getCategory'))
+      .value;
   Computed<String>? _$getNameComputed;
 
   @override
@@ -58,6 +65,21 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
       (_$getLongitudeComputed ??= Computed<double>(() => super.getLongitude,
               name: '_RegisterEventStoreBase.getLongitude'))
           .value;
+
+  final _$_categoryAtom = Atom(name: '_RegisterEventStoreBase._category');
+
+  @override
+  CategoryModel? get _category {
+    _$_categoryAtom.reportRead();
+    return super._category;
+  }
+
+  @override
+  set _category(CategoryModel? value) {
+    _$_categoryAtom.reportWrite(value, super._category, () {
+      super._category = value;
+    });
+  }
 
   final _$_nameAtom = Atom(name: '_RegisterEventStoreBase._name');
 
@@ -183,6 +205,17 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
       ActionController(name: '_RegisterEventStoreBase');
 
   @override
+  void setCategory(CategoryModel? value) {
+    final _$actionInfo = _$_RegisterEventStoreBaseActionController.startAction(
+        name: '_RegisterEventStoreBase.setCategory');
+    try {
+      return super.setCategory(value);
+    } finally {
+      _$_RegisterEventStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setName(String? value) {
     final _$actionInfo = _$_RegisterEventStoreBaseActionController.startAction(
         name: '_RegisterEventStoreBase.setName');
@@ -262,6 +295,7 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
   @override
   String toString() {
     return '''
+getCategory: ${getCategory},
 getName: ${getName},
 getDiscrible: ${getDiscrible},
 getDate: ${getDate},

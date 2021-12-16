@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:resenha/app/modules/events/domain/usecases/register_event.dart';
+import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,6 +15,15 @@ abstract class _RegisterEventStoreBase with Store {
   final RegistersEvent registersEvent;
 
   _RegisterEventStoreBase(this.registersEvent, this.uuid);
+
+  @observable
+  CategoryModel? _category;
+
+  @action
+  void setCategory(CategoryModel? value) => _category = value;
+
+  @computed
+  CategoryModel? get getCategory => _category;
 
   @observable
   String? _name;
