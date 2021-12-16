@@ -122,7 +122,7 @@ abstract class _RegisterEventStoreBase with Store {
           "https://faro.edu.br/wp-content/uploads/2018/09/229307-x-dicas-para-economizar-durante-a-faculdade-para-a-festa-de-formatura.jpg",
       private: false,
       invite: false,
-      members: [],
+      members: const [],
       latitude: getLatitude,
       longitude: getLongitude,
     );

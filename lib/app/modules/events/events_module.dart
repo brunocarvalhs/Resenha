@@ -1,19 +1,32 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
+import 'package:resenha/app/modules/events/infra/datasource/contacts_datasource.dart';
+import 'package:resenha/app/modules/events/infra/datasource/database_datasource.dart';
+import 'package:resenha/app/modules/events/infra/datasource/galery_photo_datasource.dart';
+import 'package:resenha/app/modules/events/infra/datasource/place_maps_datasource.dart';
+import 'package:uuid/uuid.dart';
+
+import 'package:resenha/app/modules/events/domain/repositories/albums_repository.dart';
+import 'package:resenha/app/modules/events/domain/repositories/categories_repository.dart';
+import 'package:resenha/app/modules/events/domain/repositories/contacts_repository.dart';
+import 'package:resenha/app/modules/events/domain/repositories/events_repository.dart';
+import 'package:resenha/app/modules/events/domain/repositories/place_maps_repository.dart';
+import 'package:resenha/app/modules/events/domain/usecases/delete_event.dart';
 import 'package:resenha/app/modules/events/domain/usecases/find_place.dart';
 import 'package:resenha/app/modules/events/domain/usecases/list_categories.dart';
 import 'package:resenha/app/modules/events/domain/usecases/list_contacts.dart';
+import 'package:resenha/app/modules/events/domain/usecases/select_image.dart';
 import 'package:resenha/app/modules/events/external/contacts_datasource.dart';
+import 'package:resenha/app/modules/events/external/galery_photo_datasource.dart';
 import 'package:resenha/app/modules/events/external/place_maps_datasource.dart';
+import 'package:resenha/app/modules/events/infra/repositories/albums_repository.dart';
 import 'package:resenha/app/modules/events/infra/repositories/categories_repository.dart';
 import 'package:resenha/app/modules/events/infra/repositories/contacts_repository.dart';
 import 'package:resenha/app/modules/events/infra/repositories/place_maps_repository.dart';
 import 'package:resenha/app/modules/events/presenter/pages/create/members/members_controller.dart';
 import 'package:resenha/app/modules/events/presenter/stores/register_event_store.dart';
-
-import 'package:uuid/uuid.dart';
 
 import 'presenter/pages/list/list_controller.dart';
 import 'presenter/pages/list/list_page.dart';
@@ -36,36 +49,40 @@ import 'presenter/pages/visualization/read/read_page.dart';
 class EventsModule extends Module {
   @override
   final List<Bind> binds = [
-    // Global -----------------------------------------------------------------------------
+    // Dependencies -----------------------------------------------------------------------------
     Bind.instance<Uuid>(const Uuid(), export: true),
     Bind.instance<ContactsService>(ContactsService()),
     Bind.instance<Location>(Location()),
+    Bind.instance<ImagePicker>(ImagePicker()),
+    // Stores -----------------------------------------------------------------------------------
     Bind.lazySingleton((i) => EventsStore(), export: true),
-    Bind.lazySingleton((i) => FirebaseStoreDatasource(i.get<FirebaseFirestore>())),
-    Bind.lazySingleton((i) => EventsRepositoryImpl(i.get<FirebaseStoreDatasource>(), i.get())),
-    // List -------------------------------------------------------------------------------
-    Bind.lazySingleton((i) => CategoriesRepositoryImpl(i.get<FirebaseStoreDatasource>())),
-    Bind.lazySingleton<ListCategoriesImpl>((i) => ListCategoriesImpl(i.get<CategoriesRepositoryImpl>())),
-    Bind.lazySingleton<GetEvents>((i) => GetEventsImpl(i.get<EventsRepositoryImpl>())),
-    Bind.lazySingleton((i) => ListController(i.get(), i.get(), i.get())),
-    // Read -------------------------------------------------------------------------------
-    Bind.lazySingleton<ReadEvent>((i) => ReadEventImpl(i.get<EventsRepositoryImpl>())),
-    Bind.lazySingleton((i) => ReadController(i.get(), i.get())),
-    // Register ---------------------------------------------------------------------------
     Bind.lazySingleton((i) => RegisterEventStore(i.get(), i.get())),
-    Bind.lazySingleton((i) => RegisterEventImpl(i.get<EventsRepositoryImpl>())),
-    Bind.lazySingleton((i) => RegisterController(i.get(), i.get())),
-    // * MeetingPoint
-    Bind.lazySingleton((i) => PlaceMapsDatasourceImpl(i.get())),
-    Bind.lazySingleton((i) => PlaceMapsRepositoryImpl(i.get<PlaceMapsDatasourceImpl>())),
-    Bind.lazySingleton((i) => FindPlaceImpl(i.get<PlaceMapsRepositoryImpl>())),
-    Bind.lazySingleton((i) => MeetingPointController(i.get(), i.get(), i.get<FindPlaceImpl>())),
-    // * Members
-    Bind.lazySingleton((i) => ContactServiceDatasource(i.get())),
-    Bind.lazySingleton((i) => ContactsRepositoryImpl(i.get<ContactServiceDatasource>())),
-    Bind.lazySingleton((i) => ListContactsImpl(i.get<ContactsRepositoryImpl>())),
+    // Datasource -------------------------------------------------------------------------------
+    Bind.lazySingleton<DatabaseDataSource>((i) => FirebaseStoreDatasource(i.get())),
+    Bind.lazySingleton<GaleryPhotoDatasource>((i) => GaleryPhotoDatasourceImpl(i.get())),
+    Bind.lazySingleton<PlaceMapsDatasource>((i) => PlaceMapsDatasourceImpl(i.get())),
+    Bind.lazySingleton<ContactsDataSource>((i) => ContactServiceDatasource(i.get())),
+    // Repositories -----------------------------------------------------------------------------
+    Bind.lazySingleton<EventsRepository>((i) => EventsRepositoryImpl(i.get(), i.get())),
+    Bind.lazySingleton<CategoriesRepository>((i) => CategoriesRepositoryImpl(i.get())),
+    Bind.lazySingleton<PlaceMapsRepository>((i) => PlaceMapsRepositoryImpl(i.get())),
+    Bind.lazySingleton<ContactsRepository>((i) => ContactsRepositoryImpl(i.get())),
+    Bind.lazySingleton<AlbumsRepository>((i) => AlbumsRepositoryImpl(i.get())),
+    // Use Case ---------------------------------------------------------------------------------
+    Bind.lazySingleton<ReadEvent>((i) => ReadEventImpl(i.get())),
+    Bind.lazySingleton((i) => DeleteEventImpl(i.get())),
+    Bind.lazySingleton<SelectImage>((i) => SelectImageImpl(i.get())),
+    Bind.lazySingleton<GetEvents>((i) => GetEventsImpl(i.get())),
+    Bind.lazySingleton((i) => RegisterEventImpl(i.get())),
+    Bind.lazySingleton<ListCategories>((i) => ListCategoriesImpl(i.get())),
+    Bind.lazySingleton<FindPlace>((i) => FindPlaceImpl(i.get())),
+    Bind.lazySingleton((i) => ListContactsImpl(i.get())),
+    // Controllers -------------------------------------------------------------------------------
+    Bind.lazySingleton((i) => ListController(i.get(), i.get(), i.get())),
+    Bind.lazySingleton((i) => ReadController(i.get(), i.get())),
+    Bind.lazySingleton((i) => RegisterController(i.get(), i.get(), i.get())),
+    Bind.lazySingleton((i) => MeetingPointController(i.get(), i.get(), i.get())),
     Bind.lazySingleton((i) => MembersController(i.get(), i.get())),
-    // Search -----------------------------------------------------------------------------
     Bind.lazySingleton((i) => SearchController(i.get()))
   ];
 

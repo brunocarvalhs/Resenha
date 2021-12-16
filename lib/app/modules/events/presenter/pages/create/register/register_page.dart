@@ -5,7 +5,6 @@ import 'package:resenha/app/modules/events/presenter/pages/create/register/regis
 import 'package:resenha/app/modules/events/presenter/widgets/category_card/category_card.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/date_text_field/date_text_field.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/floatind_button/floating_button_widget.dart';
-import 'package:resenha/app/modules/events/presenter/widgets/register_bar/register_bar_widget.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/text_area_default/text_area_default.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/text_field_default/text_field_default.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/time_text_field/time_text_field.dart';
@@ -63,7 +62,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                         children: [
                           IconButton(
                             icon: const Icon(Icons.photo_library_rounded),
-                            onPressed: () {},
+                            onPressed: () => controller.showAlbum(),
                             color: Colors.white,
                             iconSize: 30,
                           ),

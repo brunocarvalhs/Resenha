@@ -37,3 +37,9 @@ class ErrorPlaceMaps extends Failure {
   final String? message;
   ErrorPlaceMaps({this.message});
 }
+
+class ErrorImageAlbum extends Failure {
+  @override
+  final String? message;
+  ErrorImageAlbum({this.message});
+}

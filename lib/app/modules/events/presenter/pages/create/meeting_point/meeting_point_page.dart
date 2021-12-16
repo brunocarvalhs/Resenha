@@ -4,9 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:resenha/app/modules/events/presenter/pages/create/meeting_point/meeting_point_controller.dart';
-import 'package:resenha/app/modules/events/presenter/widgets/button/button.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/floatind_button/floating_button_widget.dart';
-import 'package:resenha/app/modules/events/presenter/widgets/register_bar/register_bar_widget.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/search_bar/search_bar_widget.dart';
 import 'package:resenha/app/shared/themes/colors_themes.dart';
 

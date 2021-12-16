@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:resenha/app/modules/events/domain/usecases/list_categories.dart';
+import 'package:resenha/app/modules/events/domain/usecases/select_image.dart';
 import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 import 'package:resenha/app/modules/events/presenter/stores/register_event_store.dart';
 
@@ -13,8 +14,9 @@ class RegisterController = _RegisterControllerBase with _$RegisterController;
 abstract class _RegisterControllerBase with Store {
   final RegisterEventStore registerEventStore;
   final ListCategories listCategories;
+  final SelectImage selectImage;
 
-  _RegisterControllerBase(this.listCategories, this.registerEventStore) {
+  _RegisterControllerBase(this.listCategories, this.registerEventStore, this.selectImage) {
     loadCategories();
   }
 
@@ -66,5 +68,10 @@ abstract class _RegisterControllerBase with Store {
     result.fold((failure) {}, (list) {
       _categories.addAll(list as Iterable<CategoryModel>);
     });
+  }
+
+  Future<void> showAlbum() async {
+    final result = await selectImage();
+    result.fold((failure) {}, (image) {});
   }
 }

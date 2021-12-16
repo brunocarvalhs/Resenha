@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:resenha/app/modules/login/domain/repositories/login_repository.dart';
+import 'package:resenha/app/modules/login/infra/datasource/login_data_source.dart';
 
 import 'domain/usecases/get_logged_user.dart';
 import 'domain/usecases/login_with_google.dart';
@@ -14,18 +16,21 @@ import 'presenter/pages/login/login_page.dart';
 class LoginModule extends Module {
   @override
   final List<Bind> binds = [
-    // Global
+    // Global ------------------------------------------------------------------------------------------
     Bind.instance<FirebaseAuth>(FirebaseAuth.instance, export: true),
-    Bind.lazySingleton((i) => AuthStore(i.get<GetLoggedUserImpl>(), i.get<LogoutImpl>()), export: true),
-    Bind.lazySingleton((i) => LogoutImpl(i.get<LoginRepositoryImpl>()), export: true),
-    // Google
-    Bind.lazySingleton((i) => GoogleSignIn(), export: true),
-    Bind.lazySingleton((i) => LoginWithGoogleImpl(i.get<LoginRepositoryImpl>())),
-    Bind.lazySingleton((i) => GetLoggedUserImpl(i.get<LoginRepositoryImpl>()), export: true),
-    Bind.lazySingleton((i) => LoginRepositoryImpl(i.get<LoginDataSourceImpl>()), export: true),
-    Bind.lazySingleton((i) => LoginDataSourceImpl(i.get(), i.get(), i.get(), i.get()), export: true),
-    // Login
-    Bind.lazySingleton((i) => LoginController(i.get<LoginWithGoogleImpl>(), i.get<AuthStore>())),
+    Bind.instance<GoogleSignIn>(GoogleSignIn(), export: true),
+    // Stores ------------------------------------------------------------------------------------------
+    Bind.lazySingleton<AuthStore>((i) => AuthStore(i.get(), i.get()), export: true),
+    // Use cases ---------------------------------------------------------------------------------------
+    Bind.lazySingleton<Logout>((i) => LogoutImpl(i.get()), export: true),
+    Bind.lazySingleton<LoginWithGoogle>((i) => LoginWithGoogleImpl(i.get())),
+    Bind.lazySingleton<GetLoggedUser>((i) => GetLoggedUserImpl(i.get()), export: true),
+    // Repositories ------------------------------------------------------------------------------------
+    Bind.lazySingleton<LoginRepository>((i) => LoginRepositoryImpl(i.get()), export: true),
+    // Datasource --------------------------------------------------------------------------------------
+    Bind.lazySingleton<LoginDataSource>((i) => LoginDataSourceImpl(i.get(), i.get(), i.get(), i.get()), export: true),
+    // Controller --------------------------------------------------------------------------------------
+    Bind.lazySingleton((i) => LoginController(i.get(), i.get())),
   ];
 
   @override

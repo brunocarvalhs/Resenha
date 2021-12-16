@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:resenha/app/modules/events/presenter/pages/create/members/members_controller.dart';
-import 'package:resenha/app/modules/events/presenter/widgets/button/button.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/contact_todo/contact_todo.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/floatind_button/floating_button_widget.dart';
 import 'package:resenha/app/modules/events/presenter/widgets/register_bar/register_bar_widget.dart';

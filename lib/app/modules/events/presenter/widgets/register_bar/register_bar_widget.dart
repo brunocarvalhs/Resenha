@@ -5,7 +5,7 @@ class GenericBarWidget extends StatelessWidget {
   final Widget? title;
   final Widget? flexibleSpace;
 
-  GenericBarWidget({
+  const GenericBarWidget({
     Key? key,
     this.flexibleSpace,
     this.actions,

@@ -7,7 +7,8 @@ part of 'register_controller.dart';
 // **************************************************************************
 
 final $RegisterController = BindInject(
-  (i) => RegisterController(i<ListCategories>(), i<RegisterEventStore>()),
+  (i) => RegisterController(
+      i<ListCategories>(), i<RegisterEventStore>(), i<SelectImage>()),
   isSingleton: true,
   isLazy: true,
 );
