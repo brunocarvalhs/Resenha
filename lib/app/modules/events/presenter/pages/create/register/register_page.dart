@@ -175,7 +175,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 padding: const EdgeInsets.only(bottom: 40, left: 10, right: 10),
                 child: TextFieldDefault(
                   hint: "Nome",
-                  controller: controller.nameController,
+                  onChanged: (value) => controller.registerEventStore.setName(value),
                 ),
               ),
             ),
@@ -208,7 +208,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 padding: const EdgeInsets.only(bottom: 100, left: 10, right: 10),
                 child: TextAreaDefault(
                   hint: "Descrição",
-                  controller: controller.discribeController,
+                  onChanged: (value) => controller.registerEventStore.setDiscrible(value),
                 ),
               ),
             ),

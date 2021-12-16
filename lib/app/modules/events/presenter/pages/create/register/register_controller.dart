@@ -18,9 +18,6 @@ abstract class _RegisterControllerBase with Store {
     loadCategories();
   }
 
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController discribeController = TextEditingController();
-
   @observable
   ObservableList<CategoryModel> _categories = ObservableList.of([]);
 
@@ -62,11 +59,7 @@ abstract class _RegisterControllerBase with Store {
 
   void redirectMeetingPoint() => Modular.to.pushNamed("/events/register/maps");
 
-  void save() {
-    registerEventStore.setName(nameController.text);
-    registerEventStore.setDiscrible(discribeController.text);
-    registerEventStore.register();
-  }
+  void save() => registerEventStore.register();
 
   Future<void> loadCategories() async {
     var result = await listCategories();

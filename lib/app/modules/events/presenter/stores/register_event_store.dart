@@ -116,7 +116,7 @@ abstract class _RegisterEventStoreBase with Store {
       id: uuid.v4(),
       title: getName,
       description: getDiscrible,
-      category: "Festa",
+      category: getCategory?.name ?? "",
       date: getDate,
       image:
           "https://faro.edu.br/wp-content/uploads/2018/09/229307-x-dicas-para-economizar-durante-a-faculdade-para-a-festa-de-formatura.jpg",
@@ -128,7 +128,16 @@ abstract class _RegisterEventStoreBase with Store {
     );
     var result = await registersEvent(event);
     result.fold((failure) {}, (list) {
+      clear();
       Modular.to.navigate("/events/");
     });
+  }
+
+  void clear() {
+    setName(null);
+    setDiscrible(null);
+    setCategory(null);
+    setDate(null);
+    setPoint(0, 0);
   }
 }
