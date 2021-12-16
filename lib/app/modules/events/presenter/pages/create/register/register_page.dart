@@ -31,109 +31,143 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
             SliverAppBar(
               elevation: 0,
               floating: true,
-              expandedHeight: 100,
+              expandedHeight: 300,
               backgroundColor: ColorsThemes.purple,
-              flexibleSpace: GenericBarWidget(
-                title: const Text(
-                  "Criar Evento",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xffdce2ef),
-                    fontSize: 20,
-                    fontFamily: "Rajdhani",
-                    fontWeight: FontWeight.w700,
-                  ),
+              title: const Text(
+                "Criar Evento",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xffdce2ef),
+                  fontSize: 20,
+                  fontFamily: "Rajdhani",
+                  fontWeight: FontWeight.w700,
                 ),
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.settings),
-                    onPressed: () => showModalBottomSheet<void>(
-                      context: context,
-                      builder: (BuildContext context) => Container(
-                        height: 200,
-                        color: const Color(0xFF4C0B8D),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Column(
-                            children: <Widget>[
-                              const SizedBox(height: 16),
-                              Container(
-                                width: 39.52,
-                                height: 4.96,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  color: const Color(0xff495bcc),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              ListTile(
-                                title: const Text(
-                                  'Permirir convidados adicionar outros convidados',
-                                ),
-                                leading: Observer(builder: (context) {
-                                  return Switch(
-                                    value: controller.registerEventStore.isInvite,
-                                    activeColor: const Color(0xFF6200EE),
-                                    onChanged: (bool value) => controller.registerEventStore.setInviteEvent(value),
-                                  );
-                                }),
-                              ),
-                              ListTile(
-                                title: const Text(
-                                  'Evento privado',
-                                ),
-                                leading: Observer(builder: (context) {
-                                  return Switch(
-                                    value: controller.registerEventStore.isPrivate,
-                                    activeColor: const Color(0xFF6200EE),
-                                    onChanged: (bool value) => controller.registerEventStore.setPrivateEvent(value),
-                                  );
-                                }),
-                              ),
-                            ],
+              ),
+              flexibleSpace: FlexibleSpaceBar(
+                background: Builder(builder: (context) {
+                  return Hero(
+                    tag: controller.registerEventStore.getImagePath,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        image: DecorationImage(
+                          image: AssetImage(controller.registerEventStore.getImagePath),
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
+                          repeat: ImageRepeat.noRepeat,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.photo_library_rounded),
+                            onPressed: () {},
+                            color: Colors.white,
+                            iconSize: 30,
                           ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+              ),
+              centerTitle: true,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () => showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) => Container(
+                      height: 200,
+                      color: const Color(0xFF4C0B8D),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: <Widget>[
+                            const SizedBox(height: 16),
+                            Container(
+                              width: 39.52,
+                              height: 4.96,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(2),
+                                color: const Color(0xff495bcc),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            ListTile(
+                              title: const Text(
+                                'Permirir convidados adicionar outros convidados',
+                              ),
+                              leading: Observer(builder: (context) {
+                                return Switch(
+                                  value: controller.registerEventStore.isInvite,
+                                  activeColor: const Color(0xFF6200EE),
+                                  onChanged: (bool value) => controller.registerEventStore.setInviteEvent(value),
+                                );
+                              }),
+                            ),
+                            ListTile(
+                              title: const Text(
+                                'Evento privado',
+                              ),
+                              leading: Observer(builder: (context) {
+                                return Switch(
+                                  value: controller.registerEventStore.isPrivate,
+                                  activeColor: const Color(0xFF6200EE),
+                                  onChanged: (bool value) => controller.registerEventStore.setPrivateEvent(value),
+                                );
+                              }),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "Categoria",
-                      style: TextStyle(
-                        color: Color(0xffdce2ef),
-                        fontSize: 18,
-                        fontFamily: "Rajdhani",
-                        fontWeight: FontWeight.w700,
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 40),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "Categoria",
+                        style: TextStyle(
+                          color: Color(0xffdce2ef),
+                          fontSize: 18,
+                          fontFamily: "Rajdhani",
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.countCategories,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Observer(builder: (context) {
-                          return CategoryCard(
-                            categoryModel: controller.list[index],
-                            onTap: (value) => controller.registerEventStore.setCategory(value),
-                            selected: controller.registerEventStore.getCategory,
-                          );
-                        }),
-                      ),
+                    SizedBox(
+                      height: 200,
+                      child: Observer(builder: (context) {
+                        return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.countCategories,
+                          itemBuilder: (BuildContext context, int index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Observer(builder: (context) {
+                              return CategoryCard(
+                                categoryModel: controller.list[index],
+                                onTap: (value) => controller.registerEventStore.setCategory(value),
+                                selected: controller.registerEventStore.getCategory,
+                              );
+                            }),
+                          ),
+                        );
+                      }),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SliverToBoxAdapter(
@@ -171,7 +205,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 40, left: 10, right: 10),
+                padding: const EdgeInsets.only(bottom: 100, left: 10, right: 10),
                 child: TextAreaDefault(
                   hint: "Descrição",
                   controller: controller.discribeController,

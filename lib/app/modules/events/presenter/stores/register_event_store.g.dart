@@ -9,6 +9,20 @@ part of 'register_event_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
+  Computed<File?>? _$getImageComputed;
+
+  @override
+  File? get getImage =>
+      (_$getImageComputed ??= Computed<File?>(() => super.getImage,
+              name: '_RegisterEventStoreBase.getImage'))
+          .value;
+  Computed<String>? _$getImagePathComputed;
+
+  @override
+  String get getImagePath =>
+      (_$getImagePathComputed ??= Computed<String>(() => super.getImagePath,
+              name: '_RegisterEventStoreBase.getImagePath'))
+          .value;
   Computed<CategoryModel?>? _$getCategoryComputed;
 
   @override
@@ -65,6 +79,21 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
       (_$getLongitudeComputed ??= Computed<double>(() => super.getLongitude,
               name: '_RegisterEventStoreBase.getLongitude'))
           .value;
+
+  final _$_imageAtom = Atom(name: '_RegisterEventStoreBase._image');
+
+  @override
+  File? get _image {
+    _$_imageAtom.reportRead();
+    return super._image;
+  }
+
+  @override
+  set _image(File? value) {
+    _$_imageAtom.reportWrite(value, super._image, () {
+      super._image = value;
+    });
+  }
 
   final _$_categoryAtom = Atom(name: '_RegisterEventStoreBase._category');
 
@@ -205,6 +234,17 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
       ActionController(name: '_RegisterEventStoreBase');
 
   @override
+  void setImage(File? value) {
+    final _$actionInfo = _$_RegisterEventStoreBaseActionController.startAction(
+        name: '_RegisterEventStoreBase.setImage');
+    try {
+      return super.setImage(value);
+    } finally {
+      _$_RegisterEventStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setCategory(CategoryModel? value) {
     final _$actionInfo = _$_RegisterEventStoreBaseActionController.startAction(
         name: '_RegisterEventStoreBase.setCategory');
@@ -295,6 +335,8 @@ mixin _$RegisterEventStore on _RegisterEventStoreBase, Store {
   @override
   String toString() {
     return '''
+getImage: ${getImage},
+getImagePath: ${getImagePath},
 getCategory: ${getCategory},
 getName: ${getName},
 getDiscrible: ${getDiscrible},

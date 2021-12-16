@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:resenha/app/modules/events/domain/usecases/register_event.dart';
 import 'package:resenha/app/modules/events/infra/models/category_model.dart';
 import 'package:resenha/app/modules/events/infra/models/event_model.dart';
+import 'package:resenha/app/shared/utils/assets_utils.dart';
 import 'package:uuid/uuid.dart';
 
 part 'register_event_store.g.dart';
@@ -15,6 +18,18 @@ abstract class _RegisterEventStoreBase with Store {
   final RegistersEvent registersEvent;
 
   _RegisterEventStoreBase(this.registersEvent, this.uuid);
+
+  @observable
+  File? _image;
+
+  @action
+  void setImage(File? value) => _image = value;
+
+  @computed
+  File? get getImage => _image;
+
+  @computed
+  String get getImagePath => _image?.path ?? backgroundLogin;
 
   @observable
   CategoryModel? _category;
