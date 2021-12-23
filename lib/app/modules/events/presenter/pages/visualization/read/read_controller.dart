@@ -22,10 +22,18 @@ abstract class _ReadControllerBase with Store {
   @action
   void setEvent(EventModel event) => eventModel = event;
 
+  @observable
+  bool loading = false;
+
+  @action
+  void setLoading(bool value) => loading = value;
+
   Future<void> request(String id) async {
+    setLoading(true);
     var result = await readEvent(id);
     result.fold((failure) {}, (event) {
       setEvent(event as EventModel);
     });
+    setLoading(false);
   }
 }

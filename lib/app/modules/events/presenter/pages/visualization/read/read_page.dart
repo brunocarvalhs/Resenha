@@ -28,8 +28,6 @@ class _ReadPageState extends ModularState<ReadPage, ReadController> {
               expandedHeight: 300,
               flexibleSpace: Observer(
                 builder: (context) => FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text("${store.eventModel?.title}"),
                   background: Hero(
                     tag: "${store.eventModel?.id}",
                     child: Container(
@@ -54,56 +52,33 @@ class _ReadPageState extends ModularState<ReadPage, ReadController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "Funções",
-                        style: TextStyle(
-                          color: Color(0xffdce2ef),
-                          fontSize: 18,
-                          fontFamily: "Rajdhani",
-                          fontWeight: FontWeight.w700,
+                    Observer(builder: (context) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                        child: Text(
+                          "${store.eventModel?.title}",
+                          style: const TextStyle(
+                            color: Color(0xffdce2ef),
+                            fontSize: 30,
+                            fontFamily: "Rajdhani",
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: Observer(
-                        builder: (_) => ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FunctionCard(
-                                icon: Icons.map,
-                                title: "Ponto de encontro",
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FunctionCard(
-                                icon: Icons.share,
-                                title: "Compartilhar evento",
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FunctionCard(
-                                icon: Icons.group,
-                                title: "Criar grupo",
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: FunctionCard(
-                                icon: Icons.date_range,
-                                title: "Exportar evento",
-                              ),
-                            ),
-                          ],
+                      );
+                    }),
+                    Observer(builder: (context) {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                        child: Text(
+                          "${store.eventModel?.description}",
+                          style: const TextStyle(
+                            color: Color(0xffdce2ef),
+                            fontSize: 20,
+                            fontFamily: "Rajdhani",
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    }),
                   ],
                 ),
               ),
@@ -123,6 +98,45 @@ class _ReadPageState extends ModularState<ReadPage, ReadController> {
               ),
             ),
           ],
+        ),
+        bottomSheet: Container(
+          color: ColorsThemes.purpleDark,
+          height: 100,
+          child: Observer(
+            builder: (_) => ListView(
+              scrollDirection: Axis.horizontal,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: FunctionCard(
+                    icon: Icons.map,
+                    title: "Ponto de encontro",
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: FunctionCard(
+                    icon: Icons.share,
+                    title: "Compartilhar evento",
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: FunctionCard(
+                    icon: Icons.group,
+                    title: "Criar grupo",
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: FunctionCard(
+                    icon: Icons.date_range,
+                    title: "Exportar evento",
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

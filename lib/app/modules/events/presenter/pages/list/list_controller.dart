@@ -22,6 +22,12 @@ abstract class _ListControllerBase with Store {
     request();
   }
 
+  @observable
+  bool loading = false;
+
+  @action
+  void setLoading(bool value) => loading = value;
+
   PageController pageController = PageController(
     initialPage: 0,
     viewportFraction: 0.8,
@@ -43,10 +49,12 @@ abstract class _ListControllerBase with Store {
   List<EventModel> get getPromotions => _promotions.toList();
 
   Future<void> request() async {
+    setLoading(true);
     var result = await getEvents();
     result.fold((failure) {}, (list) {
       events.addAll(list as Iterable<EventModel>);
     });
+    setLoading(false);
   }
 
   // void automaticScrollPromotions() {
