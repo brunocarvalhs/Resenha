@@ -46,7 +46,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                 background: Observer(builder: (context) {
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ColorsThemes.purple,
                       image: controller.registerEventStore.isImage
                           ? DecorationImage(
                               image: FileImage(controller.registerEventStore.getImage!),
@@ -54,12 +54,7 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterController> 
                               alignment: Alignment.topCenter,
                               repeat: ImageRepeat.noRepeat,
                             )
-                          : const DecorationImage(
-                              image: NetworkImage("controller.registerEventStore.getImage!"),
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topCenter,
-                              repeat: ImageRepeat.noRepeat,
-                            ),
+                          : null,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
