@@ -2,7 +2,15 @@ name: Build Develop
 
 on:
   push:
-    branches: [develop]
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+env:
+  flutter_version: "2.10.3"
+  flutter_channel: "stable"
 
 jobs:
   test:
@@ -20,44 +28,62 @@ jobs:
         with:
           flutter-version: "2.x"
 
+      - name: Create env file
+        run: |
+          touch .env
+          echo "${{ secrets.ENVIRONMENT }}" | base64 --decode > .env
+
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Test validation
-        run: flutter test
+      - name: Run tests
+        run: flutter test --coverage
 
-  quality:
-    name: Quality dart Code
+      - name: Upload coverage to codecov
+        run: curl -s https://codecov.io/bash -t ${{ secrets.CODECOV_TOKEN }}
+        shell: bash
+
+  version:
+    name: Create version number
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
-
-      - uses: actions/setup-java@v1
         with:
-          java-version: "12.x"
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
-      - uses: subosito/flutter-action@v1
+      - name: Git Version
+        uses: codacy/git-version@2.2.0
+
+      - name: Create version.txt with nuGetVersion
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+
+      - name: Upload version.txt
+        uses: actions/upload-artifact@v2
         with:
-          flutter-version: "2.x"
-
-      - name: Install dependencies
-        run: dart pub get
-
-      - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v1
+          name: gitversion
+          path: version.txt
 
   build:
     name: Build Apps
-    needs: [quality]
+    needs: [version]
     runs-on: macos-latest
     steps:
-      - name: Export Release Timestamp
-        run: echo "APP_VERSION=v$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_ENV
-
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+
+      - name: Get version.txt
+        uses: actions/download-artifact@v2
+        with:
+          name: gitversion
+
+      - name: Read version
+        id: version
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: version.txt
 
       - name: Set up Java
         uses: actions/setup-java@v2
@@ -65,39 +91,44 @@ jobs:
           java-version: "8"
           distribution: "adopt"
 
-      - name: Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          channel: "stable"
+          flutter-version: ${{ env.flutter_version }}
+          channel: ${{ env.flutter_channel }}
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo "${{ secrets.ENVIRONMENT }}" | base64 --decode > .env
+
+      - name: Create google-services file
+        run: |
+          touch ./android/app/google-services.json
+          echo "${{ secrets.GOOGLE_SERVICE_JSON }}" | base64 --decode > ./android/app/google-services.json
+
+      - name: Create key.properties file
+        run: |
+          touch ./android/key.properties
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 --decode > ./android/key.properties
 
       - name: Install pub Dependencies
         run: flutter pub get
 
+      # - name: Build iOS App
+      #   run: |
+      #     flutter build ios --no-codesign
+
       - name: Build Android App
         run: |
-          flutter build apk --split-per-abi
           flutter build appbundle
-          
-      - name: Build iOS App
-        run: |
-          flutter build ios --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
-
-      - name: Build Web App
-        run: |
-          flutter build web
-          cd build/web
-          zip -r web-app.zip .
+          flutter build apk
 
       - name: Release Apps
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ env.APP_VERSION }}
+          tag: ${{ steps.version.outputs.content }}
+          commit: ${{ github.sha }}
           name: ${{ env.APP_VERSION }}
           token: ${{ secrets.GH_TOKEN }}
-          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab,build/ios/iphoneos/app.ipa,build/web/web-app.zip"
+          artifacts: "build/app/outputs/apk/release/*.apk, build/app/outputs/bundle/release/*.aab, build/ios/iphoneos/*.ipa"
